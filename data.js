@@ -66,6 +66,7 @@
     {
       id: 'darna-101',
       title: 'Modern Villa with Garden',
+      title_fr: 'Villa Moderne avec Jardin',
       location: 'La Marsa, Tunis',
       category: 'sale',
       type: 'villa',
@@ -78,8 +79,11 @@
       verified: true,
       professionalId: 'pro-aurora',
       availability: 'Immediate',
+      availability_fr: 'Immédiate',
       description: 'A contemporary detached villa with landscaped garden, private parking, and premium finishing.',
+      description_fr: 'Villa contemporaine indépendante avec jardin paysagé, parking privé et finitions haut de gamme.',
       amenities: ['Garden', 'Parking', 'Central heating', 'Security system'],
+      amenities_fr: ['Jardin', 'Parking', 'Chauffage central', 'Système de sécurité'],
       coordinates: { lat: 36.889, lng: 10.327 },
       images: [
         'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
@@ -90,6 +94,7 @@
     {
       id: 'darna-102',
       title: 'City Apartment Near Universities',
+      title_fr: 'Appartement Urbain Proche des Universités',
       location: 'El Manar, Tunis',
       category: 'long',
       type: 'apartment',
@@ -102,8 +107,11 @@
       verified: true,
       professionalId: 'pro-medina',
       availability: 'From March 2026',
+      availability_fr: 'À partir de Mars 2026',
       description: 'Bright apartment ideal for families or professionals, close to transport and schools.',
+      description_fr: 'Appartement lumineux idéal pour familles ou professionnels, proche des transports et écoles.',
       amenities: ['Balcony', 'Elevator', 'Fiber internet'],
+      amenities_fr: ['Balcon', 'Ascenseur', 'Internet fibre'],
       rentTags: ['family', 'couple'],
       coordinates: { lat: 36.82, lng: 10.145 },
       images: [
@@ -115,6 +123,7 @@
     {
       id: 'darna-103',
       title: 'Beachfront Summer Home',
+      title_fr: 'Maison d’Été en Front de Mer',
       location: 'Hammamet, Nabeul',
       category: 'short',
       type: 'villa',
@@ -127,8 +136,11 @@
       verified: true,
       professionalId: 'pro-sea',
       availability: 'Summer 2026',
+      availability_fr: 'Été 2026',
       description: 'Stylish holiday villa with pool, walking distance to the beach, great for family vacations.',
+      description_fr: 'Villa de vacances élégante avec piscine, à distance de marche de la plage, idéale pour vacances familiales.',
       amenities: ['Pool', 'Sea view', 'Wi-Fi', 'Outdoor dining'],
+      amenities_fr: ['Piscine', 'Vue mer', 'Wi-Fi', 'Salle à manger extérieure'],
       coordinates: { lat: 36.405, lng: 10.622 },
       images: [
         'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=1200&q=80',
@@ -139,6 +151,7 @@
     {
       id: 'darna-104',
       title: 'Cozy Studio for Young Professionals',
+      title_fr: 'Studio Confortable pour Jeunes Professionnels',
       location: 'Lac 2, Tunis',
       category: 'long',
       type: 'studio',
@@ -153,8 +166,11 @@
       ownerName: 'Sami Ben Amor',
       ownerAvatar: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=160&q=80',
       availability: 'Immediate',
+      availability_fr: 'Immédiate',
       description: 'Compact studio in a secure residence with modern kitchen and access to nearby business hubs.',
+      description_fr: 'Studio compact dans une résidence sécurisée avec cuisine moderne et accès aux pôles d’affaires à proximité.',
       amenities: ['Security', 'Air conditioning'],
+      amenities_fr: ['Sécurité', 'Climatisation'],
       rentTags: ['students', 'couple'],
       coordinates: { lat: 36.843, lng: 10.279 },
       images: [
@@ -165,6 +181,7 @@
     {
       id: 'darna-105',
       title: 'Family Apartment with Terrace',
+      title_fr: 'Appartement Familial avec Terrasse',
       location: 'Ariana Ville, Ariana',
       category: 'sale',
       type: 'apartment',
@@ -177,8 +194,11 @@
       verified: true,
       professionalId: 'pro-medina',
       availability: 'Immediate',
+      availability_fr: 'Immédiate',
       description: 'Spacious apartment with a large terrace, natural light, and quick access to central routes.',
+      description_fr: 'Appartement spacieux avec grande terrasse, lumière naturelle et accès rapide aux routes centrales.',
       amenities: ['Terrace', 'Parking', 'Storage room'],
+      amenities_fr: ['Terrasse', 'Parking', 'Débarras'],
       coordinates: { lat: 36.866, lng: 10.193 },
       images: [
         'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80',
@@ -188,6 +208,7 @@
     {
       id: 'darna-106',
       title: 'Djerba Holiday Apartment',
+      title_fr: 'Appartement de Vacances à Djerba',
       location: 'Houmt Souk, Djerba',
       category: 'short',
       type: 'apartment',
@@ -200,8 +221,11 @@
       verified: true,
       professionalId: 'pro-sea',
       availability: 'Weekends + Summer',
+      availability_fr: 'Week-ends + Été',
       description: 'Comfortable vacation apartment for couples and small families, close to cafes and beach routes.',
+      description_fr: 'Appartement de vacances confortable pour couples et petites familles, proche des cafés et routes vers la plage.',
       amenities: ['Wi-Fi', 'AC', 'Parking'],
+      amenities_fr: ['Wi-Fi', 'Climatisation', 'Parking'],
       coordinates: { lat: 33.875, lng: 10.858 },
       images: [
         'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80',
@@ -211,6 +235,7 @@
     {
       id: 'darna-107',
       title: 'Independent House with Patio',
+      title_fr: 'Maison Indépendante avec Patio',
       location: 'Sfax Ville, Sfax',
       category: 'sale',
       type: 'house',
@@ -225,8 +250,11 @@
       ownerName: 'Amina Trabelsi',
       ownerAvatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=160&q=80',
       availability: 'Immediate',
+      availability_fr: 'Immédiate',
       description: 'Well-maintained house with internal patio and potential for small office conversion.',
+      description_fr: 'Maison bien entretenue avec patio interne et potentiel de conversion en petit bureau.',
       amenities: ['Patio', 'Solar water heater'],
+      amenities_fr: ['Patio', 'Chauffe-eau solaire'],
       coordinates: { lat: 34.741, lng: 10.76 },
       images: [
         'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&w=1200&q=80',
@@ -236,6 +264,7 @@
     {
       id: 'darna-108',
       title: 'Room in Shared Apartment',
+      title_fr: 'Chambre en Appartement Partagé',
       location: 'Sahloul, Sousse',
       category: 'long',
       type: 'room',
@@ -250,8 +279,11 @@
       ownerName: 'Nour Labidi',
       ownerAvatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=160&q=80',
       availability: 'From April 2026',
+      availability_fr: 'À partir d’Avril 2026',
       description: 'Private furnished room in a calm apartment near hospital and public transport.',
+      description_fr: 'Chambre privée meublée dans un appartement calme proche de l’hôpital et des transports en commun.',
       amenities: ['Furnished', 'Internet', 'Shared kitchen'],
+      amenities_fr: ['Meublé', 'Internet', 'Cuisine partagée'],
       rentTags: ['students', 'group'],
       coordinates: { lat: 35.836, lng: 10.608 },
       images: [
@@ -262,6 +294,7 @@
     {
       id: 'darna-109',
       title: 'Contemporary Penthouse',
+      title_fr: 'Penthouse Contemporain',
       location: 'Les Berges du Lac, Tunis',
       category: 'sale',
       type: 'apartment',
@@ -274,8 +307,11 @@
       verified: true,
       professionalId: 'pro-aurora',
       availability: 'Immediate',
+      availability_fr: 'Immédiate',
       description: 'Penthouse with panoramic terrace, elegant interior, and direct access parking.',
+      description_fr: 'Penthouse avec terrasse panoramique, intérieur élégant et parking avec accès direct.',
       amenities: ['Panoramic terrace', 'Smart home', '2 parking spots'],
+      amenities_fr: ['Terrasse panoramique', 'Maison intelligente', '2 places de parking'],
       coordinates: { lat: 36.839, lng: 10.267 },
       images: [
         'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80',
@@ -285,6 +321,7 @@
     {
       id: 'darna-110',
       title: 'Cap Bon Vacation Bungalow',
+      title_fr: 'Bungalow de Vacances au Cap Bon',
       location: 'Kelibia, Nabeul',
       category: 'short',
       type: 'house',
@@ -297,8 +334,11 @@
       verified: true,
       professionalId: 'pro-sea',
       availability: 'All year',
+      availability_fr: 'Toute l’année',
       description: 'Warm and airy bungalow for weekend escapes with a short drive to sandy beaches.',
+      description_fr: 'Bungalow chaleureux et aéré pour évasions de week-end avec un court trajet vers les plages de sable.',
       amenities: ['Garden', 'BBQ', 'Family friendly'],
+      amenities_fr: ['Jardin', 'Barbecue', 'Adapté aux familles'],
       coordinates: { lat: 36.847, lng: 11.093 },
       images: [
         'https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80',
@@ -308,6 +348,7 @@
     {
       id: 'darna-111',
       title: 'Business District Condo',
+      title_fr: 'Appartement dans Quartier d’Affaires',
       location: 'Centre Urbain Nord, Tunis',
       category: 'long',
       type: 'condo',
@@ -320,8 +361,11 @@
       verified: true,
       professionalId: 'pro-medina',
       availability: 'Immediate',
+      availability_fr: 'Immédiate',
       description: 'Modern condo suited for executives with high-end finishes and secure residence services.',
+      description_fr: 'Appartement moderne adapté aux cadres avec finitions haut de gamme et services de résidence sécurisée.',
       amenities: ['Concierge', 'Elevator', 'Covered parking'],
+      amenities_fr: ['Concierge', 'Ascenseur', 'Parking couvert'],
       rentTags: ['couple', 'family'],
       coordinates: { lat: 36.84, lng: 10.196 },
       images: [
@@ -332,6 +376,7 @@
     {
       id: 'darna-112',
       title: 'Quiet Villa in Menzah',
+      title_fr: 'Villa Calme au Menzah',
       location: 'El Menzah 9, Tunis',
       category: 'sale',
       type: 'villa',
@@ -346,8 +391,11 @@
       ownerName: 'Hatem Jaziri',
       ownerAvatar: 'https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&w=160&q=80',
       availability: 'Negotiable',
+      availability_fr: 'Négociable',
       description: 'Spacious family villa on a calm street with private garage and mature trees.',
+      description_fr: 'Villa familiale spacieuse dans une rue calme avec garage privé et arbres matures.',
       amenities: ['Garage', 'Garden', 'Guest room'],
+      amenities_fr: ['Garage', 'Jardin', 'Chambre d’invités'],
       coordinates: { lat: 36.854, lng: 10.163 },
       images: [
         'https://images.unsplash.com/photo-1513584684374-8bab748fbf90?auto=format&fit=crop&w=1200&q=80',
@@ -368,6 +416,18 @@
     }) || null;
   }
 
+  function getLocalizedListing(listing, language) {
+    if (!listing) return null;
+    const localized = Object.assign({}, listing);
+    if (language === 'fr') {
+      if (listing.title_fr) localized.title = listing.title_fr;
+      if (listing.description_fr) localized.description = listing.description_fr;
+      if (listing.amenities_fr) localized.amenities = listing.amenities_fr;
+      if (listing.availability_fr) localized.availability = listing.availability_fr;
+    }
+    return localized;
+  }
+
   function getOwnerForListing(listing) {
     if (listing.professionalId) {
       const professional = getProfessionalById(listing.professionalId);
@@ -385,7 +445,6 @@
           whatsapp: professional.whatsapp
         };
       }
-
       return {
         id: listing.professionalId,
         name: listing.ownerName || 'Professional Account',
@@ -399,7 +458,6 @@
         whatsapp: 'https://wa.me/21620000000'
       };
     }
-
     return {
       id: 'owner-' + listing.id,
       name: listing.ownerName || 'Private Owner',
@@ -420,7 +478,9 @@
     listings: listings,
     getProfessionalById: getProfessionalById,
     getListingById: getListingById,
+    getLocalizedListing: getLocalizedListing,
     getOwnerForListing: getOwnerForListing
   };
+
   window.DARNA_DATA = window.TUNIHOME_DATA;
 })();
