@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -11,17 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2
-        with:
-          publish-dir: '.'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Deploy from GitHub Actions'
-          enable-pull-request-comment: false
-          enable-commit-comment: false
-          overwrites-pull-request-comment: false
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
+      - name: Create site and deploy
+        run: |
+          netlify sites:create --name tunihome-preview --account-slug hamdijawher-workspace 2>/dev/null || true
+          SITE_ID=$(netlify sites:list --json | jq -r '.[] | select(.name=="tunihome-preview") | .id')
+          netlify deploy --prod --dir=. --site=$SITE_ID
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
+          NETLIFY_AUTH_TOKEN: nfp_PnjjbAdinSNaTFDDP9MZG49532iru7Xy7c84
