@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Publish your property listing in minutes with clear steps for details, media, contact, and location." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://tunihome.tn/list-property.html" />
+    <meta property="og:site_name" content="TuniHome" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Listing | TuniHome" />
+    <meta property="og:description" content="Publish your property listing in minutes with clear steps for details, media, contact, and location." />
+    <meta property="og:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta property="og:url" content="https://tunihome.tn/list-property.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Create Listing | TuniHome" />
+    <meta name="twitter:description" content="Publish your property listing in minutes with clear steps for details, media, contact, and location." />
+    <meta name="twitter:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta name="theme-color" content="#f4f6fa" />
+    <title>Create Listing | TuniHome</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="manifest" href="site.webmanifest" />
+  </head>
+  <body class="page" data-page="list-property">
+    <div class="mobile-shell page-list">
+      <header class="topbar home-header">
+        <div class="home-nav-shell">
+          <a class="brand home-brand" href="index.html" aria-label="Go to home">
+            <h1>TUNIHOME</h1>
+          </a>
+
+          <div class="nav-actions home-nav-actions">
+            <select class="lang-select" data-language-select aria-label="Language">
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="ar">العربية</option>
+            </select>
+            <a class="btn mini" href="list-property.html">List your properties</a>
+            <a class="icon-btn nav-account" href="login.html" aria-label="My account">
+              <svg class="icon-user-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.8-3.8 5.1-5.6 8-5.6s6.2 1.8 8 5.6"></path></svg>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="form-layout reveal" data-delay="1">
+          <aside class="form-story">
+            <h2>Publish your listing in minutes</h2>
+            <p>Simple flow to publish clean listings quickly. Your profile settings control account tags automatically.</p>
+            <img
+              src="assets/listing-8.jpg"
+              alt="Modern home"
+              loading="lazy"
+            />
+          </aside>
+
+          <section class="form-main">
+            <article class="form-card listing-head-card">
+              <div class="listing-head-copy">
+                <h3 id="listing-form-title" class="section-title">Listing setup</h3>
+                <p id="listing-account-summary" class="subtle">Connected as --</p>
+                <p id="listing-verification-note" class="listing-head-warning subtle">Agency/promoter verification pending: this listing will publish as Individual until approved.</p>
+              </div>
+              <div class="listing-plan-wrap" id="listing-plan-wrap">
+                <label class="subtle" id="listing-plan-label">Profile publishing settings</label>
+                <div class="listing-plan-pills">
+                  <span id="listing-plan-photo-limit" class="badge">Photo limit: 8</span>
+                </div>
+                <p id="listing-plan-note" class="subtle">Account tags are managed in profile settings and applied automatically to your listing.</p>
+                <a id="listing-plan-manage" class="link-btn" href="settings.html">Manage in profile</a>
+              </div>
+            </article>
+
+            <article class="form-card listing-steps-card">
+              <div class="listing-steps-track" id="listing-steps-track" role="tablist" aria-label="Listing creation steps">
+                <button class="listing-step-tab active" type="button" data-step-target="1">1. Basics</button>
+                <button class="listing-step-tab" type="button" data-step-target="2">2. Details</button>
+                <button class="listing-step-tab" type="button" data-step-target="3">3. Media & contact</button>
+                <button class="listing-step-tab" type="button" data-step-target="4">4. Location</button>
+              </div>
+            </article>
+
+            <form id="listing-flow-form" novalidate>
+              <article class="form-card listing-section listing-step-panel" data-listing-step="1">
+                <div class="listing-section-head">
+                  <h3 id="listing-section-details-title" class="section-title">Step 1: Basics</h3>
+                  <p id="listing-section-details-subtitle" class="subtle">Choose listing category, condition, and set a clear price.</p>
+                </div>
+
+                <div class="form-grid two-col">
+                  <div class="field">
+                    <label for="listing-title">Listing title</label>
+                    <input id="listing-title" class="input" type="text" required placeholder="Example: Modern sea-view apartment" />
+                  </div>
+                  <div class="field">
+                    <label for="listing-category">Category</label>
+                    <select id="listing-category" class="select" required>
+                      <option value="sale">Vente</option>
+                      <option value="long">Rent</option>
+                      <option value="short">Vacance</option>
+                      <option value="business">Fond de commerce</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="listing-state">Property state</label>
+                    <select id="listing-state" class="select" required>
+                      <option value="new">New</option>
+                      <option value="good">Good condition</option>
+                      <option value="under-construction">Under construction</option>
+                    </select>
+                  </div>
+                  <div id="listing-ready-wrap" class="field hidden">
+                    <label for="listing-ready-date">Ready by</label>
+                    <input id="listing-ready-date" class="input" type="text" placeholder="Month / year" />
+                  </div>
+                  <div class="field">
+                    <label for="listing-price">Price (TND)</label>
+                    <input id="listing-price" class="input" type="number" min="1" required />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="listing-description">Description</label>
+                  <textarea id="listing-description" class="textarea" required placeholder="Describe your property"></textarea>
+                </div>
+                <p id="listing-price-note" class="subtle">Price must be accurate. Wrong pricing may lead to listing removal.</p>
+
+                <div class="button-row listing-actions">
+                  <button class="btn" type="button" data-listing-next-step>Next step</button>
+                </div>
+              </article>
+
+              <article class="form-card listing-section listing-step-panel hidden" data-listing-step="2">
+                <div class="listing-section-head">
+                  <h3 class="section-title">Step 2: Property details</h3>
+                  <p class="subtle">Add type, surface, rooms, baths, and amenities.</p>
+                </div>
+
+                <div class="form-grid two-col">
+                  <div class="field">
+                    <label for="listing-type">Property type</label>
+                    <select id="listing-type" class="select" required>
+                      <option value="apartment">Apartment</option>
+                      <option value="villa">Villa</option>
+                      <option value="house">House</option>
+                      <option value="land">Lot / Terrain</option>
+                      <option value="shop">Commercial space</option>
+                      <option value="office">Office</option>
+                      <option value="room">Room</option>
+                      <option value="condo">Condo</option>
+                      <option value="studio">Studio</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="listing-surface">Surface (sqm)</label>
+                    <input id="listing-surface" class="input" type="number" min="10" step="5" value="120" required />
+                  </div>
+                  <div class="field">
+                    <label for="listing-rooms">Rooms</label>
+                    <input id="listing-rooms" class="input" type="number" min="1" step="1" value="3" required />
+                  </div>
+                  <div class="field">
+                    <label for="listing-baths">Baths</label>
+                    <input id="listing-baths" class="input" type="number" min="1" step="1" value="2" required />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label id="listing-amenities-label">Amenities checklist</label>
+                  <div id="listing-amenities-grid" class="amenities-checklist"></div>
+                </div>
+
+                <div class="button-row listing-actions">
+                  <button class="btn light" type="button" data-listing-prev-step>Back</button>
+                  <button class="btn" type="button" data-listing-next-step>Next step</button>
+                </div>
+              </article>
+
+              <article class="form-card listing-section listing-step-panel hidden" data-listing-step="3">
+                <div class="listing-section-head">
+                  <h3 id="listing-section-media-title" class="section-title">Step 3: Media & contact</h3>
+                  <p id="listing-section-media-subtitle" class="subtle">Upload photos/video and add contact details.</p>
+                </div>
+
+                <div class="upload-grid">
+                  <div class="field">
+                    <label id="listing-images-label" for="listing-images">Image gallery</label>
+                    <input id="listing-images" class="visually-hidden" type="file" multiple accept="image/*" />
+                    <div id="upload-slots" class="upload-slots" aria-live="polite"></div>
+                    <div class="button-row upload-actions">
+                      <button id="listing-add-photos" class="btn light" type="button">Add photos</button>
+                    </div>
+                    <p id="listing-images-help" class="subtle">Tap a slot to attach photos.</p>
+                  </div>
+                  <div class="field">
+                    <label for="listing-video">Upload video (optional)</label>
+                    <input id="listing-video" class="input" type="file" accept="video/*" />
+                    <p id="listing-video-help" class="subtle">Add a short walkthrough video.</p>
+                  </div>
+                  <div class="field">
+                    <label for="listing-video-2">Upload second video (optional)</label>
+                    <input id="listing-video-2" class="input" type="file" accept="video/*" />
+                    <p id="listing-video-2-help" class="subtle">Add a second angle or neighborhood walk.</p>
+                  </div>
+                  <div class="field">
+                    <label for="listing-video-url">Video URL (optional)</label>
+                    <input id="listing-video-url" class="input" type="url" placeholder="https://youtube..." />
+                  </div>
+                  <div class="field">
+                    <label for="listing-video-url-2">Second video URL (optional)</label>
+                    <input id="listing-video-url-2" class="input" type="url" placeholder="https://youtube..." />
+                  </div>
+                </div>
+
+                <div id="video-preview" class="video-preview hidden"></div>
+
+                <div class="form-grid two-col">
+                  <div class="field">
+                    <label for="listing-contact-phone">Contact number</label>
+                    <input id="listing-contact-phone" class="input" type="tel" placeholder="+216 20 000 000" required />
+                  </div>
+                  <div class="field">
+                    <label for="listing-contact-whatsapp">WhatsApp</label>
+                    <input id="listing-contact-whatsapp" class="input" type="tel" placeholder="+216 20 000 000" />
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="listing-contact-message">Contact note (optional)</label>
+                  <textarea id="listing-contact-message" class="textarea" placeholder="Best time to call, key info for buyers/renters"></textarea>
+                </div>
+
+                <div class="button-row listing-actions">
+                  <button class="btn light" type="button" data-listing-prev-step>Back</button>
+                  <button class="btn" type="button" data-listing-next-step>Next step</button>
+                </div>
+              </article>
+
+              <article class="form-card listing-section listing-step-panel hidden" data-listing-step="4">
+                <div class="listing-section-head">
+                  <h3 id="listing-section-content-title" class="section-title">Step 4: Localisation</h3>
+                  <p id="listing-section-content-subtitle" class="subtle">Add city and exact area for better discovery.</p>
+                </div>
+
+                <div class="form-grid two-col">
+                  <div class="field">
+                    <label for="listing-city">City</label>
+                    <select id="listing-city" class="select" required>
+                      <option value="">Any city</option>
+                      <option value="Tunis">Tunis</option>
+                      <option value="La Marsa">La Marsa</option>
+                      <option value="Ariana">Ariana</option>
+                      <option value="Sousse">Sousse</option>
+                      <option value="Hammamet">Hammamet</option>
+                      <option value="Nabeul">Nabeul</option>
+                      <option value="Djerba">Djerba</option>
+                      <option value="Sfax">Sfax</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="listing-address">Address</label>
+                    <input id="listing-address" class="input" type="text" required placeholder="Area, City" />
+                  </div>
+                </div>
+
+                <div class="field" id="short-term-dates-wrap">
+                  <label for="listing-dates">Availability dates (short-term)</label>
+                  <input id="listing-dates" class="input" type="text" placeholder="June-August 2026" />
+                </div>
+
+                <div class="field">
+                  <label id="listing-map-label" for="listing-map-picker">Pin exact map location</label>
+                  <div id="listing-map-picker" class="listing-map-picker" role="application" aria-label="Click map to set listing location">
+                    <img src="assets/map-tunis.png" alt="Tunisia map" loading="lazy" />
+                    <button id="listing-map-pin" class="listing-map-pin hidden" type="button" aria-label="Selected listing location"></button>
+                  </div>
+                  <p id="listing-map-help" class="subtle">Select your city, then click on the map to fine-tune the exact location.</p>
+                  <input id="listing-lat" type="hidden" />
+                  <input id="listing-lng" type="hidden" />
+                </div>
+
+                <div class="field">
+                  <label for="listing-verification-doc">Ownership proof screenshot / paper (admin only)</label>
+                  <input id="listing-verification-doc" class="input" type="file" accept=".jpg,.jpeg,.png,.pdf" />
+                  <p id="listing-verification-help" class="subtle">Optional but recommended: upload one clear document screenshot so TuniHome admins can verify your listing faster.</p>
+                </div>
+
+                <div class="button-row listing-actions">
+                  <a id="listing-cancel-link" class="btn light" href="dashboard.html">Cancel</a>
+                  <button class="btn light" type="button" data-listing-prev-step>Back</button>
+                  <button id="listing-submit-btn" class="btn" type="submit">Publish listing</button>
+                </div>
+              </article>
+            </form>
+
+            <p id="listing-success" class="notice hidden" style="margin-top: 12px"></p>
+          </section>
+        </section>
+      </main>
+
+      <nav class="footer-nav" aria-label="Primary navigation">
+        <a class="nav-item" href="index.html">⌂<span>Home</span></a>
+        <a class="nav-item" href="search.html">⌕<span>Search</span></a>
+        <a class="nav-item active" href="list-property.html">＋<span>List</span></a>
+        <a class="nav-item" href="dashboard.html">▦<span>My Listings</span></a>
+      </nav>
+
+      <footer class="site-footer"></footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>

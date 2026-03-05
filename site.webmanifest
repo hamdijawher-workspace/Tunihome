@@ -1,0 +1,16 @@
+{
+  "name": "TuniHome",
+  "short_name": "TuniHome",
+  "description": "Verified homes, rentals, and agencies in Tunisia.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f4f6fa",
+  "theme_color": "#f4f6fa",
+  "icons": [
+    {
+      "src": "assets/hero-home.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Track listing verification progress and manage your published homes." />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="canonical" href="https://tunihome.tn/my-listings.html" />
+    <meta property="og:site_name" content="TuniHome" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="My Listings | TuniHome" />
+    <meta property="og:description" content="Track listing verification progress and manage your published homes." />
+    <meta property="og:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta property="og:url" content="https://tunihome.tn/my-listings.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="My Listings | TuniHome" />
+    <meta name="twitter:description" content="Track listing verification progress and manage your published homes." />
+    <meta name="twitter:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta name="theme-color" content="#f4f6fa" />
+    <title>My Listings | TuniHome</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="manifest" href="site.webmanifest" />
+  </head>
+  <body class="page" data-page="my-listings">
+    <div class="mobile-shell page-my-listings">
+      <header class="topbar home-header">
+        <div class="home-nav-shell">
+          <a class="brand home-brand" href="index.html" aria-label="Go to home">
+            <h1>TUNIHOME</h1>
+          </a>
+
+          <div class="nav-actions home-nav-actions">
+            <select class="lang-select" data-language-select aria-label="Language">
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="ar">العربية</option>
+            </select>
+            <a class="btn mini" href="list-property.html">List your properties</a>
+            <a class="icon-btn nav-account" href="login.html" aria-label="My account">
+              <svg class="icon-user-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.8-3.8 5.1-5.6 8-5.6s6.2 1.8 8 5.6"></path></svg>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="my-listings-main">
+        <section class="dashboard-hero reveal" data-delay="1">
+          <h2 id="my-listings-title">My listings overview</h2>
+          <p id="my-listings-subtitle">Track and review all listings published from your account.</p>
+        </section>
+
+        <section id="my-listings-verification" class="form-card listings-verification-card reveal" data-delay="2">
+          <h3 id="my-listings-verification-title" class="section-title">Listing verification process</h3>
+          <p id="my-listings-verification-subtitle" class="subtle">Each listing is checked to keep the marketplace accurate and trusted.</p>
+          <p id="my-listings-verification-doc-note" class="subtle">Upload ownership proof screenshots in listing creation so admins can verify faster.</p>
+          <div class="listings-verification-steps">
+            <article class="listings-verification-step">
+              <span>1</span>
+              <div>
+                <strong id="verification-step-1-title">Submitted</strong>
+                <p id="verification-step-1-copy">We received your listing and queued it for review.</p>
+              </div>
+            </article>
+            <article class="listings-verification-step">
+              <span>2</span>
+              <div>
+                <strong id="verification-step-2-title">Reviewing details</strong>
+                <p id="verification-step-2-copy">Price, media quality, and location details are verified.</p>
+              </div>
+            </article>
+            <article class="listings-verification-step">
+              <span>3</span>
+              <div>
+                <strong id="verification-step-3-title">Published</strong>
+                <p id="verification-step-3-copy">Approved listings go live and start appearing in search.</p>
+              </div>
+            </article>
+          </div>
+          <p id="my-listings-verification-summary" class="notice"></p>
+        </section>
+
+        <section class="section reveal" data-delay="2">
+          <div class="section-head">
+            <h3 id="my-listings-active-title" class="section-title">Active listings</h3>
+            <span class="subtle" id="my-listings-count"></span>
+          </div>
+          <div id="my-listings-grid" class="my-listings-manage-grid"></div>
+          <div class="section-head" style="margin-top: 14px; justify-content: flex-end;">
+            <a id="my-listings-back-dashboard" class="btn light mini" href="dashboard.html">Back to dashboard</a>
+          </div>
+        </section>
+      </main>
+
+      <div id="my-listing-verify-modal" class="account-action-modal hidden" aria-hidden="true">
+        <div class="account-action-backdrop" data-my-listing-modal-close></div>
+        <div class="account-action-card settings-modal-card" role="dialog" aria-modal="true" aria-label="Verify ownership">
+          <h4 id="my-listing-verify-title">Verify ownership</h4>
+          <p id="my-listing-verify-subtitle">Upload a legal ownership proof for this listing. Admin review is required.</p>
+          <form id="my-listing-verify-form" class="settings-verify-form" novalidate>
+            <div class="field">
+              <label for="my-listing-verify-doc">Ownership proof document</label>
+              <input id="my-listing-verify-doc" class="input" type="file" accept=".jpg,.jpeg,.png,.pdf" required />
+            </div>
+            <div class="field">
+              <label for="my-listing-verify-note">Note (optional)</label>
+              <textarea id="my-listing-verify-note" class="textarea" placeholder="Extra verification context for admin review"></textarea>
+            </div>
+            <div class="account-modal-actions">
+              <button type="button" class="btn light" data-my-listing-modal-close>Cancel</button>
+              <button type="submit" class="btn">Submit ownership proof</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <nav class="footer-nav" aria-label="Primary navigation">
+        <a class="nav-item" href="index.html">⌂<span>Home</span></a>
+        <a class="nav-item" href="search.html">⌕<span>Search</span></a>
+        <a class="nav-item" href="list-property.html">＋<span>List</span></a>
+        <a class="nav-item active" href="dashboard.html">▦<span>My Listings</span></a>
+      </nav>
+
+      <footer class="site-footer"></footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>

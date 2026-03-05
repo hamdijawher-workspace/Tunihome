@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Update your account details, verification request, and publishing profile settings." />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="canonical" href="https://tunihome.tn/settings.html" />
+    <meta property="og:site_name" content="TuniHome" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Settings | TuniHome" />
+    <meta property="og:description" content="Update your account details, verification request, and publishing profile settings." />
+    <meta property="og:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta property="og:url" content="https://tunihome.tn/settings.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Settings | TuniHome" />
+    <meta name="twitter:description" content="Update your account details, verification request, and publishing profile settings." />
+    <meta name="twitter:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta name="theme-color" content="#f4f6fa" />
+    <title>Settings | TuniHome</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="manifest" href="site.webmanifest" />
+  </head>
+  <body class="page" data-page="settings">
+    <div class="mobile-shell page-settings">
+      <header class="topbar home-header">
+        <div class="home-nav-shell">
+          <a class="brand home-brand" href="index.html" aria-label="Go to home">
+            <h1>TUNIHOME</h1>
+          </a>
+
+          <div class="nav-actions home-nav-actions">
+            <select class="lang-select" data-language-select aria-label="Language">
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="ar">العربية</option>
+            </select>
+            <a class="btn mini" href="list-property.html">List your properties</a>
+            <a class="icon-btn nav-account" href="login.html" aria-label="My account">
+              <svg class="icon-user-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.8-3.8 5.1-5.6 8-5.6s6.2 1.8 8 5.6"></path></svg>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="settings-main">
+        <section class="dashboard-hero reveal" data-delay="1">
+          <h2 id="settings-hero-title">Manage your profile settings</h2>
+          <p id="settings-hero-subtitle">Update your account identity and contact details.</p>
+        </section>
+
+        <section class="section reveal" data-delay="2">
+          <form id="settings-form" class="form-card settings-form" novalidate>
+            <div class="form-grid two-col">
+              <div class="field">
+                <label for="settings-name">Full name</label>
+                <input id="settings-name" class="input" type="text" required />
+              </div>
+              <div class="field">
+                <label for="settings-email">Email</label>
+                <input id="settings-email" class="input" type="email" required />
+              </div>
+              <div class="field">
+                <label for="settings-phone">Phone</label>
+                <input id="settings-phone" class="input" type="tel" />
+              </div>
+              <div class="field">
+                <label for="settings-avatar">Profile photo URL</label>
+                <input id="settings-avatar" class="input" type="url" placeholder="https://..." />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="settings-bio">Public profile</label>
+              <textarea id="settings-bio" class="textarea" placeholder="Short profile summary"></textarea>
+            </div>
+
+            <div class="form-grid two-col">
+              <div class="field">
+                <label for="settings-cover">Agency cover URL</label>
+                <input id="settings-cover" class="input" type="url" placeholder="https://..." />
+              </div>
+              <div class="field">
+                <label for="settings-website">Website</label>
+                <input id="settings-website" class="input" type="url" placeholder="https://..." />
+              </div>
+              <div class="field">
+                <label for="settings-instagram">Instagram</label>
+                <input id="settings-instagram" class="input" type="url" placeholder="https://..." />
+              </div>
+              <div class="field">
+                <label for="settings-facebook">Facebook</label>
+                <input id="settings-facebook" class="input" type="url" placeholder="https://..." />
+              </div>
+            </div>
+
+            <article class="form-card settings-plan-card">
+              <div class="listing-section-head">
+                <h3 id="settings-plan-title" class="section-title">Account tags</h3>
+                <p id="settings-plan-subtitle" class="subtle">Choose your account tag from profile settings. Agency and promoter accounts require manual verification.</p>
+              </div>
+
+              <div class="settings-plan-table" role="table" aria-label="Account tags">
+                <div class="settings-plan-col" id="settings-plan-individual" role="row">
+                  <div class="settings-plan-col-head">
+                    <strong id="settings-plan-individual-name">Individual</strong>
+                    <span class="badge" id="settings-plan-individual-price">Free</span>
+                  </div>
+                  <ul class="settings-plan-list">
+                    <li id="settings-plan-individual-f1">Standard listing tag</li>
+                    <li id="settings-plan-individual-f2">Up to 8 photos per listing</li>
+                    <li id="settings-plan-individual-f3">Standard listing placement</li>
+                    <li id="settings-plan-individual-f4">Eligible for paid Pro add-on</li>
+                  </ul>
+                </div>
+
+                <div class="settings-plan-col" id="settings-plan-agency" role="row">
+                  <div class="settings-plan-col-head">
+                    <strong id="settings-plan-agency-name">Agency</strong>
+                    <span class="badge pro" id="settings-plan-agency-price">Tag</span>
+                  </div>
+                  <ul class="settings-plan-list">
+                    <li id="settings-plan-agency-f1">Agency badge on listings</li>
+                    <li id="settings-plan-agency-f2">Manual verification required</li>
+                    <li id="settings-plan-agency-f3">Agency identity shown on listings</li>
+                    <li id="settings-plan-agency-f4">Eligible for paid Pro add-on</li>
+                  </ul>
+                </div>
+
+                <div class="settings-plan-col" id="settings-plan-promoter" role="row">
+                  <div class="settings-plan-col-head">
+                    <strong id="settings-plan-promoter-name">Promoter</strong>
+                    <span class="badge pro" id="settings-plan-promoter-price">Tag</span>
+                  </div>
+                  <ul class="settings-plan-list">
+                    <li id="settings-plan-promoter-f1">Promoter badge on listings</li>
+                    <li id="settings-plan-promoter-f2">Manual verification required</li>
+                    <li id="settings-plan-promoter-f3">Promoter identity shown on listings</li>
+                    <li id="settings-plan-promoter-f4">Eligible for paid Pro add-on</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="settings-plan-actions">
+                <button id="settings-use-individual" class="btn light" type="button">Use Individual</button>
+                <button id="settings-start-verification" class="btn" type="button">Start verification</button>
+                <button id="settings-cancel-verification" class="btn light hidden" type="button">Cancel request</button>
+              </div>
+              <div class="settings-verification-action-row">
+                <p id="settings-plan-current" class="notice">Current tag: Individual</p>
+                <p id="settings-verification-status" class="notice hidden">Verification status: Not required</p>
+              </div>
+            </article>
+
+            <article class="form-card settings-pro-access-card">
+              <div class="listing-section-head">
+                <h3 id="settings-pro-access-title" class="section-title">Pro subscription</h3>
+                <p id="settings-pro-access-subtitle" class="subtle">Unlock higher media limits, two videos, and priority placement.</p>
+              </div>
+              <div class="settings-pro-access-row">
+                <span id="settings-pro-access-status" class="badge">Standard</span>
+                <a id="settings-pro-access-link" class="btn light" href="pro-upgrade.html">Upgrade to Pro</a>
+              </div>
+            </article>
+
+            <article id="settings-pro-stats-card" class="form-card settings-pro-stats hidden">
+              <div class="listing-section-head">
+                <h3 id="settings-pro-stats-title" class="section-title">Listing statistics</h3>
+                <p id="settings-pro-stats-subtitle" class="subtle">Performance insights available for all account types.</p>
+              </div>
+              <div class="kpis settings-pro-kpis">
+                <article class="kpi"><span class="subtle" id="settings-stat-impressions-label">Monthly impressions</span><b id="settings-stat-impressions">0</b></article>
+                <article class="kpi"><span class="subtle" id="settings-stat-leads-label">Lead requests</span><b id="settings-stat-leads">0</b></article>
+                <article class="kpi"><span class="subtle" id="settings-stat-saves-label">Saved by users</span><b id="settings-stat-saves">0</b></article>
+                <article class="kpi"><span class="subtle" id="settings-stat-conv-label">Contact conversion</span><b id="settings-stat-conv">0%</b></article>
+              </div>
+              <div class="settings-pro-chart-grid">
+                <article class="settings-pro-chart-card">
+                  <header>
+                    <span class="subtle" id="settings-chart-views-label">Views</span>
+                    <strong id="settings-chart-views-total">0</strong>
+                  </header>
+                  <div id="settings-chart-views" class="mini-bars" aria-label="Views trend"></div>
+                </article>
+                <article class="settings-pro-chart-card">
+                  <header>
+                    <span class="subtle" id="settings-chart-visits-label">Visits</span>
+                    <strong id="settings-chart-visits-total">0</strong>
+                  </header>
+                  <div id="settings-chart-visits" class="mini-bars" aria-label="Visits trend"></div>
+                </article>
+                <article class="settings-pro-chart-card">
+                  <header>
+                    <span class="subtle" id="settings-chart-time-label">Avg time on listing</span>
+                    <strong id="settings-chart-time-total">0m</strong>
+                  </header>
+                  <div id="settings-chart-time" class="mini-bars" aria-label="Time spent trend"></div>
+                </article>
+              </div>
+            </article>
+
+            <div class="button-row">
+              <a id="settings-back-dashboard" class="btn light" href="dashboard.html">Back to dashboard</a>
+              <button id="settings-save-btn" class="btn" type="submit">Save changes</button>
+            </div>
+            <p id="settings-message" class="notice hidden" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+      </main>
+
+      <div id="settings-verify-modal" class="account-action-modal hidden" aria-hidden="true">
+        <div class="account-action-backdrop" data-settings-verify-close></div>
+        <div class="account-action-card settings-modal-card" role="dialog" aria-modal="true" aria-label="Start verification">
+          <h4 id="settings-verify-title">Start verification</h4>
+          <p id="settings-verify-subtitle">Upload a legal document so TuniHome admins can review your account tag request.</p>
+          <form id="settings-verify-form" class="settings-verify-form" novalidate>
+            <div class="field">
+              <label for="settings-verify-target">Requested account tag</label>
+              <select id="settings-verify-target" class="input" required>
+                <option value="agency">Agency</option>
+                <option value="promoter">Promoter</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="settings-verify-doc">Verification document</label>
+              <input id="settings-verify-doc" class="input" type="file" accept=".jpg,.jpeg,.png,.pdf" required />
+              <p id="settings-verify-doc-help" class="subtle">Accepted: JPG, PNG, PDF.</p>
+            </div>
+            <div class="field">
+              <label for="settings-verify-note">Review note (optional)</label>
+              <textarea id="settings-verify-note" class="textarea" placeholder="Legal name, registration number, or extra context"></textarea>
+            </div>
+            <div class="account-modal-actions">
+              <button type="button" class="btn light" data-settings-verify-close>Cancel</button>
+              <button type="submit" class="btn">Submit request</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div id="settings-cancel-modal" class="account-action-modal hidden" aria-hidden="true">
+        <div class="account-action-backdrop" data-settings-cancel-close></div>
+        <div class="account-action-card settings-modal-card" role="dialog" aria-modal="true" aria-label="Cancel verification request">
+          <h4 id="settings-cancel-title">Cancel verification request</h4>
+          <p id="settings-cancel-subtitle">Your account will stay Individual and your pending request will be removed.</p>
+          <div class="account-modal-actions">
+            <button type="button" class="btn light" data-settings-cancel-close>Back</button>
+            <button type="button" class="btn" id="settings-cancel-confirm">Confirm cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <nav class="footer-nav" aria-label="Primary navigation">
+        <a class="nav-item" href="index.html">⌂<span>Home</span></a>
+        <a class="nav-item" href="search.html">⌕<span>Search</span></a>
+        <a class="nav-item" href="list-property.html">＋<span>List</span></a>
+        <a class="nav-item active" href="dashboard.html">▦<span>My Listings</span></a>
+      </nav>
+
+      <footer class="site-footer"></footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>

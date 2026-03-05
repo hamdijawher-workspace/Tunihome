@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Admin operations for moderation, verification, and platform controls." />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="canonical" href="https://tunihome.tn/admin.html" />
+    <meta property="og:site_name" content="TuniHome" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Admin Analytics | TuniHome" />
+    <meta property="og:description" content="Admin operations for moderation, verification, and platform controls." />
+    <meta property="og:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta property="og:url" content="https://tunihome.tn/admin.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Admin Analytics | TuniHome" />
+    <meta name="twitter:description" content="Admin operations for moderation, verification, and platform controls." />
+    <meta name="twitter:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta name="theme-color" content="#f4f6fa" />
+    <title>Admin Analytics | TuniHome</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="manifest" href="site.webmanifest" />
+  </head>
+  <body class="page" data-page="admin">
+    <div class="mobile-shell page-admin">
+      <header class="topbar home-header">
+        <div class="home-nav-shell">
+          <a class="brand home-brand" href="index.html" aria-label="Go to home">
+            <h1>TUNIHOME</h1>
+          </a>
+
+          <div class="nav-actions home-nav-actions">
+            <select class="lang-select" data-language-select aria-label="Language">
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="ar">العربية</option>
+            </select>
+            <a class="btn mini" href="list-property.html">List your properties</a>
+            <a class="icon-btn nav-account" href="login.html" aria-label="My account">
+              <svg class="icon-user-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.8-3.8 5.1-5.6 8-5.6s6.2 1.8 8 5.6"></path></svg>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="admin-main">
+        <section class="dashboard-hero reveal" data-delay="1">
+          <h2 id="admin-hero-title">Admin operations</h2>
+          <p id="admin-hero-subtitle">Moderate listings, review account verification, and manage sponsored ad content.</p>
+        </section>
+
+        <section class="section reveal" data-delay="2">
+          <div id="admin-tabs" class="admin-tabs" role="tablist" aria-label="Admin sections">
+            <button id="admin-tab-overview" class="admin-tab active" type="button" role="tab" aria-selected="true" aria-controls="admin-panel-overview" tabindex="0" data-admin-tab="overview">Overview</button>
+            <button id="admin-tab-ads" class="admin-tab" type="button" role="tab" aria-selected="false" aria-controls="admin-panel-ads" tabindex="-1" data-admin-tab="ads">Ads</button>
+            <button id="admin-tab-verify" class="admin-tab" type="button" role="tab" aria-selected="false" aria-controls="admin-panel-verification" tabindex="-1" data-admin-tab="verification">Verification</button>
+            <button id="admin-tab-profiles" class="admin-tab" type="button" role="tab" aria-selected="false" aria-controls="admin-panel-profiles" tabindex="-1" data-admin-tab="profiles">Profiles</button>
+            <button id="admin-tab-listings" class="admin-tab" type="button" role="tab" aria-selected="false" aria-controls="admin-panel-listings" tabindex="-1" data-admin-tab="listings">Listings</button>
+            <button id="admin-tab-admins" class="admin-tab" type="button" role="tab" aria-selected="false" aria-controls="admin-panel-admins" tabindex="-1" data-admin-tab="admins">Admin users</button>
+          </div>
+        </section>
+
+        <div id="admin-panel-overview" class="admin-panel" role="tabpanel" aria-labelledby="admin-tab-overview" aria-hidden="false" data-admin-panel="overview">
+          <section class="section reveal" data-delay="2">
+            <div class="section-head">
+              <h3 id="admin-overview-kpi-title" class="section-title">Core KPIs</h3>
+              <span id="admin-overview-kpi-subtitle" class="subtle">Live admin state</span>
+            </div>
+            <div id="admin-kpis" class="kpis"></div>
+          </section>
+
+          <section class="section reveal" data-delay="2">
+            <div class="section-head">
+              <h3 id="admin-overview-traffic-title" class="section-title">Traffic by category</h3>
+            </div>
+            <div class="form-card" id="admin-chart"></div>
+          </section>
+        </div>
+
+        <div id="admin-panel-ads" class="admin-panel hidden" role="tabpanel" aria-labelledby="admin-tab-ads" aria-hidden="true" data-admin-panel="ads">
+          <section class="section reveal" data-delay="3">
+            <div class="section-head">
+              <h3 id="admin-ads-title" class="section-title">Sponsored ad sections</h3>
+            </div>
+            <form id="admin-ads-form" class="form-card admin-ads-form" novalidate>
+              <div id="admin-ads-grid" class="admin-ads-grid"></div>
+              <div class="button-row">
+                <button id="admin-ads-save" class="btn" type="submit">Save ad sections</button>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <div id="admin-panel-verification" class="admin-panel hidden" role="tabpanel" aria-labelledby="admin-tab-verify" aria-hidden="true" data-admin-panel="verification">
+          <section class="section reveal" data-delay="3">
+            <div class="section-head">
+              <h3 id="admin-verify-title" class="section-title">Profile verification queue</h3>
+              <span id="admin-verify-subtitle" class="subtle">Agency / promoter requests</span>
+            </div>
+            <div id="admin-profile-queue" class="admin-table-wrap"></div>
+          </section>
+        </div>
+
+        <div id="admin-panel-profiles" class="admin-panel hidden" role="tabpanel" aria-labelledby="admin-tab-profiles" aria-hidden="true" data-admin-panel="profiles">
+          <section class="section reveal" data-delay="3">
+            <div class="section-head">
+              <h3 id="admin-profiles-title" class="section-title">Profile management</h3>
+              <span id="admin-profiles-subtitle" class="subtle">Add, edit, or delete agency/promoter profiles</span>
+            </div>
+            <div class="admin-grid-2">
+              <form id="admin-profile-form" class="form-card admin-profile-form" novalidate>
+                <h4 id="admin-profile-form-title">Create / update profile</h4>
+                <div class="form-grid two-col">
+                  <div class="field">
+                    <label for="admin-profile-email">Account email</label>
+                    <input id="admin-profile-email" class="input" type="email" required />
+                  </div>
+                  <div class="field">
+                    <label for="admin-profile-type">Tag</label>
+                    <select id="admin-profile-type" class="input">
+                      <option value="agency">Agency</option>
+                      <option value="promoter">Promoter</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="admin-profile-name">Display name</label>
+                    <input id="admin-profile-name" class="input" type="text" required />
+                  </div>
+                  <div class="field">
+                    <label for="admin-profile-phone">Phone</label>
+                    <input id="admin-profile-phone" class="input" type="tel" />
+                  </div>
+                  <div class="field">
+                    <label for="admin-profile-avatar">Avatar URL</label>
+                    <input id="admin-profile-avatar" class="input" type="url" placeholder="https://..." />
+                  </div>
+                  <div class="field">
+                    <label for="admin-profile-cover">Cover URL</label>
+                    <input id="admin-profile-cover" class="input" type="url" placeholder="https://..." />
+                  </div>
+                  <div class="field">
+                    <label for="admin-profile-website">Website</label>
+                    <input id="admin-profile-website" class="input" type="url" placeholder="https://..." />
+                  </div>
+                  <div class="field">
+                    <label for="admin-profile-instagram">Instagram</label>
+                    <input id="admin-profile-instagram" class="input" type="url" placeholder="https://..." />
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="admin-profile-bio">Bio</label>
+                  <textarea id="admin-profile-bio" class="textarea"></textarea>
+                </div>
+                <div class="button-row">
+                  <button class="btn" type="submit">Save profile</button>
+                </div>
+              </form>
+              <div id="admin-profiles-list" class="form-card admin-profiles-list"></div>
+            </div>
+          </section>
+        </div>
+
+        <div id="admin-panel-listings" class="admin-panel hidden" role="tabpanel" aria-labelledby="admin-tab-listings" aria-hidden="true" data-admin-panel="listings">
+          <section class="section reveal" data-delay="3">
+            <div class="section-head">
+              <h3 id="admin-listings-title" class="section-title">Listing moderation</h3>
+              <span id="admin-listings-subtitle" class="subtle">Manual verification and removal</span>
+            </div>
+            <div id="admin-listings" class="admin-table-wrap"></div>
+          </section>
+        </div>
+
+        <div id="admin-panel-admins" class="admin-panel hidden" role="tabpanel" aria-labelledby="admin-tab-admins" aria-hidden="true" data-admin-panel="admins">
+          <section class="section reveal" data-delay="3">
+            <div class="section-head">
+              <h3 id="admin-users-title" class="section-title">Admin users</h3>
+              <span id="admin-users-subtitle" class="subtle">Create or manage admin access profiles</span>
+            </div>
+            <div class="admin-grid-2">
+              <form id="admin-user-form" class="form-card admin-profile-form" novalidate>
+                <h4 id="admin-user-form-title">Create / update admin</h4>
+                <div class="form-grid two-col">
+                  <div class="field">
+                    <label for="admin-user-name">Full name</label>
+                    <input id="admin-user-name" class="input" type="text" required />
+                  </div>
+                  <div class="field">
+                    <label for="admin-user-email">Email</label>
+                    <input id="admin-user-email" class="input" type="email" required />
+                  </div>
+                  <div class="field">
+                    <label for="admin-user-password">Password</label>
+                    <input id="admin-user-password" class="input" type="text" minlength="6" required />
+                  </div>
+                  <div class="field">
+                    <label for="admin-user-role">Role</label>
+                    <select id="admin-user-role" class="input">
+                      <option value="admin">Admin</option>
+                      <option value="super-admin">Super admin</option>
+                      <option value="moderator">Moderator</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="button-row">
+                  <button id="admin-user-save" class="btn" type="submit">Save admin user</button>
+                </div>
+              </form>
+              <div id="admin-users-list" class="form-card admin-profiles-list"></div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer class="site-footer"></footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /dashboard.html
+Disallow: /favorites.html
+Disallow: /my-listings.html
+Disallow: /settings.html
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /pro-upgrade.html
+
+Sitemap: https://tunihome.tn/sitemap.xml

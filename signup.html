@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Create a TuniHome account to publish listings and connect with buyers or renters." />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="canonical" href="https://tunihome.tn/signup.html" />
+    <meta property="og:site_name" content="TuniHome" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create account | TuniHome" />
+    <meta property="og:description" content="Create a TuniHome account to publish listings and connect with buyers or renters." />
+    <meta property="og:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta property="og:url" content="https://tunihome.tn/signup.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Create account | TuniHome" />
+    <meta name="twitter:description" content="Create a TuniHome account to publish listings and connect with buyers or renters." />
+    <meta name="twitter:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta name="theme-color" content="#f4f6fa" />
+    <title>Create account | TuniHome</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="manifest" href="site.webmanifest" />
+  </head>
+  <body class="page" data-page="signup">
+    <div class="mobile-shell page-auth page-signup">
+      <header class="topbar home-header auth-header">
+        <div class="home-nav-shell">
+          <a class="brand home-brand" href="index.html" aria-label="Go to home">
+            <h1>TUNIHOME</h1>
+          </a>
+
+          <div class="nav-actions home-nav-actions">
+            <select class="lang-select" data-language-select aria-label="Language">
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="ar">العربية</option>
+            </select>
+            <a class="btn mini" href="list-property.html">List your properties</a>
+            <a class="icon-btn nav-account" href="login.html" aria-label="My account">
+              <svg class="icon-user-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.8-3.8 5.1-5.6 8-5.6s6.2 1.8 8 5.6"></path></svg>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="auth-main">
+        <section class="auth-shell reveal" data-delay="1">
+          <aside class="auth-story">
+            <p class="auth-kicker">Start in minutes</p>
+            <h2>Create your TuniHome account and manage listings with confidence.</h2>
+            <p class="auth-story-copy">
+              Built for individuals and agencies with simple tools, clean controls, and fast publishing.
+            </p>
+            <ul class="auth-points">
+              <li>One place for all listings</li>
+              <li>Professional profile visibility</li>
+              <li>Quick publish and edit flow</li>
+            </ul>
+          </aside>
+
+          <section class="auth-card">
+            <h3 id="auth-signup-title">Create your account</h3>
+            <p id="auth-signup-subtitle">Join TuniHome to publish, save, and manage properties.</p>
+
+            <form id="signup-form" class="auth-form" novalidate>
+              <div class="field">
+                <label for="signup-name">Full name</label>
+                <input id="signup-name" class="input" type="text" placeholder="Your name" required />
+              </div>
+
+              <div class="field">
+                <label for="signup-phone">Phone number</label>
+                <input id="signup-phone" class="input" type="tel" placeholder="+216 20 000 000" required />
+              </div>
+
+              <div class="field">
+                <label for="signup-email">Email (optional)</label>
+                <input id="signup-email" class="input" type="email" placeholder="you@example.com" />
+              </div>
+
+              <div class="field-row compact-grid">
+                <div class="field">
+                  <label for="signup-password">Password</label>
+                  <div class="auth-password-wrap">
+                    <input id="signup-password" class="input" type="password" minlength="6" required />
+                    <button class="auth-password-toggle" type="button" data-password-toggle data-target="signup-password">Show</button>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="signup-confirm">Confirm password</label>
+                  <div class="auth-password-wrap">
+                    <input id="signup-confirm" class="input" type="password" minlength="6" required />
+                    <button class="auth-password-toggle" type="button" data-password-toggle data-target="signup-confirm">Show</button>
+                  </div>
+                </div>
+              </div>
+
+              <button id="signup-submit" class="btn auth-submit" type="submit">Create account</button>
+              <p id="signup-feedback" class="notice hidden" role="status" aria-live="polite"></p>
+            </form>
+
+            <p class="auth-switch">
+              <span id="auth-switch-label-signup">Already have an account?</span>
+              <a id="auth-go-login" href="login.html">Log in</a>
+            </p>
+          </section>
+        </section>
+      </main>
+
+      <footer class="site-footer"></footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>

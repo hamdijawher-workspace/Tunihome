@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Log in to TuniHome to manage listings, profile settings, and favorites." />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="canonical" href="https://tunihome.tn/login.html" />
+    <meta property="og:site_name" content="TuniHome" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Log in | TuniHome" />
+    <meta property="og:description" content="Log in to TuniHome to manage listings, profile settings, and favorites." />
+    <meta property="og:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta property="og:url" content="https://tunihome.tn/login.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Log in | TuniHome" />
+    <meta name="twitter:description" content="Log in to TuniHome to manage listings, profile settings, and favorites." />
+    <meta name="twitter:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta name="theme-color" content="#f4f6fa" />
+    <title>Log in | TuniHome</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="manifest" href="site.webmanifest" />
+  </head>
+  <body class="page" data-page="login">
+    <div class="mobile-shell page-auth page-login">
+      <header class="topbar home-header auth-header">
+        <div class="home-nav-shell">
+          <a class="brand home-brand" href="index.html" aria-label="Go to home">
+            <h1>TUNIHOME</h1>
+          </a>
+
+          <div class="nav-actions home-nav-actions">
+            <select class="lang-select" data-language-select aria-label="Language">
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="ar">العربية</option>
+            </select>
+            <a class="btn mini" href="list-property.html">List your properties</a>
+            <a class="icon-btn nav-account" href="login.html" aria-label="My account">
+              <svg class="icon-user-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.8-3.8 5.1-5.6 8-5.6s6.2 1.8 8 5.6"></path></svg>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="auth-main">
+        <section class="auth-shell reveal" data-delay="1">
+          <aside class="auth-story">
+            <p class="auth-kicker">Welcome to TuniHome</p>
+            <h2>Find, manage, and publish homes with a clean workflow.</h2>
+            <p class="auth-story-copy">
+              Access saved listings, manage agency visibility, and respond to leads faster.
+            </p>
+            <ul class="auth-points">
+              <li>Save favorites and alerts</li>
+              <li>Track listing performance</li>
+              <li>Manage agency profile and social links</li>
+            </ul>
+          </aside>
+
+          <section class="auth-card">
+            <h3 id="auth-login-title">Welcome back</h3>
+            <p id="auth-login-subtitle">Log in to continue managing your listings and account.</p>
+
+            <form id="login-form" class="auth-form" novalidate>
+              <div class="field">
+                <label for="login-identifier">Email or phone</label>
+                <input id="login-identifier" class="input" type="text" placeholder="+216 20 000 000 or you@example.com" required />
+              </div>
+
+              <div class="field">
+                <label for="login-password">Password</label>
+                <div class="auth-password-wrap">
+                  <input id="login-password" class="input" type="password" minlength="6" required />
+                  <button class="auth-password-toggle" type="button" data-password-toggle data-target="login-password">Show</button>
+                </div>
+              </div>
+
+              <label class="check-row auth-remember-row">
+                <input id="login-remember" type="checkbox" checked />
+                <span id="login-remember-label">Stay connected</span>
+              </label>
+
+              <button id="login-submit" class="btn auth-submit" type="submit">Log in</button>
+              <p id="login-feedback" class="notice hidden" role="status" aria-live="polite"></p>
+            </form>
+
+            <p class="auth-switch">
+              <span id="auth-switch-label-login">New to TuniHome?</span>
+              <a id="auth-go-signup" href="signup.html">Create account</a>
+            </p>
+          </section>
+        </section>
+      </main>
+
+      <footer class="site-footer"></footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>

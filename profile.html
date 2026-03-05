@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore agency and promoter profiles, active listings, ratings, and contact details on TuniHome." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://tunihome.tn/profile.html" />
+    <meta property="og:site_name" content="TuniHome" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Professional Profile | TuniHome" />
+    <meta property="og:description" content="Explore agency and promoter profiles, active listings, ratings, and contact details on TuniHome." />
+    <meta property="og:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta property="og:url" content="https://tunihome.tn/profile.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Professional Profile | TuniHome" />
+    <meta name="twitter:description" content="Explore agency and promoter profiles, active listings, ratings, and contact details on TuniHome." />
+    <meta name="twitter:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta name="theme-color" content="#f4f6fa" />
+    <title>Professional Profile | TuniHome</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="manifest" href="site.webmanifest" />
+  </head>
+  <body class="page" data-page="profile">
+    <div class="mobile-shell page-profile">
+      <header class="topbar home-header">
+        <div class="home-nav-shell">
+          <a class="brand home-brand" href="index.html" aria-label="Go to home">
+            <h1>TUNIHOME</h1>
+          </a>
+
+          <div class="nav-actions home-nav-actions">
+            <select class="lang-select" data-language-select aria-label="Language">
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="ar">العربية</option>
+            </select>
+            <a class="btn mini" href="list-property.html">List your properties</a>
+            <a class="icon-btn nav-account" href="login.html" aria-label="My account">
+              <svg class="icon-user-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.8-3.8 5.1-5.6 8-5.6s6.2 1.8 8 5.6"></path></svg>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="profile-main">
+        <section class="profile-cover-card reveal" data-delay="1">
+          <div id="profile-cover" class="profile-cover-media" role="img" aria-label="Agency cover image"></div>
+          <div class="profile-cover-fade"></div>
+          <button id="profile-save-agency" class="save-btn agency-save-btn profile-save-btn" type="button" data-save-agency="" aria-label="Save agency">
+            <svg class="icon-heart-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 20.5L10.6 19.2C5.4 14.5 2 11.4 2 7.6C2 4.5 4.4 2 7.5 2C9.3 2 11.1 2.9 12 4.3C12.9 2.9 14.7 2 16.5 2C19.6 2 22 4.5 22 7.6C22 11.4 18.6 14.5 13.4 19.2L12 20.5Z"></path>
+            </svg>
+          </button>
+          <div class="profile-overview">
+            <div class="profile-identity">
+              <img id="profile-avatar" class="profile-avatar-xl" alt="Agency avatar" />
+              <div class="profile-title-wrap">
+                <h1 id="profile-name" class="profile-title"></h1>
+                <div class="profile-meta-row">
+                  <span id="profile-type-badge" class="badge pro">Professional</span>
+                  <span id="profile-specialty" class="profile-specialty-pill"></span>
+                  <p id="profile-rating" class="subtle"></p>
+                </div>
+              </div>
+            </div>
+            <div class="action-col profile-contact-actions">
+              <a id="profile-call" class="btn light" href="tel:+21620000000">Call</a>
+              <a id="profile-whatsapp" class="btn" href="https://wa.me/21620000000" target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section profile-summary reveal" data-delay="2">
+          <article class="form-card profile-summary-card">
+            <p id="profile-bio" class="subtle"></p>
+            <div class="profile-social-row" aria-label="Agency social links">
+              <a id="profile-website" class="chip profile-social-link hidden" href="#" target="_blank" rel="noopener">Website</a>
+              <a id="profile-instagram" class="chip profile-social-link hidden" href="#" target="_blank" rel="noopener">Instagram</a>
+              <a id="profile-facebook" class="chip profile-social-link hidden" href="#" target="_blank" rel="noopener">Facebook</a>
+              <a id="profile-linkedin" class="chip profile-social-link hidden" href="#" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+          </article>
+        </section>
+
+        <section class="section profile-listings-section reveal" data-delay="2">
+          <div class="section-head">
+            <h3 class="section-title">Active listings</h3>
+            <span class="subtle" id="profile-count"></span>
+          </div>
+          <div id="profile-listings" class="listings"></div>
+        </section>
+      </main>
+
+      <nav class="footer-nav" aria-label="Primary navigation">
+        <a class="nav-item" href="index.html">⌂<span>Home</span></a>
+        <a class="nav-item" href="search.html">⌕<span>Search</span></a>
+        <a class="nav-item" href="list-property.html">＋<span>List</span></a>
+        <a class="nav-item" href="dashboard.html">▦<span>My Listings</span></a>
+      </nav>
+
+      <footer class="site-footer"></footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>

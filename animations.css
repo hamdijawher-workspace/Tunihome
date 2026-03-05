@@ -1,0 +1,99 @@
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reveal {
+  animation: fadeUp 520ms ease both;
+}
+
+.reveal[data-delay='1'] {
+  animation-delay: 80ms;
+}
+
+.reveal[data-delay='2'] {
+  animation-delay: 160ms;
+}
+
+.reveal[data-delay='3'] {
+  animation-delay: 240ms;
+}
+
+.pop {
+  animation: popIn 280ms ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .pop {
+    animation: none;
+  }
+}
+
+@keyframes driftGlow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) scale(1.03);
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+[data-page='home'] .landing-hero::before,
+[data-page='home'] .landing-hero::after {
+  animation: driftGlow 14s ease-in-out infinite;
+}
+
+[data-page='home'] .landing-live-pill,
+[data-page='home'] .hero-stat-card,
+.search-summary-bar,
+.search-metric-pill,
+.search-active-chip,
+.agency-card {
+  animation: riseIn 520ms ease both;
+}
+
+[data-page='home'] .landing-live-pill:nth-child(2),
+[data-page='home'] .hero-stat-card:nth-child(2),
+.search-metric-pill:nth-child(2) {
+  animation-delay: 90ms;
+}
+
+[data-page='home'] .landing-live-pill:nth-child(3),
+[data-page='home'] .hero-stat-card:nth-child(3),
+.search-metric-pill:nth-child(3) {
+  animation-delay: 180ms;
+}
+
+[data-page='home'] .hero-stat-card:nth-child(4) {
+  animation-delay: 270ms;
+}

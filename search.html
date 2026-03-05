@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Search homes for sale, rent, and vacation in Tunisia with advanced filters, map view, and trusted listings." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://tunihome.tn/search.html" />
+    <meta property="og:site_name" content="TuniHome" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Search Listings | TuniHome" />
+    <meta property="og:description" content="Search homes for sale, rent, and vacation in Tunisia with advanced filters, map view, and trusted listings." />
+    <meta property="og:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta property="og:url" content="https://tunihome.tn/search.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Search Listings | TuniHome" />
+    <meta name="twitter:description" content="Search homes for sale, rent, and vacation in Tunisia with advanced filters, map view, and trusted listings." />
+    <meta name="twitter:image" content="https://tunihome.tn/assets/hero-home.jpg" />
+    <meta name="theme-color" content="#f4f6fa" />
+    <title>Search Listings | TuniHome</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="animations.css" />
+    <link rel="manifest" href="site.webmanifest" />
+  </head>
+  <body class="page" data-page="search">
+    <div class="mobile-shell page-search">
+      <header class="topbar home-header search-header">
+        <div class="home-nav-shell">
+          <a class="brand home-brand" href="index.html" aria-label="Go to home">
+            <h1>TUNIHOME</h1>
+          </a>
+
+          <div class="nav-actions home-nav-actions">
+            <button class="icon-btn mobile-only" type="button" id="search-mobile-filter-trigger" aria-label="Open filters">☰</button>
+            <select class="lang-select" data-language-select aria-label="Language">
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="ar">العربية</option>
+            </select>
+            <a class="btn mini" href="list-property.html">List your properties</a>
+            <a class="icon-btn nav-account" href="login.html" aria-label="My account">
+              <svg class="icon-user-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.8-3.8 5.1-5.6 8-5.6s6.2 1.8 8 5.6"></path></svg>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="search-main">
+        <section id="search-layout" class="search-layout reveal" data-delay="1">
+          <aside id="search-filter-panel" class="search-filter-panel">
+            <div class="filter-panel-head">
+              <h2>Advanced Filters</h2>
+              <button id="toggle-desktop-filters" class="filter-collapse-btn" type="button" aria-label="Collapse filters">
+                <span class="label">Close</span>
+                <span class="arrow" aria-hidden="true">←</span>
+              </button>
+            </div>
+
+            <div class="filter-panel-body">
+              <div class="tabs board-tabs" role="tablist" aria-label="Category">
+                <button class="tab active" data-search-category="sale">Buy</button>
+                <button class="tab" data-search-category="long">Rent</button>
+                <button class="tab" data-search-category="short">Vacation</button>
+              </div>
+
+              <div id="search-rent-tags-wrap" class="field hidden">
+                <label id="search-rent-tags-label">Rent tags</label>
+                <div class="amenities-grid">
+                  <button class="chip rent-tag-chip" type="button" data-search-rent-tag="group">Group rent</button>
+                  <button class="chip rent-tag-chip" type="button" data-search-rent-tag="couple">Couple rent</button>
+                  <button class="chip rent-tag-chip" type="button" data-search-rent-tag="family">Family rent</button>
+                  <button class="chip rent-tag-chip" type="button" data-search-rent-tag="students">Students rent</button>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="search-location">City</label>
+                <select id="search-location" class="select">
+                  <option value="">Any city</option>
+                  <option value="Tunis">Tunis</option>
+                  <option value="La Marsa">La Marsa</option>
+                  <option value="Ariana">Ariana</option>
+                  <option value="Sousse">Sousse</option>
+                  <option value="Hammamet">Hammamet</option>
+                  <option value="Nabeul">Nabeul</option>
+                  <option value="Djerba">Djerba</option>
+                  <option value="Sfax">Sfax</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label id="search-price-range-label">Price Range</label>
+                <input id="search-price-slider" class="price-range-slider" type="range" min="300" max="1500000" step="1000" value="1500000" />
+                <div class="field-row compact-grid">
+                  <div class="field">
+                    <label for="search-min-price">Min price</label>
+                    <input id="search-min-price" class="input" type="number" min="0" step="50" placeholder="20" />
+                  </div>
+                  <div class="field">
+                    <label for="search-price">Max price</label>
+                    <input id="search-price" class="input" type="number" min="300" step="100" value="1500000" />
+                  </div>
+                </div>
+                <output id="search-price-value" class="subtle">Any</output>
+              </div>
+
+              <div class="field">
+                <label id="search-rooms-beds-label">Rooms and Beds</label>
+                <div class="room-pills">
+                  <button class="chip room-pill active" type="button" data-room-value="0">Any</button>
+                  <button class="chip room-pill" type="button" data-room-value="1">1</button>
+                  <button class="chip room-pill" type="button" data-room-value="2">2</button>
+                  <button class="chip room-pill" type="button" data-room-value="3">3</button>
+                  <button class="chip room-pill" type="button" data-room-value="4">4</button>
+                  <button class="chip room-pill" type="button" data-room-value="5">5+</button>
+                </div>
+                <input id="search-min-rooms" type="hidden" value="0" />
+              </div>
+
+              <div class="field">
+                <label for="search-min-surface">Property Size (sqm)</label>
+                <input id="search-min-surface" class="input" type="number" min="0" step="10" placeholder="120" />
+              </div>
+
+              <div class="field">
+                <label id="search-property-type-label">Property Type</label>
+                <div class="tile-chip-grid">
+                  <button class="filter-tag active" data-search-type="all">Any</button>
+                  <button class="filter-tag" data-search-type="apartment">Apartment</button>
+                  <button class="filter-tag" data-search-type="villa">Villa</button>
+                  <button class="filter-tag" data-search-type="house">House</button>
+                  <button class="filter-tag" data-search-type="room">Room</button>
+                  <button class="filter-tag" data-search-type="studio">Studio</button>
+                  <button class="filter-tag" data-search-type="condo">Condo</button>
+                  <button class="filter-tag" data-search-type="townhouse">Townhouse</button>
+                </div>
+              </div>
+
+              <div class="field">
+                <label id="search-amenities-label">Amenities</label>
+                <div class="amenities-grid">
+                  <button class="chip amenity-chip" type="button" data-search-amenity="wifi">Wifi</button>
+                  <button class="chip amenity-chip" type="button" data-search-amenity="aircon">Aircon</button>
+                  <button class="chip amenity-chip" type="button" data-search-amenity="washer">Washer</button>
+                  <button class="chip amenity-chip" type="button" data-search-amenity="dryer">Dryer</button>
+                  <button class="chip amenity-chip" type="button" data-search-amenity="kitchen">Kitchen</button>
+                  <button class="chip amenity-chip" type="button" data-search-amenity="heating">Heating</button>
+                </div>
+              </div>
+
+              <div class="toggle-row compact">
+                <button id="search-professional-only" class="chip" type="button" data-on="false">Professional only</button>
+                <button id="search-verified-only" class="chip" type="button" data-on="false">Verified only</button>
+              </div>
+
+              <div class="panel-actions">
+                <button id="search-reset-filters" class="btn light" type="button">Clear All</button>
+                <button id="search-apply-drawer" class="btn" type="button">Show homes</button>
+              </div>
+            </div>
+          </aside>
+
+          <section id="search-results-stage" class="search-results-stage">
+            <div class="results-toolbar">
+              <h3 id="results-count">0 RESULT</h3>
+              <div class="results-toolbar-actions">
+                <button id="results-view-list" class="btn light mini" type="button">List</button>
+                <button id="results-view-split" class="btn mini" type="button">Split</button>
+                <button id="results-view-map" class="btn light mini" type="button">Map</button>
+              </div>
+            </div>
+
+            <section class="search-summary-bar" aria-live="polite">
+              <div class="search-summary-copy">
+                <p class="search-summary-kicker">Search intelligence</p>
+                <h4 id="search-summary-title">Results tailored to your filters</h4>
+                <p id="search-summary-subtitle" class="subtle">Adjust city, type, or budget to refine the list.</p>
+              </div>
+              <div id="search-summary-metrics" class="search-summary-metrics"></div>
+              <div class="search-summary-actions">
+                <div id="search-active-filters" class="search-active-filters"></div>
+                <button id="search-summary-clear" class="text-btn search-summary-clear hidden" type="button">Clear filters</button>
+              </div>
+            </section>
+
+            <section id="search-content-grid" class="search-content-grid">
+              <section id="results-list-panel" class="results-list-panel">
+                <div id="search-results" class="listings listing-grid-search"></div>
+                <button id="search-load-more" class="btn light" type="button">Load more results</button>
+              </section>
+
+              <section id="search-map-panel" class="search-map-panel">
+                <div class="map-placeholder" id="map-marker-layer">
+                  <div class="map-city-pill">
+                    <span class="subtle">Location</span>
+                    <strong id="map-city-label">Tunis, Tunisia</strong>
+                  </div>
+                  <div id="map-listing-preview" class="map-listing-preview hidden" aria-live="polite"></div>
+                  <button class="map-zoom" type="button" aria-label="Zoom in">+</button>
+                  <button class="map-zoom minus" type="button" aria-label="Zoom out">−</button>
+                </div>
+              </section>
+            </section>
+          </section>
+        </section>
+      </main>
+
+      <div id="search-filter-backdrop" class="drawer-backdrop"></div>
+      <aside id="search-filter-drawer" class="drawer" aria-label="Extra filters">
+        <div class="drawer-head">
+          <strong>More filters</strong>
+          <button id="search-filter-close" class="icon-btn" type="button" aria-label="Close">✕</button>
+        </div>
+        <div class="drawer-body">
+          <div class="field">
+            <label for="search-location-mobile">City</label>
+            <select id="search-location-mobile" class="select">
+              <option value="">Any city</option>
+              <option value="Tunis">Tunis</option>
+              <option value="La Marsa">La Marsa</option>
+              <option value="Ariana">Ariana</option>
+              <option value="Sousse">Sousse</option>
+              <option value="Hammamet">Hammamet</option>
+              <option value="Nabeul">Nabeul</option>
+              <option value="Djerba">Djerba</option>
+              <option value="Sfax">Sfax</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="search-type-mobile">Property type</label>
+            <select id="search-type-mobile" class="select">
+              <option value="all">Any type</option>
+              <option value="apartment">Apartment</option>
+              <option value="villa">Villa</option>
+              <option value="house">House</option>
+              <option value="room">Room</option>
+              <option value="studio">Studio</option>
+              <option value="condo">Condo</option>
+              <option value="townhouse">Townhouse</option>
+            </select>
+          </div>
+          <div class="field-row compact-grid">
+            <div class="field">
+              <label for="search-min-price-mobile">Min price</label>
+              <input id="search-min-price-mobile" class="input" type="number" min="0" step="50" placeholder="0" />
+            </div>
+            <div class="field">
+              <label for="search-price-mobile">Max price</label>
+              <input id="search-price-mobile" class="input" type="number" min="300" step="100" placeholder="1500000" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="search-min-rooms-mobile">Minimum rooms</label>
+            <select id="search-min-rooms-mobile" class="select">
+              <option value="0">No minimum</option>
+              <option value="1">1 room+</option>
+              <option value="2">2 rooms+</option>
+              <option value="3">3 rooms+</option>
+              <option value="4">4 rooms+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="search-min-surface-mobile">Minimum surface (sqm)</label>
+            <input id="search-min-surface-mobile" class="input" type="number" min="0" step="10" placeholder="80" />
+          </div>
+          <button id="search-apply-drawer-mobile" class="btn" type="button">Apply filters</button>
+        </div>
+      </aside>
+
+      <nav class="footer-nav" aria-label="Primary navigation">
+        <a class="nav-item" href="index.html">⌂<span>Home</span></a>
+        <a class="nav-item active" href="search.html">⌕<span>Search</span></a>
+        <a class="nav-item" href="list-property.html">＋<span>List</span></a>
+        <a class="nav-item" href="dashboard.html">▦<span>My Listings</span></a>
+      </nav>
+
+      <footer class="site-footer"></footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>
