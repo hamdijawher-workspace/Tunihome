@@ -411,9 +411,12 @@
   }
 
   function getListingById(id) {
-    return listings.find(function (item) {
+    const listing = listings.find(function (item) {
       return item.id === id;
     }) || null;
+    if (!listing) return null;
+    const currentLanguage = localStorage.getItem('tunihome_ui_language') || 'fr';
+    return getLocalizedListing(listing, currentLanguage);
   }
 
   function getLocalizedListing(listing, language) {
