@@ -74,17 +74,16 @@
               </div>
 
               <div class="field">
+                <label for="search-region">Region</label>
+                <select id="search-region" class="select">
+                  <option value="">Any region</option>
+                </select>
+              </div>
+
+              <div class="field">
                 <label for="search-location">City</label>
                 <select id="search-location" class="select">
-                  <option value="">Any city</option>
-                  <option value="Tunis">Tunis</option>
-                  <option value="La Marsa">La Marsa</option>
-                  <option value="Ariana">Ariana</option>
-                  <option value="Sousse">Sousse</option>
-                  <option value="Hammamet">Hammamet</option>
-                  <option value="Nabeul">Nabeul</option>
-                  <option value="Djerba">Djerba</option>
-                  <option value="Sfax">Sfax</option>
+                  <option value="">Select region first</option>
                 </select>
               </div>
 
@@ -170,19 +169,6 @@
               </div>
             </div>
 
-            <section class="search-summary-bar" aria-live="polite">
-              <div class="search-summary-copy">
-                <p class="search-summary-kicker">Search intelligence</p>
-                <h4 id="search-summary-title">Results tailored to your filters</h4>
-                <p id="search-summary-subtitle" class="subtle">Adjust city, type, or budget to refine the list.</p>
-              </div>
-              <div id="search-summary-metrics" class="search-summary-metrics"></div>
-              <div class="search-summary-actions">
-                <div id="search-active-filters" class="search-active-filters"></div>
-                <button id="search-summary-clear" class="text-btn search-summary-clear hidden" type="button">Clear filters</button>
-              </div>
-            </section>
-
             <section id="search-content-grid" class="search-content-grid">
               <section id="results-list-panel" class="results-list-panel">
                 <div id="search-results" class="listings listing-grid-search"></div>
@@ -213,17 +199,15 @@
         </div>
         <div class="drawer-body">
           <div class="field">
+            <label for="search-region-mobile">Region</label>
+            <select id="search-region-mobile" class="select">
+              <option value="">Any region</option>
+            </select>
+          </div>
+          <div class="field">
             <label for="search-location-mobile">City</label>
             <select id="search-location-mobile" class="select">
-              <option value="">Any city</option>
-              <option value="Tunis">Tunis</option>
-              <option value="La Marsa">La Marsa</option>
-              <option value="Ariana">Ariana</option>
-              <option value="Sousse">Sousse</option>
-              <option value="Hammamet">Hammamet</option>
-              <option value="Nabeul">Nabeul</option>
-              <option value="Djerba">Djerba</option>
-              <option value="Sfax">Sfax</option>
+              <option value="">Select region first</option>
             </select>
           </div>
           <div class="field">

@@ -5,6 +5,7 @@
     home: {
       category: 'sale',
       type: 'all',
+      region: '',
       location: '',
       maxPrice: Number.POSITIVE_INFINITY,
       minRooms: 0,
@@ -19,6 +20,7 @@
       category: 'sale',
       type: 'all',
       amenities: [],
+      region: '',
       location: '',
       minPrice: 0,
       maxPrice: 1500000,
@@ -27,10 +29,37 @@
       rentTags: [],
       minRooms: 0,
       minSurface: 0,
-      mapMode: 'split',
+      mapMode: 'list',
       visibleCount: 9
     }
   };
+
+  const TUNISIA_REGIONS = [
+    { region: 'Ariana', cities: ['Ariana Ville', 'Cite Ettadhamen', 'Kalaat El Andalous', 'La Soukra', 'Mnihla', 'Raoued', 'Sidi Thabet'] },
+    { region: 'Ben Arous', cities: ['Ben Arous', 'Bou Mhel El Bassatine', 'El Mourouj', 'Ezzahra', 'Fouchana', 'Hammam Chott', 'Hammam Lif', 'Medina Jedida', 'Megrine', 'Mohamedia', 'Mornag', 'Rades', 'Borj Cedria', 'Khulaydiyah', 'Naassen'] },
+    { region: 'Beja', cities: ['Amdoun', 'Beja Nord', 'Beja Sud', 'Goubellat', 'Medjez El Bab', 'Nefza', 'Teboursouk', 'Testour', 'Thibar'] },
+    { region: 'Bizerte', cities: ['Bizerte Nord', 'Bizerte Sud', 'El Alia', 'Ghar El Melh', 'Ghezala', 'Joumine', 'Mateur', 'Menzel Bourguiba', 'Menzel Jemil', 'Ras Jebel', 'Sejnane', 'Tinja', 'Utique', 'Zarzouna'] },
+    { region: 'Gabes', cities: ['Dkhilet Toujane', 'El Hamma', 'Gabes Medina', 'Gabes Ouest', 'Gabes Sud', 'Ghannouch', 'Habib Thameur', 'Mareth', 'Matmata', 'Menzel El Habib', 'Metouia', 'Nouvelle Matmata', 'Oudhref'] },
+    { region: 'Gafsa', cities: ['Belkhir', 'El Guettar', 'El Ksar', 'Gafsa Nord', 'Gafsa Sud', 'Mdhila', 'Metlaoui', 'Moulares', 'Redeyef', 'Sened', 'Sidi Aich', 'Sidi Boubaker', 'Zannouch'] },
+    { region: 'Jendouba', cities: ['Ain Draham', 'Balta Bou Aouane', 'Bou Salem', 'Fernana', 'Ghardimaou', 'Jendouba', 'Jendouba Nord', 'Oued Meliz', 'Tabarka'] },
+    { region: 'Kairouan', cities: ['Ain Djeloula', 'Bou Hajla', 'Chebika', 'Echrarda', 'El Alaa', 'Haffouz', 'Hajeb El Ayoun', 'Kairouan Nord', 'Kairouan Sud', 'Menzel Mehiri', 'Nasrallah', 'Oueslatia', 'Sbikha'] },
+    { region: 'Kasserine', cities: ['El Ayoun', 'Ezzouhour', 'Feriana', 'Foussana', 'Haidra', 'Hassi El Ferid', 'Jedelienne', 'Kasserine Nord', 'Kasserine Sud', 'Majel Bel Abbes', 'Sbeitla', 'Sbiba', 'Thala'] },
+    { region: 'Kebili', cities: ['Douz Nord', 'Douz Sud', 'Faouar', 'Kebili Nord', 'Kebili Sud', 'Rjim Maatoug', 'Souk Lahad'] },
+    { region: 'Kef', cities: ['Dahmani', 'El Ksour', 'Jerissa', 'Kalaat Khasba', 'Kalaat Senan', 'Kef Est', 'Kef Ouest', 'Nebeur', 'Sakiet Sidi Youssef', 'Sers', 'Tajerouine', 'Touiref'] },
+    { region: 'Mahdia', cities: ['Bou Merdes', 'Chebba', 'Chorbane', 'El Bradaa', 'El Jem', 'Essouassi', 'Hebira', 'Ksour Essef', 'Mahdia', 'Mellouleche', 'Ouled Chamekh', 'Rejiche', 'Sidi Alouane'] },
+    { region: 'Manouba', cities: ['Borj El Amri', 'Djedeida', 'Douar Hicher', 'El Battan', 'Manouba', 'Mornaguia', 'Oued Ellil', 'Tebourba'] },
+    { region: 'Medenine', cities: ['Ajim', 'Ben Gardane', 'Beni Khedache', 'Djerba', 'Houmt Souk', 'Medenine Nord', 'Medenine Sud', 'Midoun', 'Sidi Makhlouf', 'Zarzis'] },
+    { region: 'Monastir', cities: ['Bekalta', 'Bembla', 'Beni Hassen', 'Jemmal', 'Ksar Hellal', 'Ksibet El Mediouni', 'Moknine', 'Monastir', 'Ouardanine', 'Sahline', 'Sayada Lamta Bou Hjar', 'Teboulba', 'Zeramdine'] },
+    { region: 'Nabeul', cities: ['Beni Khalled', 'Beni Khiar', 'Bou Argoub', 'Dar Chaabane El Fehri', 'El Haouaria', 'El Mida', 'Grombalia', 'Hammamet', 'Hammam Ghezaz', 'Kelibia', 'Korba', 'Menzel Bouzelfa', 'Menzel Temime', 'Nabeul', 'Soliman', 'Takelsa'] },
+    { region: 'Sfax', cities: ['Agareb', 'Bir Ali Ben Khalifa', 'El Amra', 'El Hencha', 'Graiba', 'Jebiniana', 'Kerkennah', 'Mahres', 'Menzel Chaker', 'Sakiet Eddaier', 'Sakiet Ezzit', 'Sfax Ouest', 'Sfax Sud', 'Sfax Ville', 'Skhira', 'Thyna'] },
+    { region: 'Sidi Bouzid', cities: ['Bir El Hafey', 'Cebbala Ouled Asker', 'El Hichria', 'Essaida', 'Jilma', 'Meknassy', 'Menzel Bouzaiane', 'Mezzouna', 'Ouled Haffouz', 'Regueb', 'Sidi Ali Ben Aoun', 'Sidi Bouzid Est', 'Sidi Bouzid Ouest', 'Souk Jedid'] },
+    { region: 'Siliana', cities: ['Bargou', 'Bou Arada', 'El Aroussa', 'El Krib', 'Gaafour', 'Kesra', 'Makthar', 'Rouhia', 'Sidi Bou Rouis', 'Siliana Nord', 'Siliana Sud'] },
+    { region: 'Sousse', cities: ['Akouda', 'Bouficha', 'Enfidha', 'Hammam Sousse', 'Hergla', 'Kalaa Kebira', 'Kalaa Seghira', 'Kondar', 'Msaken', 'Sahloul', 'Sidi Bou Ali', 'Sidi El Hani', 'Sousse Jawhara', 'Sousse Medina', 'Sousse Riadh', 'Sousse Sidi Abdelhamid', 'Zaouiet Ksibet Thrayet'] },
+    { region: 'Tataouine', cities: ['Beni Mhira', 'Bir Lahmar', 'Dehiba', 'Ghomrassen', 'Remada', 'Smar', 'Tataouine Nord', 'Tataouine Sud'] },
+    { region: 'Tozeur', cities: ['Degache', 'El Hamma du Jerid', 'Hazoua', 'Nefta', 'Tamerza', 'Tozeur'] },
+    { region: 'Tunis', cities: ['Bab El Bhar', 'Bab Souika', 'Carthage', 'Centre Urbain Nord', 'Cite El Khadra', 'Djebel Jelloud', 'El Hrairia', 'El Kabaria', 'El Manar', 'El Menzah', 'El Menzah 9', 'El Omrane', 'El Omrane Superieur', 'El Ouardia', 'Ettahrir', 'Ezzouhour', 'La Goulette', 'La Marsa', 'Lac 2', 'Le Bardo', 'Le Kram', 'Les Berges du Lac', 'Medina', 'Sejoumi', 'Sidi El Bechir', 'Sidi Hassine'] },
+    { region: 'Zaghouan', cities: ['Bir Mcherga', 'El Fahs', 'Nadhour', 'Saouaf', 'Zaghouan', 'Zriba'] }
+  ];
 
   const LANGUAGE_STORAGE_KEY = 'tunihome_ui_language';
   const AUTH_USERS_STORAGE_KEY = 'tunihome_auth_users';
@@ -92,7 +121,21 @@
     'Admin operations for moderation, verification, and platform controls.': 'Operations admin pour la moderation, la verification et les controles de la plateforme.',
     'Upgrade to Pro for more media uploads, analytics, and improved listing visibility.': 'Passez en Pro pour plus d uploads media, des statistiques et une meilleure visibilite des annonces.',
     'Find your next place with confidence.': 'Trouvez votre prochain logement en toute confiance.',
+    'Find verified homes across Tunisia.': 'Trouvez des logements verifies partout en Tunisie.',
     'Browse verified villas, apartments, and vacation homes from trusted owners and agencies.': 'Parcourez des villas, appartements et residences de vacances verifies proposes par des proprietaires et agences fiables.',
+    'Buy, rent, or book vacation stays from trusted owners and agencies.': 'Achetez, louez ou reservez des sejours de vacances aupres de proprietaires et agences de confiance.',
+    'Premium': 'Premium',
+    'Get more visibility with Premium': 'Gagnez plus de visibilite avec Premium',
+    'Upgrade to Pro for stronger discovery, market insights, and priority support.': 'Passez a Pro pour une meilleure visibilite, des insights marche et un support prioritaire.',
+    'More exposure': 'Plus de visibilite',
+    'Show your listings higher in front of serious buyers and renters.': 'Affichez vos annonces plus haut devant des acheteurs et locataires qualifies.',
+    'Better listing recommendations': 'Meilleures recommandations',
+    'Follow tailored tips to improve performance and conversion.': 'Suivez des conseils adaptes pour ameliorer la performance et la conversion.',
+    'Price and market insights': 'Prix et insights marche',
+    'Track views, demand, and pricing signals in one place.': 'Suivez les vues, la demande et les signaux de prix au meme endroit.',
+    'Priority support': 'Support prioritaire',
+    'Get faster responses when you need help.': 'Obtenez des reponses plus rapides quand vous avez besoin d aide.',
+    'View Pro plan': 'Voir l offre Pro',
     'Marketplace overview': 'Vue du marche',
     'Now in focus': 'En ce moment',
     'Local weather': 'Meteo locale',
@@ -102,9 +145,14 @@
     'Rent': 'Louer',
     'Vacation': 'Vacances',
     'Quick property search': 'Recherche rapide de biens',
+    'Region': 'Region',
     'Where': 'Ou',
     'Search by city': 'Rechercher par ville',
+    'Search by region': 'Rechercher par region',
+    'Any region': 'Toute region',
+    'Select region first': 'Selectionnez d abord une region',
     'Property type': 'Type de bien',
+    'Price': 'Prix',
     'Owner': 'Proprietaire',
     'Any type': 'Tout type',
     'Apartment': 'Appartement',
@@ -116,6 +164,7 @@
     'Townhouse': 'Maison de ville',
     'Budget': 'Budget',
     'Any budget': 'Tous budgets',
+    'Any price': 'Tout prix',
     'Up to 1,200 TND': "Jusqu'a 1 200 TND",
     'Up to 2,500 TND': "Jusqu'a 2 500 TND",
     'Up to 5,000 TND': "Jusqu'a 5 000 TND",
@@ -179,6 +228,7 @@
     'Search intelligence': 'Vue intelligente de la recherche',
     'Results tailored to your filters': 'Resultats adaptes a vos filtres',
     'Adjust city, type, or budget to refine the list.': 'Ajustez la ville, le type ou le budget pour affiner la liste.',
+    'Adjust region, city, type, or budget to refine the list.': 'Ajustez la region, la ville, le type ou le budget pour affiner la liste.',
     'Clear filters': 'Effacer les filtres',
     'Average ask': 'Prix moyen',
     'Top location': 'Zone dominante',
@@ -409,6 +459,7 @@
     'Zoom in': 'Zoom avant',
     'Zoom out': 'Zoom arriere',
     'Show map': 'Afficher la carte',
+    'View map': 'Voir la carte',
     'Hide map': 'Masquer la carte',
     'Map & location': 'Carte et localisation',
     'Open full map': 'Ouvrir la carte complete',
@@ -507,7 +558,9 @@
     'Support': 'Support',
     'Help center': "Centre d'aide",
     'Contact us': 'Contactez-nous',
+    'Contact Sales': 'Contacter les ventes',
     'Safety tips': 'Conseils de securite',
+    'Follow us': 'Suivez-nous',
     'Company': 'Societe',
     'About TuniHome': 'A propos de TuniHome',
     'Terms': 'Conditions',
@@ -852,15 +905,34 @@
     'Review and manage your favorite listings and agencies.': 'راجع وأدر إعلاناتك ووكالاتك المفضلة.',
     'Update your account details, verification request, and publishing profile settings.': 'حدّث بيانات حسابك وطلب التحقق وإعدادات ملف النشر.',
     'Find your next place with confidence.': 'اعثر على منزلك القادم بثقة.',
+    'Find verified homes across Tunisia.': 'اعثر على عقارات موثقة في كامل تونس.',
     'Browse verified villas, apartments, and vacation homes from trusted owners and agencies.': 'تصفح فيلات وشقق وبيوت عطلات موثقة من ملاك ووكالات موثوقين.',
+    'Buy, rent, or book vacation stays from trusted owners and agencies.': 'اشترِ أو استأجر أو احجز إقامة عطلة من ملاك ووكالات موثوقة.',
+    'Premium': 'بريميوم',
+    'Get more visibility with Premium': 'احصل على ظهور أكبر مع بريميوم',
+    'Upgrade to Pro for stronger discovery, market insights, and priority support.': 'قم بالترقية إلى Pro للحصول على ظهور أقوى ومؤشرات سوق ودعم أسرع.',
+    'More exposure': 'ظهور أكبر',
+    'Show your listings higher in front of serious buyers and renters.': 'اعرض إعلاناتك بشكل أوضح أمام المشترين والمستأجرين الجادين.',
+    'Better listing recommendations': 'توصيات أفضل للإعلان',
+    'Follow tailored tips to improve performance and conversion.': 'اتبع نصائح مخصصة لتحسين الأداء والتحويل.',
+    'Price and market insights': 'رؤى الأسعار والسوق',
+    'Track views, demand, and pricing signals in one place.': 'تابع المشاهدات والطلب وإشارات الأسعار في مكان واحد.',
+    'Priority support': 'دعم ذو أولوية',
+    'Get faster responses when you need help.': 'احصل على ردود أسرع عندما تحتاج إلى المساعدة.',
+    'View Pro plan': 'عرض خطة Pro',
     'Listing mode': 'نمط الإعلان',
     'Buy': 'شراء',
     'Rent': 'إيجار',
     'Vacation': 'عطلات',
     'Quick property search': 'بحث سريع عن العقارات',
+    'Region': 'الولاية',
     'Where': 'أين',
     'Search by city': 'ابحث حسب المدينة',
+    'Search by region': 'ابحث حسب الولاية',
+    'Any region': 'أي ولاية',
+    'Select region first': 'اختر الولاية أولاً',
     'Property type': 'نوع العقار',
+    'Price': 'السعر',
     'Owner': 'المالك',
     'Any type': 'أي نوع',
     'Apartment': 'شقة',
@@ -872,6 +944,7 @@
     'Townhouse': 'تاون هاوس',
     'Budget': 'الميزانية',
     'Any budget': 'أي ميزانية',
+    'Any price': 'أي سعر',
     'Up to 1,200 TND': 'حتى 1,200 د.ت',
     'Up to 2,500 TND': 'حتى 2,500 د.ت',
     'Up to 5,000 TND': 'حتى 5,000 د.ت',
@@ -935,6 +1008,7 @@
     'Search intelligence': 'نظرة البحث',
     'Results tailored to your filters': 'نتائج مناسبة لفلاترك',
     'Adjust city, type, or budget to refine the list.': 'عدّل المدينة أو النوع أو الميزانية لتحسين النتائج.',
+    'Adjust region, city, type, or budget to refine the list.': 'عدّل الولاية أو المدينة أو النوع أو الميزانية لتحسين النتائج.',
     'Clear filters': 'امسح الفلاتر',
     'Average ask': 'متوسط السعر',
     'Top location': 'أبرز منطقة',
@@ -984,6 +1058,8 @@
     'Next photo': 'الصورة التالية',
     'Go to photo {count}': 'اذهب إلى الصورة {count}',
     'Tunisia': 'تونس',
+    'Show map': 'عرض الخريطة',
+    'View map': 'عرض الخريطة',
     'Map & location': 'الخريطة والموقع',
     'Open full map': 'فتح الخريطة الكاملة',
     'Price per m2': 'السعر لكل م²',
@@ -1001,7 +1077,9 @@
     'Support': 'الدعم',
     'Help center': 'مركز المساعدة',
     'Contact us': 'اتصل بنا',
+    'Contact Sales': 'تواصل مع المبيعات',
     'Safety tips': 'نصائح السلامة',
+    'Follow us': 'تابعنا',
     'Company': 'الشركة',
     'About TuniHome': 'حول TuniHome',
     'Terms': 'الشروط',
@@ -1017,6 +1095,38 @@
     'Back': 'رجوع',
     'Create account': 'إنشاء حساب',
     'Log in': 'تسجيل الدخول',
+    'Welcome to TuniHome': 'مرحبًا بك في TuniHome',
+    'Find, manage, and publish homes with a clean workflow.': 'اعثر على العقارات وأدرها وانشرها عبر مسار واضح وسهل.',
+    'Access saved listings, manage agency visibility, and respond to leads faster.': 'ادخل إلى الإعلانات المحفوظة وأدر ظهور وكالتك وردّ بسرعة أكبر على العملاء المحتملين.',
+    'Save favorites and alerts': 'احفظ المفضلة والتنبيهات',
+    'Track listing performance': 'تابع أداء الإعلانات',
+    'Manage agency profile and social links': 'أدر ملف الوكالة وروابط التواصل الاجتماعي',
+    'Welcome back': 'مرحبًا بعودتك',
+    'Log in to continue managing your listings and account.': 'سجّل الدخول لمتابعة إدارة إعلاناتك وحسابك.',
+    'Stay connected': 'ابقَ متصلاً',
+    'Show': 'إظهار',
+    'Hide': 'إخفاء',
+    'New to TuniHome?': 'جديد على TuniHome؟',
+    'Start in minutes': 'ابدأ خلال دقائق',
+    'Create your TuniHome account and manage listings with confidence.': 'أنشئ حسابك على TuniHome وأدر إعلاناتك بثقة.',
+    'Built for individuals and agencies with simple tools, clean controls, and fast publishing.': 'مصمم للأفراد والوكالات بأدوات بسيطة وتحكم واضح ونشر سريع.',
+    'One place for all listings': 'مكان واحد لكل الإعلانات',
+    'Professional profile visibility': 'ظهور أفضل للملف المهني',
+    'Quick publish and edit flow': 'نشر وتعديل سريعان',
+    'Create your account': 'أنشئ حسابك',
+    'Join TuniHome to publish, save, and manage properties.': 'انضم إلى TuniHome لنشر العقارات وحفظها وإدارتها.',
+    'Full name': 'الاسم الكامل',
+    'Your name': 'اسمك',
+    'Confirm password': 'تأكيد كلمة المرور',
+    'Already have an account?': 'لديك حساب بالفعل؟',
+    'Sponsored': 'إعلان ممول',
+    'Premium placement for agencies': 'ظهور بريميوم للوكالات',
+    'Reach serious buyers and renters with high-visibility homepage placement.': 'صل إلى مشترين ومستأجرين جادين عبر ظهور بارز في الصفحة الرئيسية.',
+    'Your banner could be here': 'يمكن أن يظهر إعلانك هنا',
+    'Reach active buyers and renters directly inside search results.': 'صل مباشرة إلى المشترين والمستأجرين النشطين داخل نتائج البحث.',
+    'Advertise with us': 'أعلن معنا',
+    'Advertise this property type': 'روّج لهذا النوع من العقارات',
+    'Reach active buyers and renters with premium placement in listing details.': 'صل إلى المشترين والمستأجرين النشطين عبر ظهور مميز داخل صفحة تفاصيل العقار.',
     'Send message': 'إرسال رسالة',
     'Send message to owner': 'إرسال رسالة إلى المالك',
     'Report': 'بلّغ',
@@ -1078,6 +1188,122 @@
     return 'individual';
   }
 
+  function normalizeGeoName(value) {
+    return String(value || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-zA-Z0-9]+/g, ' ')
+      .trim()
+      .toLowerCase();
+  }
+
+  function normalizeAmenityKey(value) {
+    const normalized = normalizeGeoName(value);
+    if (!normalized) return '';
+    if (
+      normalized.includes('wifi') ||
+      normalized.includes('wi fi') ||
+      normalized.includes('internet') ||
+      normalized.includes('fiber')
+    ) return 'wifi';
+    if (
+      normalized.includes('aircon') ||
+      normalized.includes('air conditioning') ||
+      normalized === 'ac' ||
+      normalized.includes('clim')
+    ) return 'aircon';
+    if (
+      normalized.includes('washer') ||
+      normalized.includes('washing machine') ||
+      normalized.includes('machine a laver') ||
+      normalized.includes('lavage')
+    ) return 'washer';
+    if (
+      normalized.includes('dryer') ||
+      normalized.includes('drying') ||
+      normalized.includes('seche linge')
+    ) return 'dryer';
+    if (normalized.includes('kitchen') || normalized.includes('cuisine')) return 'kitchen';
+    if (
+      normalized.includes('heating') ||
+      normalized.includes('central heating') ||
+      normalized.includes('chauffage')
+    ) return 'heating';
+    return normalized;
+  }
+
+  const REGION_INDEX = TUNISIA_REGIONS.reduce(function (acc, entry) {
+    acc[normalizeGeoName(entry.region)] = {
+      region: entry.region,
+      cities: entry.cities.slice()
+    };
+    return acc;
+  }, {});
+
+  const REGION_ALIASES = {
+    'el kef': 'Kef',
+    kef: 'Kef',
+    kebili: 'Kebili',
+    kairouan: 'Kairouan',
+    gabes: 'Gabes',
+    gafsa: 'Gafsa',
+    medenine: 'Medenine',
+    djerba: 'Medenine'
+  };
+
+  const CITY_REGION_INDEX = TUNISIA_REGIONS.reduce(function (acc, entry) {
+    acc[normalizeGeoName(entry.region)] = entry.region;
+    entry.cities.forEach(function (city) {
+      acc[normalizeGeoName(city)] = entry.region;
+    });
+    return acc;
+  }, {});
+
+  function resolveRegionName(value) {
+    const key = normalizeGeoName(value);
+    if (!key) return '';
+    if (REGION_INDEX[key]) return REGION_INDEX[key].region;
+    if (REGION_ALIASES[key]) return REGION_ALIASES[key];
+    return CITY_REGION_INDEX[key] || '';
+  }
+
+  function regionCities(regionName) {
+    const resolved = resolveRegionName(regionName);
+    if (!resolved || !REGION_INDEX[normalizeGeoName(resolved)]) return [];
+    return REGION_INDEX[normalizeGeoName(resolved)].cities.slice();
+  }
+
+  function locationRegion(locationValue) {
+    const parts = String(locationValue || '')
+      .split(',')
+      .map(function (part) {
+        return part.trim();
+      })
+      .filter(Boolean);
+    const city = parts[0] || '';
+    const explicitRegion = parts[1] || '';
+    return resolveRegionName(explicitRegion) || resolveRegionName(city) || '';
+  }
+
+  function locationCity(locationValue) {
+    return primaryCityLabel(locationValue);
+  }
+
+  function fillSelectOptions(select, values, placeholderLabel, selectedValue) {
+    if (!select) return;
+    const safeValues = Array.isArray(values) ? values.slice() : [];
+    const placeholder = typeof placeholderLabel === 'string' ? placeholderLabel : '';
+    const selected = String(selectedValue || '');
+    const options = ['<option value="">' + escapeHtml(t(placeholder)) + '</option>'];
+    safeValues.forEach(function (value) {
+      const safeValue = String(value || '').trim();
+      if (!safeValue) return;
+      const selectedAttr = safeValue === selected ? ' selected' : '';
+      options.push('<option value="' + escapeHtml(safeValue) + '"' + selectedAttr + '>' + escapeHtml(safeValue) + '</option>');
+    });
+    select.innerHTML = options.join('');
+  }
+
   function defaultAdminState() {
     return {
       ads: {
@@ -1086,21 +1312,27 @@
           title: 'Premium placement for agencies',
           body: 'Reach serious buyers and renters with high-visibility homepage placement.',
           cta: 'Advertise with us',
-          href: 'list-property.html'
+          href: 'list-property.html',
+          image: 'assets/listing-6.jpg',
+          phone: '+216 20 000 000'
         },
         search: {
           chip: 'Sponsored',
           title: 'Your banner could be here',
           body: 'Reach active buyers and renters directly inside search results.',
           cta: 'Advertise with us',
-          href: 'list-property.html'
+          href: 'list-property.html',
+          image: 'assets/listing-5.jpg',
+          phone: '+216 20 000 000'
         },
         property: {
           chip: 'Sponsored',
           title: 'Advertise this property type',
           body: 'Reach active buyers and renters with premium placement in listing details.',
           cta: 'Advertise with us',
-          href: 'list-property.html'
+          href: 'list-property.html',
+          image: 'assets/listing-4.jpg',
+          phone: '+216 20 000 000'
         }
       },
       deletedListingIds: []
@@ -1119,7 +1351,9 @@
         title: String(current.title || fallback.title).trim() || fallback.title,
         body: String(current.body || fallback.body).trim() || fallback.body,
         cta: String(current.cta || fallback.cta).trim() || fallback.cta,
-        href: String(current.href || fallback.href).trim() || fallback.href
+        href: String(current.href || fallback.href).trim() || fallback.href,
+        image: String(current.image || fallback.image).trim() || fallback.image,
+        phone: String(current.phone || fallback.phone).trim() || fallback.phone
       };
     };
     const deleted = Array.isArray(raw.deletedListingIds) ? raw.deletedListingIds : [];
@@ -1328,6 +1562,7 @@
       cover: String(current.cover || '').trim(),
       bio: String(current.bio || '').trim(),
       agencyName: String(current.agencyName || '').trim(),
+      whatsapp: String(current.whatsapp || '').trim(),
       website: String(current.website || '').trim(),
       instagram: String(current.instagram || '').trim(),
       facebook: String(current.facebook || '').trim(),
@@ -1346,6 +1581,46 @@
   function accountHasPro(settings) {
     if (!settings) return false;
     return Boolean(settings.proSubscriptionActive);
+  }
+
+  function activeAccountTier(settings) {
+    const current = settings || {};
+    const accountType = normalizeAccountTier(current.accountType);
+    const requestedType = normalizeAccountTier(current.requestedAccountType || '');
+    const verificationStatus = String(current.verificationStatus || '').toLowerCase();
+    if (accountType !== 'individual' && verificationStatus === 'verified') return accountType;
+    if (accountType === 'individual' && verificationStatus === 'verified' && requestedType !== 'individual' && requestedType) {
+      return requestedType;
+    }
+    return 'individual';
+  }
+
+  function tierVideoLimit(tierValue, proSubscriptionActive) {
+    if (proSubscriptionActive) return 2;
+    return normalizeAccountTier(tierValue) === 'individual' ? 0 : 1;
+  }
+
+  function tierListingLimit(tierValue, proSubscriptionActive) {
+    if (proSubscriptionActive) return 16;
+    return normalizeAccountTier(tierValue) === 'individual' ? 2 : 6;
+  }
+
+  function accountCapabilities(settings) {
+    const current = settings || {};
+    const activeTier = activeAccountTier(current);
+    const proActive = Boolean(current.proSubscriptionActive);
+    const professional = activeTier !== 'individual';
+    const verifiedStatus = String(current.verificationStatus || '').toLowerCase() === 'verified';
+    return {
+      activeTier: activeTier,
+      isProfessional: professional,
+      isVerifiedProfessional: professional && verifiedStatus,
+      photoLimit: tierPhotoLimit(activeTier, proActive),
+      videoLimit: tierVideoLimit(activeTier, proActive),
+      listingLimit: tierListingLimit(activeTier, proActive),
+      canShowSocials: professional && verifiedStatus,
+      proActive: proActive
+    };
   }
 
   function listingTier(item) {
@@ -1377,8 +1652,7 @@
   }
 
   function tierPhotoLimit(tierValue, proSubscriptionActive) {
-    if (proSubscriptionActive) return 24;
-    return 8;
+    return 12;
   }
 
   function tierMonthlyPrice(tierValue) {
@@ -1516,6 +1790,25 @@
     option.textContent = t(text);
   }
 
+  function ensureNavContactSales() {
+    document.querySelectorAll('.home-nav-actions').forEach(function (wrap) {
+      if (wrap.querySelector('.nav-contact-sales')) return;
+      const listLink = wrap.querySelector('a[href="list-property.html"]');
+      const contactLink = document.createElement('a');
+      contactLink.className = 'btn light mini nav-contact-sales';
+      contactLink.href = 'mailto:sales@tunihome.tn?subject=' + encodeURIComponent('Contact Sales');
+      contactLink.textContent = t('Contact Sales');
+      contactLink.setAttribute('aria-label', t('Contact Sales'));
+      if (listLink && listLink.nextSibling) {
+        wrap.insertBefore(contactLink, listLink.nextSibling);
+      } else if (listLink) {
+        wrap.appendChild(contactLink);
+      } else {
+        wrap.insertBefore(contactLink, wrap.firstChild);
+      }
+    });
+  }
+
   function renderSiteFooter() {
     const footers = document.querySelectorAll('.site-footer');
     if (!footers.length) return;
@@ -1542,6 +1835,13 @@
       '      <a href="' + withLanguageParam('search.html?advanced=true') + '">' + t('Help center') + '</a>',
       '      <a href="mailto:hello@tunihome.tn">' + t('Contact us') + '</a>',
       '      <a href="' + withLanguageParam('search.html?advanced=true') + '">' + t('Safety tips') + '</a>',
+      '    </section>',
+      '    <section class="site-footer-col">',
+      '      <h4>' + t('Follow us') + '</h4>',
+      '      <div class="site-footer-social">',
+      '        <a href="https://www.instagram.com/tunihome.tn" target="_blank" rel="noreferrer" aria-label="' + escapeHtml(t('Instagram')) + '">' + socialIconMarkup('instagram') + '</a>',
+      '        <a href="https://www.facebook.com/tunihome.tn" target="_blank" rel="noreferrer" aria-label="' + escapeHtml(t('Facebook')) + '">' + socialIconMarkup('facebook') + '</a>',
+      '      </div>',
       '    </section>',
       '    <section class="site-footer-col">',
       '      <h4>' + t('Company') + '</h4>',
@@ -1678,6 +1978,23 @@
     return params.get(name);
   }
 
+  function readFileAsDataUrl(file) {
+    return new Promise(function (resolve, reject) {
+      if (!file) {
+        resolve('');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function () {
+        resolve(String(reader.result || ''));
+      };
+      reader.onerror = function () {
+        reject(reader.error || new Error('File read failed'));
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
   function pushRecentSearch(searchObj) {
     const key = data.STORAGE_KEYS.recentSearches;
     if (!key) return;
@@ -1717,8 +2034,36 @@
       title: localize(safeSlot.title, defaultSlot.title),
       body: localize(safeSlot.body, defaultSlot.body),
       cta: localize(safeSlot.cta, defaultSlot.cta),
-      href: safeSlot.href || defaultSlot.href
+      href: safeSlot.href || defaultSlot.href,
+      image: safeSlot.image || defaultSlot.image,
+      phone: safeSlot.phone || defaultSlot.phone
     };
+  }
+
+  function premiumDescriptionMarkup(options) {
+    const current = options || {};
+    const ctaHref = current.href ? withLanguageParam(current.href) : '';
+    const ctaLabel = current.label || t('View Pro plan');
+    const showButton = Boolean(ctaHref && ctaLabel);
+    return [
+      '<div class="premium-upgrade-shell">',
+      '  <div class="premium-home-copy">',
+      '    <span class="premium-home-kicker">' + escapeHtml(t('Premium')) + '</span>',
+      '    <h3>' + escapeHtml(t('Get more visibility with Premium')) + '</h3>',
+      '    <p>' + escapeHtml(t('Upgrade to Pro for stronger discovery, market insights, and priority support.')) + '</p>',
+      '    <ul class="premium-home-list">',
+      '      <li><strong>' + escapeHtml(t('More exposure')) + '</strong><span>' + escapeHtml(t('Show your listings higher in front of serious buyers and renters.')) + '</span></li>',
+      '      <li><strong>' + escapeHtml(t('Better listing recommendations')) + '</strong><span>' + escapeHtml(t('Follow tailored tips to improve performance and conversion.')) + '</span></li>',
+      '      <li><strong>' + escapeHtml(t('Price and market insights')) + '</strong><span>' + escapeHtml(t('Track views, demand, and pricing signals in one place.')) + '</span></li>',
+      '      <li><strong>' + escapeHtml(t('Priority support')) + '</strong><span>' + escapeHtml(t('Get faster responses when you need help.')) + '</span></li>',
+      '    </ul>',
+      showButton ? ('    <div class="premium-home-actions"><a class="btn" href="' + escapeHtml(ctaHref) + '">' + escapeHtml(ctaLabel) + '</a></div>') : '',
+      '  </div>',
+      '  <div class="premium-home-media">',
+      '    <img src="assets/listing-7.jpg" alt="' + escapeHtml(t('Professional Pro Plan')) + '" loading="lazy" />',
+      '  </div>',
+      '</div>'
+    ].join('');
   }
 
   function compactCardPrice(item) {
@@ -1788,6 +2133,23 @@
     ].join('');
   }
 
+  function socialIconMarkup(kind) {
+    if (kind === 'instagram') {
+      return [
+        '<svg class="social-icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">',
+        '  <rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect>',
+        '  <circle cx="12" cy="12" r="4.2"></circle>',
+        '  <circle cx="17.2" cy="6.8" r="1.2"></circle>',
+        '</svg>'
+      ].join('');
+    }
+    return [
+      '<svg class="social-icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">',
+      '  <path d="M13.5 21v-7h2.6l.4-3h-3V9.1c0-.9.3-1.6 1.7-1.6H16.7V5c-.3 0-1.3-.1-2.5-.1-2.4 0-4 1.5-4 4.2V11H8v3h2.2v7h3.3Z"></path>',
+      '</svg>'
+    ].join('');
+  }
+
   function ownerFor(item) {
     const fallback = {
       id: 'owner-' + item.id,
@@ -1819,20 +2181,23 @@
   function matchesFilters(listing, filters) {
     const byCategory = !filters.category || listing.category === filters.category;
     const byType = !filters.type || filters.type === 'all' || listing.type === filters.type;
-    const byLocation = !filters.location || listing.location.toLowerCase().includes(filters.location.toLowerCase().trim());
+    const listingRegion = locationRegion(listing.location);
+    const listingCity = locationCity(listing.location);
+    const byRegion = !filters.region || normalizeGeoName(listingRegion) === normalizeGeoName(filters.region);
+    const byLocation = !filters.location || normalizeGeoName(listingCity) === normalizeGeoName(filters.location);
     const byMinPrice = Number(filters.minPrice || 0) > 0 ? listing.price >= Number(filters.minPrice) : true;
     const byPrice = Number.isFinite(filters.maxPrice) ? listing.price <= filters.maxPrice : true;
     const byProfessional = filters.professionalOnly ? Boolean(listing.professionalId) : true;
     const byVerified = filters.verifiedOnly ? Boolean(listing.verified) : true;
     const byRooms = Number(filters.minRooms || 0) > 0 ? listing.rooms >= Number(filters.minRooms) : true;
     const bySurface = Number(filters.minSurface || 0) > 0 ? listing.surface >= Number(filters.minSurface) : true;
-    const wantedAmenities = Array.isArray(filters.amenities) ? filters.amenities : [];
+    const wantedAmenities = Array.isArray(filters.amenities) ? filters.amenities.map(normalizeAmenityKey).filter(Boolean) : [];
     const listingAmenities = (listing.amenities || []).map(function (item) {
-      return String(item).toLowerCase();
+      return normalizeAmenityKey(item);
     });
     const byAmenities = wantedAmenities.length === 0 ? true : wantedAmenities.every(function (needle) {
       return listingAmenities.some(function (entry) {
-        return entry.includes(String(needle).toLowerCase());
+        return entry === needle;
       });
     });
 
@@ -1846,7 +2211,7 @@
         return listingRentTags.includes(String(tag).toLowerCase());
       }));
 
-    return byCategory && byType && byLocation && byMinPrice && byPrice && byProfessional && byVerified && byRooms && bySurface && byAmenities && byRentTags;
+    return byCategory && byType && byRegion && byLocation && byMinPrice && byPrice && byProfessional && byVerified && byRooms && bySurface && byAmenities && byRentTags;
   }
 
   function rankingScore(listing) {
@@ -2178,7 +2543,7 @@
       },
       profile: {
         title: t('Professional Profile | TuniHome'),
-        description: t('Explore agency and promoter profiles, active listings, ratings, and contact details on TuniHome.'),
+        description: t('Explore agency and promoter profiles, active listings, and direct contact details on TuniHome.'),
         robots: 'index,follow',
         type: 'profile',
         canonicalPath: '/profile.html'
@@ -2371,9 +2736,11 @@
       document.title = t(pageTitles[page]);
     }
 
+    ensureNavContactSales();
     setAttr('.brand', 'aria-label', 'Go to home');
     setAttr('.nav-account', 'aria-label', 'My account');
     setAttr('.footer-nav', 'aria-label', 'Primary navigation');
+    setTextAll('.nav-contact-sales', 'Contact Sales');
     setTextAll('.footer-nav a[href="index.html"] span', 'Home');
     setTextAll('.footer-nav a[href="search.html"] span', 'Search');
     setTextAll('.footer-nav a[href="list-property.html"] span', 'List');
@@ -2383,34 +2750,26 @@
       select.setAttribute('aria-label', t('Language'));
       Array.from(select.options).forEach(function (option) {
         const value = normalizeLanguage(option.value || option.textContent);
-        if (value === 'en') option.textContent = t('English');
-        if (value === 'fr') option.textContent = t('Français');
-        if (value === 'ar') option.textContent = t('Arabic');
+        if (value === 'en') option.textContent = 'EN 🇬🇧';
+        if (value === 'fr') option.textContent = 'FR 🇫🇷';
+        if (value === 'ar') option.textContent = 'AR 🇹🇳';
       });
     });
 
     if (page === 'home') {
-      setText('.home-nav-actions .btn.mini', 'List your properties');
+      setText('.home-nav-actions a[href="list-property.html"]', 'List your properties');
       setText('.landing-kicker', 'Trusted homes across Tunisia');
-      setText('.landing-hero-content h2', 'Find your next place with confidence.');
-      setText('.landing-subtitle', 'Browse verified villas, apartments, and vacation homes from trusted owners and agencies.');
+      setText('.landing-hero-content h2', 'Find verified homes across Tunisia.');
+      setText('.landing-subtitle', 'Buy, rent, or book vacation stays from trusted owners and agencies.');
       setAttr('.landing-category-pills', 'aria-label', 'Listing mode');
       setText('[data-home-tab="sale"]', 'Buy');
       setText('[data-home-tab="long"]', 'Rent');
       setText('[data-home-tab="short"]', 'Vacation');
       setAttr('.landing-search-bar', 'aria-label', 'Quick property search');
-      setText('label[for="quick-location"]', 'Where');
-      setOptionText('#quick-location', '', 'Search by city');
-      setText('label[for="landing-type"]', 'Property type');
-      setOptionText('#landing-type', 'all', 'Any type');
-      setOptionText('#landing-type', 'apartment', 'Apartment');
-      setOptionText('#landing-type', 'villa', 'Villa');
-      setOptionText('#landing-type', 'house', 'House');
-      setOptionText('#landing-type', 'room', 'Room');
-      setOptionText('#landing-type', 'studio', 'Studio');
-      setOptionText('#landing-type', 'condo', 'Condo');
-      setText('label[for="landing-budget"]', 'Budget');
-      setOptionText('#landing-budget', '', 'Any budget');
+      setText('label[for="quick-region"]', 'Region');
+      setOptionText('#quick-region', '', 'Search by region');
+      setText('label[for="landing-budget"]', 'Price');
+      setOptionText('#landing-budget', '', 'Any price');
       setOptionText('#landing-budget', '1200', 'Up to 1,200 TND');
       setOptionText('#landing-budget', '2500', 'Up to 2,500 TND');
       setOptionText('#landing-budget', '5000', 'Up to 5,000 TND');
@@ -2423,6 +2782,18 @@
       setText('[data-home-rent-tag="couple"]', 'Couple rent');
       setText('[data-home-rent-tag="family"]', 'Family rent');
       setText('[data-home-rent-tag="students"]', 'Students rent');
+      setText('.premium-home-kicker', 'Premium');
+      setText('#premium-home-title', 'Get more visibility with Premium');
+      setText('#premium-home-subtitle', 'Upgrade to Pro for stronger discovery, market insights, and priority support.');
+      setText('#premium-home-point-1-title', 'More exposure');
+      setText('#premium-home-point-1-copy', 'Show your listings higher in front of serious buyers and renters.');
+      setText('#premium-home-point-2-title', 'Better listing recommendations');
+      setText('#premium-home-point-2-copy', 'Follow tailored tips to improve performance and conversion.');
+      setText('#premium-home-point-3-title', 'Price and market insights');
+      setText('#premium-home-point-3-copy', 'Track views, demand, and pricing signals in one place.');
+      setText('#premium-home-point-4-title', 'Priority support');
+      setText('#premium-home-point-4-copy', 'Get faster responses when you need help.');
+      setText('#premium-home-cta', 'View Pro plan');
 
       const sectionTitles = document.querySelectorAll('.landing-section .section-title');
       if (sectionTitles[0]) sectionTitles[0].textContent = t('TOP PICK');
@@ -2438,9 +2809,15 @@
       const homeAdTitle = document.querySelector('.home-ad-banner h4');
       const homeAdBody = document.querySelector('.home-ad-banner p');
       const homeAdCta = document.querySelector('.home-ad-banner .home-ad-cta');
+      const homeAdPhone = document.querySelector('.home-ad-banner .ad-phone');
+      const homeAdImageLink = document.querySelector('.home-ad-banner .ad-media-link');
+      const homeAdImage = document.querySelector('.home-ad-banner .ad-media-image');
       if (homeAdChip) homeAdChip.textContent = homeAd.chip;
       if (homeAdTitle) homeAdTitle.textContent = homeAd.title;
       if (homeAdBody) homeAdBody.textContent = homeAd.body;
+      if (homeAdPhone) homeAdPhone.textContent = homeAd.phone;
+      if (homeAdImageLink) homeAdImageLink.setAttribute('href', withLanguageParam(homeAd.href));
+      if (homeAdImage) homeAdImage.setAttribute('src', homeAd.image);
       if (homeAdCta) {
         homeAdCta.textContent = homeAd.cta;
         homeAdCta.setAttribute('href', withLanguageParam(homeAd.href));
@@ -2448,7 +2825,7 @@
     }
 
     if (page === 'search') {
-      setText('.search-header .btn.mini', 'List your properties');
+      setText('.search-header a[href="list-property.html"]', 'List your properties');
       setAttr('#search-mobile-filter-trigger', 'aria-label', 'Open filters');
       setAttr('.board-tabs', 'aria-label', 'Category');
       setAttr('#search-filter-drawer', 'aria-label', 'Extra filters');
@@ -2461,8 +2838,10 @@
       setText('[data-search-rent-tag="couple"]', 'Couple rent');
       setText('[data-search-rent-tag="family"]', 'Family rent');
       setText('[data-search-rent-tag="students"]', 'Students rent');
+      setText('label[for="search-region"]', 'Region');
+      setOptionText('#search-region', '', 'Any region');
       setText('label[for="search-location"]', 'City');
-      setOptionText('#search-location', '', 'Any city');
+      setOptionText('#search-location', '', 'Select region first');
       setText('#search-price-range-label', 'Price Range');
       setText('label[for="search-min-price"]', 'Min price');
       setText('label[for="search-price"]', 'Max price');
@@ -2495,16 +2874,18 @@
       setText('#search-load-more', 'Load more results');
       setText('.search-summary-kicker', 'Search intelligence');
       setText('#search-summary-title', 'Results tailored to your filters');
-      setText('#search-summary-subtitle', 'Adjust city, type, or budget to refine the list.');
+      setText('#search-summary-subtitle', 'Adjust region, city, type, or budget to refine the list.');
       setText('#search-summary-clear', 'Clear filters');
       setText('.map-city-pill .subtle', 'Location');
       setAttr('.map-zoom', 'aria-label', 'Zoom in');
       setAttr('.map-zoom.minus', 'aria-label', 'Zoom out');
       setText('#search-filter-drawer strong', 'More filters');
       setAttr('#search-filter-close', 'aria-label', 'Close');
+      setText('label[for="search-region-mobile"]', 'Region');
+      setOptionText('#search-region-mobile', '', 'Any region');
       setText('label[for="search-min-rooms-mobile"]', 'Minimum rooms');
       setText('label[for="search-location-mobile"]', 'City');
-      setOptionText('#search-location-mobile', '', 'Any city');
+      setOptionText('#search-location-mobile', '', 'Select region first');
       setText('label[for="search-type-mobile"]', 'Property type');
       setOptionText('#search-type-mobile', 'all', 'Any type');
       setOptionText('#search-type-mobile', 'apartment', 'Apartment');
@@ -2549,6 +2930,7 @@
       setText('#property-quick-baths-label', 'Baths');
       setText('#property-map-section .section-title', 'Map & location');
       setText('#property-map-link', 'Open full map');
+      setText('#property-map-unlock', 'View map');
       setText('.property-map-city-pill .subtle', 'Location');
       setText('#property-video-title', 'Video tour');
       setText('#property-video-caption', 'Walk through this home before your visit.');
@@ -2565,9 +2947,15 @@
       const propertyAdTitle = document.querySelector('.property-ad-card h4');
       const propertyAdBody = document.querySelector('.property-ad-card p');
       const propertyAdCta = document.querySelector('.property-ad-card .btn.light');
+      const propertyAdPhone = document.querySelector('.property-ad-card .ad-phone');
+      const propertyAdImageLink = document.querySelector('.property-ad-card .ad-media-link');
+      const propertyAdImage = document.querySelector('.property-ad-card .ad-media-image');
       if (propertyAdChip) propertyAdChip.textContent = propertyAd.chip;
       if (propertyAdTitle) propertyAdTitle.textContent = propertyAd.title;
       if (propertyAdBody) propertyAdBody.textContent = propertyAd.body;
+      if (propertyAdPhone) propertyAdPhone.textContent = propertyAd.phone;
+      if (propertyAdImageLink) propertyAdImageLink.setAttribute('href', withLanguageParam(propertyAd.href));
+      if (propertyAdImage) propertyAdImage.setAttribute('src', propertyAd.image);
       if (propertyAdCta) {
         propertyAdCta.textContent = propertyAd.cta;
         propertyAdCta.setAttribute('href', withLanguageParam(propertyAd.href));
@@ -2713,6 +3101,8 @@
       setText('#admin-listings-subtitle', 'Manual verification and removal');
       setText('#admin-users-subtitle', 'Create or manage admin access profiles');
       setText('#admin-profile-form-title', 'Create / update profile');
+      setText('label[for="admin-profile-whatsapp"]', 'WhatsApp');
+      setText('label[for="admin-profile-facebook"]', 'Facebook');
       setText('#admin-user-form-title', 'Create / update admin');
       setText('label[for="admin-user-name"]', 'Full name');
       setText('label[for="admin-user-email"]', 'Email');
@@ -2793,7 +3183,8 @@
       setText('label[for="settings-name"]', 'Full name');
       setText('label[for="settings-email"]', 'Email');
       setText('label[for="settings-phone"]', 'Phone');
-      setText('label[for="settings-avatar"]', 'Profile photo URL');
+      setText('label[for="settings-avatar"]', 'Profile photo');
+      setText('label[for="settings-whatsapp"]', 'WhatsApp number');
       setText('label[for="settings-bio"]', 'Public profile');
       setText('label[for="settings-cover"]', 'Agency cover URL');
       setText('label[for="settings-website"]', 'Website');
@@ -2803,22 +3194,22 @@
       setText('#settings-plan-subtitle', 'Choose your account tag from profile settings. Agency and promoter accounts require manual verification.');
       setText('#settings-plan-individual-name', 'Individual');
       setText('#settings-plan-individual-price', 'Free');
-      setText('#settings-plan-individual-f1', 'Standard listing tag');
-      setText('#settings-plan-individual-f2', 'Up to 8 photos per listing');
-      setText('#settings-plan-individual-f3', 'Standard listing placement');
-      setText('#settings-plan-individual-f4', 'Eligible for paid Pro add-on');
+      setText('#settings-plan-individual-f1', '2 active listings');
+      setText('#settings-plan-individual-f2', '12 photos per listing');
+      setText('#settings-plan-individual-f3', 'No video on Standard');
+      setText('#settings-plan-individual-f4', 'Upgrade to Pro for 16 listings and 2 videos');
       setText('#settings-plan-agency-name', 'Agency');
       setText('#settings-plan-agency-price', 'Tag');
-      setText('#settings-plan-agency-f1', 'Agency badge on listings');
-      setText('#settings-plan-agency-f2', 'Manual verification required');
-      setText('#settings-plan-agency-f3', 'Agency identity shown on listings');
-      setText('#settings-plan-agency-f4', 'Eligible for paid Pro add-on');
+      setText('#settings-plan-agency-f1', '6 active listings');
+      setText('#settings-plan-agency-f2', '12 photos and 1 video per listing');
+      setText('#settings-plan-agency-f3', 'Manual verification required');
+      setText('#settings-plan-agency-f4', 'Social links only after verification');
       setText('#settings-plan-promoter-name', 'Promoter');
       setText('#settings-plan-promoter-price', 'Tag');
-      setText('#settings-plan-promoter-f1', 'Promoter badge on listings');
-      setText('#settings-plan-promoter-f2', 'Manual verification required');
-      setText('#settings-plan-promoter-f3', 'Promoter identity shown on listings');
-      setText('#settings-plan-promoter-f4', 'Eligible for paid Pro add-on');
+      setText('#settings-plan-promoter-f1', '6 active listings');
+      setText('#settings-plan-promoter-f2', '12 photos and 1 video per listing');
+      setText('#settings-plan-promoter-f3', 'Manual verification required');
+      setText('#settings-plan-promoter-f4', 'Upgrade to Pro for 16 listings and 2 videos');
       setText('#settings-use-individual', 'Use Individual');
       setText('#settings-start-verification', 'Start verification');
       setText('#settings-cancel-verification', 'Cancel request');
@@ -2833,7 +3224,7 @@
       setText('#settings-cancel-subtitle', 'Your account will stay Individual and your pending request will be removed.');
       setText('#settings-cancel-confirm', 'Confirm cancel');
       setText('#settings-pro-access-title', 'Pro subscription');
-      setText('#settings-pro-access-subtitle', 'Unlock higher media limits, two videos, and priority placement.');
+      setText('#settings-pro-access-subtitle', 'Get more visibility with Premium. Upgrade to Pro for stronger discovery, market insights, and priority support.');
       setText('#settings-pro-access-status', 'Standard');
       setText('#settings-pro-access-link', 'Upgrade to Pro');
       setText('#settings-pro-stats-title', 'Listing statistics');
@@ -3018,9 +3409,9 @@
         ownerFacebook: account.facebook || item.ownerFacebook || '',
         ownerLinkedin: account.linkedin || item.ownerLinkedin || '',
         ownerCover: account.cover || item.ownerCover || '',
-        ownerWhatsapp: item.ownerWhatsapp || item.contactWhatsapp || ownerPhone,
+        ownerWhatsapp: account.whatsapp || item.ownerWhatsapp || item.contactWhatsapp || ownerPhone,
         contactPhone: item.contactPhone || ownerPhone,
-        contactWhatsapp: item.contactWhatsapp || ownerPhone,
+        contactWhatsapp: item.contactWhatsapp || account.whatsapp || ownerPhone,
         verified: tier === 'individual' ? listingVerified : Boolean(verifiedByAccount || listingVerified),
         ownershipStatus: ownershipStatus || (item.verificationDocument ? 'requested' : ''),
         postVerificationStatus: postStatus || (listingVerified ? 'verified' : 'pending'),
@@ -3055,7 +3446,9 @@
         instagram: pro.instagram,
         facebook: pro.facebook,
         linkedin: pro.linkedin,
-        badge: pro.badge
+        badge: pro.badge,
+        accountType: normalizeAccountTier(pro.badge || 'agency'),
+        verificationStatus: pro.verified ? 'verified' : 'pending'
       };
     });
 
@@ -3072,18 +3465,20 @@
         avatar: settings.avatar || '',
         cover: settings.cover || '',
         bio: settings.bio || t('New professional profile with recently submitted listings.'),
-        rating: Number((byId[profileId] && byId[profileId].rating) || 4.5),
-        reviews: Number((byId[profileId] && byId[profileId].reviews) || 0),
         verified: true,
         phone: settings.phone || '',
-        whatsapp: settings.phone
-          ? ('https://wa.me/' + normalizePhone(settings.phone).replace(/^\+/, ''))
-          : ((byId[profileId] && byId[profileId].whatsapp) || 'https://wa.me/21620000000'),
+        whatsapp: settings.whatsapp
+          ? ('https://wa.me/' + normalizePhone(settings.whatsapp).replace(/^\+/, ''))
+          : (settings.phone
+            ? ('https://wa.me/' + normalizePhone(settings.phone).replace(/^\+/, ''))
+            : ((byId[profileId] && byId[profileId].whatsapp) || 'https://wa.me/21620000000')),
         website: settings.website || '',
         instagram: settings.instagram || '',
         facebook: settings.facebook || '',
         linkedin: settings.linkedin || '',
-        badge: tier === 'promoter' ? t('Promoter') : t('Agency')
+        badge: tier === 'promoter' ? t('Promoter') : t('Agency'),
+        accountType: tier,
+        verificationStatus: 'verified'
       });
     });
 
@@ -3105,7 +3500,9 @@
         instagram: item.ownerInstagram || '',
         facebook: item.ownerFacebook || '',
         linkedin: item.ownerLinkedin || '',
-        badge: normalizeAccountTier(item.ownerTier || item.accountType) === 'promoter' ? t('Promoter') : t('Real Estate Agency')
+        badge: normalizeAccountTier(item.ownerTier || item.accountType) === 'promoter' ? t('Promoter') : t('Real Estate Agency'),
+        accountType: normalizeAccountTier(item.ownerTier || item.accountType),
+        verificationStatus: item.verified ? 'verified' : 'pending'
       };
     });
 
@@ -3123,10 +3520,8 @@
     const initials = pro.name.split(/\s+/).map(function (word) {
       return word.slice(0, 1).toUpperCase();
     }).join('').slice(0, 2);
-    const rating = Number(pro.rating || 4.4);
-    const reviewCount = Number(pro.reviews || 0);
     const coverImage = String(pro.cover || '').trim() || listingImage({ id: 'agency-' + pro.id }, index + 1);
-    const badge = pro.verified ? t('Verified') : t('Agency');
+    const badge = pro.badge || (pro.verified ? t('Verified') : t('Agency'));
     const saved = isAgencySaved(pro.id);
     const href = withLanguageParam('profile.html?pro=' + encodeURIComponent(pro.id) + '&slot=' + index);
 
@@ -3144,7 +3539,7 @@
       '    </div>',
       '    <div class="agency-card-body">',
       '      <strong class="agency-card-name">' + escapeHtml(agencyName) + '</strong>',
-      '      <span class="agency-card-meta">⭐ ' + escapeHtml(rating.toFixed(1)) + ' · ' + escapeHtml(tCount(reviewCount, '{count} review', '{count} reviews')) + '</span>',
+      '      <span class="agency-card-meta">' + escapeHtml(badge) + '</span>',
       '      <span class="agency-card-count">' + escapeHtml(tCount(listingCount, '{count} listing', '{count} listings')) + '</span>',
       '    </div>',
       '  </a>',
@@ -3182,6 +3577,7 @@
       const fromRecent = allListingsWithUserData().filter(function (item) {
         return matchesFilters(item, {
           category: recentSearch.category || null,
+          region: recentSearch.region || '',
           location: recentSearch.location || '',
           type: recentSearch.type || 'all',
           maxPrice: recentSearch.maxPrice || Number.POSITIVE_INFINITY,
@@ -3213,7 +3609,7 @@
   }
 
   function initHomePage() {
-    const locationInput = document.getElementById('quick-location');
+    const regionInput = document.getElementById('quick-region');
     const typeSelect = document.getElementById('landing-type');
     const budgetSelect = document.getElementById('landing-budget');
     const bedsSelect = document.getElementById('landing-beds');
@@ -3231,7 +3627,7 @@
     const topbar = document.querySelector('.home-header');
     const hero = document.querySelector('.landing-hero, .hero-banner');
 
-    if (!locationInput || !feed) return;
+    if (!regionInput || !feed) return;
 
     const userPreferences = getUserPreferences();
     if (userPreferences) {
@@ -3240,6 +3636,7 @@
       }
       if (String(userPreferences.defaultCity || '').trim()) {
         appState.home.location = String(userPreferences.defaultCity).trim();
+        appState.home.region = resolveRegionName(userPreferences.defaultCity);
       }
       if (Number(userPreferences.maxBudget) > 0) {
         appState.home.maxPrice = Number(userPreferences.maxBudget);
@@ -3249,10 +3646,11 @@
       }
     }
 
-    appState.home.location = (appState.home.location || locationInput.value || '').trim();
+    appState.home.region = resolveRegionName(appState.home.region || regionInput.value || appState.home.location || '');
+    appState.home.location = '';
     appState.home.amenities = [];
     appState.home.rentTags = [];
-    locationInput.value = appState.home.location;
+    fillSelectOptions(regionInput, TUNISIA_REGIONS.map(function (entry) { return entry.region; }), 'Search by region', appState.home.region);
     if (typeSelect) typeSelect.value = appState.home.type || 'all';
     if (budgetSelect) {
       budgetSelect.value = Number.isFinite(appState.home.maxPrice) ? String(appState.home.maxPrice) : '';
@@ -3266,13 +3664,13 @@
 
     renderSponsoredRow();
     renderHomeForYou();
-    setNavSearchValue(appState.home.location);
+    setNavSearchValue(appState.home.region);
 
     function buildHomeSearchParams() {
       const params = new URLSearchParams();
       params.set('category', appState.home.category);
-      if (appState.home.location && appState.home.location.trim()) {
-        params.set('location', appState.home.location.trim());
+      if (appState.home.region && appState.home.region.trim()) {
+        params.set('region', appState.home.region.trim());
       }
       if (appState.home.type && appState.home.type !== 'all') {
         params.set('type', appState.home.type);
@@ -3323,7 +3721,8 @@
     function syncHomeRentTags() {
       const isRentMode = appState.home.category === 'long';
       if (homeRentTagsWrap) {
-        homeRentTagsWrap.classList.toggle('hidden', !isRentMode);
+        homeRentTagsWrap.classList.toggle('is-inactive', !isRentMode);
+        homeRentTagsWrap.setAttribute('aria-hidden', isRentMode ? 'false' : 'true');
       }
       if (!isRentMode) {
         appState.home.rentTags = [];
@@ -3389,10 +3788,10 @@
       });
     });
 
-    if (locationInput) {
-      locationInput.addEventListener('change', function () {
-        appState.home.location = locationInput.value.trim();
-        setNavSearchValue(appState.home.location);
+    if (regionInput) {
+      regionInput.addEventListener('change', function () {
+        appState.home.region = resolveRegionName(regionInput.value);
+        setNavSearchValue(appState.home.region);
         appState.home.visibleCount = 4;
       });
     }
@@ -3459,7 +3858,7 @@
     const backdrop = document.getElementById('mobile-filter-backdrop');
     const closeBtn = document.getElementById('close-mobile-filter');
     const applyBtn = document.getElementById('apply-mobile-filter');
-    const drawerLocation = document.getElementById('drawer-location');
+    const drawerRegion = document.getElementById('drawer-region');
     const drawerPrice = document.getElementById('drawer-price');
     const drawerMinRooms = document.getElementById('drawer-min-rooms');
     const drawerProToggle = document.getElementById('drawer-professional-toggle');
@@ -3469,8 +3868,8 @@
       advancedToggleBtn.addEventListener('click', function () {
         const mobileScreen = window.matchMedia('(max-width: 1199px)').matches;
         if (mobileScreen && drawer && backdrop) {
-          if (drawerLocation) {
-            drawerLocation.value = appState.home.location || '';
+          if (drawerRegion) {
+            drawerRegion.value = appState.home.region || '';
           }
           if (drawerPrice) {
             drawerPrice.value = Number.isFinite(appState.home.maxPrice) ? appState.home.maxPrice : '';
@@ -3521,13 +3920,13 @@
 
     if (applyBtn) {
       applyBtn.addEventListener('click', function () {
-        appState.home.location = drawerLocation && drawerLocation.value ? drawerLocation.value.trim() : appState.home.location;
+        appState.home.region = drawerRegion && drawerRegion.value ? resolveRegionName(drawerRegion.value) : appState.home.region;
         appState.home.maxPrice = drawerPrice && drawerPrice.value ? Number(drawerPrice.value) : Number.POSITIVE_INFINITY;
         appState.home.minRooms = drawerMinRooms && drawerMinRooms.value ? Number(drawerMinRooms.value) : 0;
         appState.home.professionalOnly = drawerProToggle && drawerProToggle.getAttribute('data-toggle') === 'true';
         appState.home.verifiedOnly = drawerVerifiedToggle && drawerVerifiedToggle.getAttribute('data-toggle') === 'true';
-        if (locationInput) {
-          locationInput.value = appState.home.location;
+        if (regionInput) {
+          regionInput.value = appState.home.region;
         }
         if (budgetSelect) {
           budgetSelect.value = Number.isFinite(appState.home.maxPrice) ? String(appState.home.maxPrice) : '';
@@ -3535,7 +3934,7 @@
         if (bedsSelect) {
           bedsSelect.value = String(appState.home.minRooms || 0);
         }
-        setNavSearchValue(appState.home.location);
+        setNavSearchValue(appState.home.region);
         closeDrawer(drawer, backdrop);
         navigateToSearch(true);
       });
@@ -3573,8 +3972,9 @@
         pushRecentSearch({
           source: 'home',
           category: appState.home.category,
+          region: appState.home.region,
           type: appState.home.type,
-          location: appState.home.location,
+          location: '',
           maxPrice: Number.isFinite(appState.home.maxPrice) ? appState.home.maxPrice : null,
           professionalOnly: appState.home.professionalOnly,
           verifiedOnly: appState.home.verifiedOnly,
@@ -3599,6 +3999,7 @@
     if (!layout || !resultsWrap) return;
 
     const source = allListingsWithUserData();
+    const regionInput = document.getElementById('search-region');
     const locationInput = document.getElementById('search-location');
     const minPriceInput = document.getElementById('search-min-price');
     const priceInput = document.getElementById('search-price');
@@ -3619,6 +4020,7 @@
     const mapCityLabel = document.getElementById('map-city-label');
     const markerLayer = document.getElementById('map-marker-layer');
     const mapPreview = document.getElementById('map-listing-preview');
+    let currentRankedResults = [];
 
     const listViewBtn = document.getElementById('results-view-list');
     const splitViewBtn = document.getElementById('results-view-split');
@@ -3635,6 +4037,7 @@
     const closeDrawerBtn = document.getElementById('search-filter-close');
     const applyDesktopBtn = document.getElementById('search-apply-drawer');
     const applyMobileBtn = document.getElementById('search-apply-drawer-mobile');
+    const regionMobile = document.getElementById('search-region-mobile');
     const locationMobile = document.getElementById('search-location-mobile');
     const typeMobile = document.getElementById('search-type-mobile');
     const minPriceMobile = document.getElementById('search-min-price-mobile');
@@ -3648,6 +4051,7 @@
 
     const allowedTypes = ['all', 'apartment', 'villa', 'house', 'room', 'studio', 'condo', 'townhouse'];
     const categoryParam = getQueryParam('category');
+    const regionParam = getQueryParam('region');
     const locationParam = getQueryParam('location');
     const typeParam = getQueryParam('type');
     const minPriceParam = Number(getQueryParam('minPrice') || 0);
@@ -3667,6 +4071,7 @@
       }
       if (!locationParam && String(userPreferences.defaultCity || '').trim()) {
         appState.search.location = String(userPreferences.defaultCity).trim();
+        appState.search.region = resolveRegionName(userPreferences.defaultCity);
       }
       if (!(maxPriceParam > 0) && Number(userPreferences.maxBudget) > 0) {
         appState.search.maxPrice = Number(userPreferences.maxBudget);
@@ -3679,8 +4084,14 @@
     if (categoryParam && ['sale', 'long', 'short'].includes(categoryParam)) {
       appState.search.category = categoryParam;
     }
+    if (regionParam) {
+      appState.search.region = resolveRegionName(regionParam);
+    }
     if (locationParam) {
       appState.search.location = locationParam;
+      if (!appState.search.region) {
+        appState.search.region = resolveRegionName(locationParam);
+      }
     }
     if (typeParam && allowedTypes.includes(typeParam)) {
       appState.search.type = typeParam;
@@ -3714,6 +4125,46 @@
       }).filter(Boolean);
     } else {
       appState.search.rentTags = [];
+    }
+
+    if (appState.search.location && !appState.search.region) {
+      appState.search.region = resolveRegionName(appState.search.location);
+    }
+
+    function syncRegionCityOptions() {
+      const regions = TUNISIA_REGIONS.map(function (entry) {
+        return entry.region;
+      });
+      const cities = regionCities(appState.search.region);
+      const nextLocation = appState.search.location || '';
+      const hasSelectedCity = cities.some(function (city) {
+        return city === nextLocation;
+      });
+
+      if (regionInput) {
+        fillSelectOptions(regionInput, regions, 'Any region', appState.search.region);
+      }
+      if (regionMobile) {
+        fillSelectOptions(regionMobile, regions, 'Any region', appState.search.region);
+      }
+
+      if (!hasSelectedCity) {
+        appState.search.location = '';
+      }
+
+      const cityPlaceholder = appState.search.region ? 'Any city' : 'Select region first';
+      if (locationInput) {
+        fillSelectOptions(locationInput, cities, cityPlaceholder, hasSelectedCity ? nextLocation : '');
+      }
+      if (locationMobile) {
+        fillSelectOptions(locationMobile, cities, cityPlaceholder, hasSelectedCity ? nextLocation : '');
+      }
+    }
+
+    function syncMobileCityOptions(regionValue, selectedValue) {
+      if (!locationMobile) return;
+      const cities = regionCities(regionValue);
+      fillSelectOptions(locationMobile, cities, regionValue ? 'Any city' : 'Select region first', selectedValue || '');
     }
 
     function syncToggleButton(button, active) {
@@ -3768,19 +4219,11 @@
     }
 
     function syncFormControls() {
-      if (locationInput) {
-        const nextLocation = appState.search.location || '';
-        const hasLocationOption = Array.from(locationInput.options || []).some(function (option) {
-          return option.value === nextLocation;
-        });
-        if (!hasLocationOption) {
-          appState.search.location = '';
-        }
-        locationInput.value = hasLocationOption ? nextLocation : '';
-      }
+      syncRegionCityOptions();
       if (minPriceInput) minPriceInput.value = appState.search.minPrice ? String(appState.search.minPrice) : '';
       if (priceInput) priceInput.value = String(appState.search.maxPrice || maxPriceLimit);
       if (priceSlider) priceSlider.value = String(appState.search.maxPrice || maxPriceLimit);
+      if (regionMobile) regionMobile.value = appState.search.region || '';
       if (locationMobile) locationMobile.value = appState.search.location || '';
       if (typeMobile) typeMobile.value = appState.search.type || 'all';
       if (minPriceMobile) minPriceMobile.value = appState.search.minPrice ? String(appState.search.minPrice) : '';
@@ -3798,7 +4241,7 @@
       syncRentTagVisibility();
       syncPriceSliderTrack();
       updatePriceOutput();
-      setNavSearchValue(appState.search.location || '');
+      setNavSearchValue(appState.search.location || appState.search.region || '');
       updateMapLocationLabel();
     }
 
@@ -3867,12 +4310,18 @@
         mapViewBtn.classList.toggle('light', mode !== 'map');
         mapViewBtn.classList.toggle('active', mode === 'map');
       }
+      if (mode === 'list') {
+        clearMapMarkers();
+      } else {
+        renderMapMarkers(currentRankedResults);
+        updateMapLocationLabel();
+      }
     }
 
     function updateMapLocationLabel() {
       if (!mapCityLabel) return;
       const country = t('Tunisia');
-      const location = (appState.search.location || country).trim();
+      const location = (appState.search.location || appState.search.region || country).trim();
       mapCityLabel.textContent = location ? (location.includes(',') ? location : location + ', ' + country) : country;
     }
 
@@ -3904,6 +4353,9 @@
       const chips = [];
       if (appState.search.category !== 'sale') {
         chips.push({ key: 'category', label: localizeListingCategory(appState.search.category) });
+      }
+      if (appState.search.region) {
+        chips.push({ key: 'region', label: appState.search.region });
       }
       if (appState.search.location) {
         chips.push({ key: 'location', label: primaryCityLabel(appState.search.location) || appState.search.location });
@@ -3980,7 +4432,7 @@
       if (summarySubtitle) {
         summarySubtitle.textContent = safeItems.length
           ? (t('Average ask') + ' ' + money(averagePrice) + ' TND · ' + t('Top location') + ' ' + topCity)
-          : t('Adjust city, type, or budget to refine the list.');
+          : t('Adjust region, city, type, or budget to refine the list.');
       }
       if (summaryMetrics) {
         summaryMetrics.innerHTML = safeItems.length
@@ -4041,6 +4493,15 @@
       mapPreview.innerHTML = '';
     }
 
+    function clearMapMarkers() {
+      if (!markerLayer) return;
+      markerLayer.querySelectorAll('.map-price-pin').forEach(function (pin) {
+        pin.remove();
+      });
+      closeMapPreview();
+      clearFocusedResultCard();
+    }
+
     function mapPreviewMarkup(item) {
       const owner = ownerFor(item);
       const ownerTag = owner.professional ? t('Agency') : t('Individual');
@@ -4068,11 +4529,7 @@
 
     function renderMapMarkers(items) {
       if (!markerLayer) return;
-      markerLayer.querySelectorAll('.map-price-pin').forEach(function (pin) {
-        pin.remove();
-      });
-      closeMapPreview();
-      clearFocusedResultCard();
+      clearMapMarkers();
 
       items.slice(0, 24).forEach(function (item, index) {
         const marker = document.createElement('button');
@@ -4111,9 +4568,13 @@
       const ad = adSlotContent('search');
       return [
         '<article class="search-ad-card pop" data-ad-slot="' + slot + '">',
+        '  <a class="ad-media-link" href="' + withLanguageParam(ad.href) + '">',
+        '    <img class="ad-media-image" src="' + escapeHtml(ad.image) + '" alt="' + escapeHtml(ad.title) + '" loading="lazy" />',
+        '  </a>',
         '  <span class="search-ad-chip">' + escapeHtml(ad.chip) + '</span>',
         '  <h4>' + escapeHtml(ad.title) + '</h4>',
         '  <p>' + escapeHtml(ad.body) + '</p>',
+        '  <span class="ad-phone">' + escapeHtml(ad.phone) + '</span>',
         '  <a class="btn" href="' + withLanguageParam(ad.href) + '">' + escapeHtml(ad.cta) + '</a>',
         '</article>'
       ].join('');
@@ -4138,6 +4599,7 @@
         return matchesFilters(item, appState.search);
       });
       const ranked = rankListingsForFeed(filtered);
+      currentRankedResults = ranked.slice();
       const slice = ranked.slice(0, appState.search.visibleCount);
 
       countEl.textContent = tCount(ranked.length, '{count} RESULT', '{count} RESULTS');
@@ -4146,7 +4608,11 @@
         loadMore.classList.toggle('hidden', ranked.length <= appState.search.visibleCount);
       }
 
-      renderMapMarkers(ranked);
+      if (appState.search.mapMode === 'list') {
+        clearMapMarkers();
+      } else {
+        renderMapMarkers(ranked);
+      }
       updateMapLocationLabel();
       updateSearchSummary(ranked);
 
@@ -4154,6 +4620,7 @@
         pushRecentSearch({
           source: 'search',
           category: appState.search.category,
+          region: appState.search.region,
           type: appState.search.type,
           amenities: appState.search.amenities.slice(),
           location: appState.search.location,
@@ -4170,6 +4637,7 @@
 
     function resetFilters() {
       appState.search.type = 'all';
+      appState.search.region = '';
       appState.search.location = '';
       appState.search.minPrice = 0;
       appState.search.maxPrice = maxPriceLimit;
@@ -4186,6 +4654,10 @@
 
     function removeSearchFilter(key, value) {
       if (key === 'category') appState.search.category = 'sale';
+      if (key === 'region') {
+        appState.search.region = '';
+        appState.search.location = '';
+      }
       if (key === 'location') appState.search.location = '';
       if (key === 'type') appState.search.type = 'all';
       if (key === 'price') {
@@ -4265,11 +4737,27 @@
       });
     });
 
+    if (regionInput) {
+      regionInput.addEventListener('change', function () {
+        appState.search.region = resolveRegionName(regionInput.value);
+        appState.search.location = '';
+        appState.search.visibleCount = 9;
+        syncFormControls();
+        renderSearch(true);
+      });
+    }
+
+    if (regionMobile) {
+      regionMobile.addEventListener('change', function () {
+        syncMobileCityOptions(regionMobile.value, '');
+      });
+    }
+
     if (locationInput) {
       locationInput.addEventListener('change', function () {
         appState.search.location = locationInput.value;
         appState.search.visibleCount = 9;
-        setNavSearchValue(appState.search.location);
+        setNavSearchValue(appState.search.location || appState.search.region);
         renderSearch(true);
       });
     }
@@ -4352,6 +4840,7 @@
     if (applyDesktopBtn) {
       applyDesktopBtn.addEventListener('click', function () {
         appState.search.visibleCount = 9;
+        syncFormControls();
         renderSearch(true);
       });
     }
@@ -4460,6 +4949,10 @@
 
     if (openDrawerBtn && drawer && backdrop) {
       openDrawerBtn.addEventListener('click', function () {
+        if (regionMobile) {
+          regionMobile.value = appState.search.region || '';
+        }
+        syncMobileCityOptions(appState.search.region || '', appState.search.location || '');
         if (locationMobile) {
           locationMobile.value = appState.search.location || '';
         }
@@ -4496,6 +4989,10 @@
 
     if (applyMobileBtn) {
       applyMobileBtn.addEventListener('click', function () {
+        if (regionMobile) {
+          appState.search.region = resolveRegionName(regionMobile.value);
+          if (regionInput) regionInput.value = appState.search.region || '';
+        }
         if (locationMobile) {
           appState.search.location = String(locationMobile.value || '').trim();
           if (locationInput) locationInput.value = locationMobile.value || '';
@@ -4525,6 +5022,7 @@
         }
         normalizePriceBounds('max');
         appState.search.visibleCount = 9;
+        syncFormControls();
         renderSearch(true);
         closeDrawer(drawer, backdrop);
       });
@@ -4537,7 +5035,7 @@
     syncFormControls();
     normalizePriceBounds('max');
     syncDesktopFilterToggle();
-    setViewMode('split');
+    setViewMode('list');
     renderSearch(true);
   }
 
@@ -4922,7 +5420,11 @@
       ownerAvatar.alt = owner.name || t('Owner');
     }
     if (ownerName) ownerName.textContent = owner.name;
-    if (ownerRating) ownerRating.textContent = '⭐ ' + owner.rating + ' · ' + t('{count} reviews', { count: owner.reviews });
+    if (ownerRating) {
+      ownerRating.textContent = ownerTier === 'individual'
+        ? t('Direct owner contact')
+        : (tierBadgeLabel(ownerTier) + ' · ' + t('Verified contact profile'));
+    }
     if (ownerTierNode) {
       ownerTierNode.textContent = tierBadgeLabel(ownerTier);
       ownerTierNode.className = 'badge ' + ownerTier;
@@ -5135,6 +5637,9 @@
     const mapLabel = document.getElementById('property-map-label');
     const mapPin = document.getElementById('property-map-pin');
     const mapLink = document.getElementById('property-map-link');
+    const mapCanvas = document.getElementById('property-map-canvas');
+    const mapLock = document.getElementById('property-map-lock');
+    const mapUnlock = document.getElementById('property-map-unlock');
 
     function mapCoordinatesToPercent(coords) {
       if (!coords || typeof coords.lat !== 'number' || typeof coords.lng !== 'number') {
@@ -5171,6 +5676,16 @@
         ? (listing.coordinates.lat + ',' + listing.coordinates.lng)
         : listing.location;
       mapLink.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query);
+    }
+
+    if (mapCanvas) {
+      mapCanvas.classList.add('is-locked');
+    }
+    if (mapUnlock && mapCanvas && mapLock) {
+      mapUnlock.addEventListener('click', function () {
+        mapCanvas.classList.remove('is-locked');
+        mapLock.classList.add('hidden');
+      });
     }
 
     const similarWrap = document.getElementById('property-similar-listings');
@@ -5220,6 +5735,8 @@
     const accountSummary = document.getElementById('listing-account-summary');
     const verificationNote = document.getElementById('listing-verification-note');
     const planLimitPill = document.getElementById('listing-plan-photo-limit');
+    const planVideoPill = document.getElementById('listing-plan-video-limit');
+    const planListingPill = document.getElementById('listing-plan-listing-limit');
     const planNote = document.getElementById('listing-plan-note');
     const planManageLink = document.getElementById('listing-plan-manage');
     const addPhotosBtn = document.getElementById('listing-add-photos');
@@ -5247,6 +5764,10 @@
     const videoInputSecondary = document.getElementById('listing-video-2');
     const videoUrlInput = document.getElementById('listing-video-url');
     const videoUrlInputSecondary = document.getElementById('listing-video-url-2');
+    const videoField = document.getElementById('listing-video-field');
+    const videoFieldSecondary = document.getElementById('listing-video-2-field');
+    const videoUrlField = document.getElementById('listing-video-url-field');
+    const videoUrlFieldSecondary = document.getElementById('listing-video-url-2-field');
     const videoPreview = document.getElementById('video-preview');
     const verificationDocInput = document.getElementById('listing-verification-doc');
     const mapPicker = document.getElementById('listing-map-picker');
@@ -5261,6 +5782,7 @@
     let accountSettings = getAccountSettingsByEmail(session.email);
     let activeTier = normalizeAccountTier(accountSettings.accountType);
     let proSubscriptionActive = Boolean(accountSettings.proSubscriptionActive);
+    let planCapabilities = accountCapabilities(accountSettings);
     let selectedImageFiles = [];
     let slotObjectUrls = [];
     let currentStep = 1;
@@ -5290,22 +5812,32 @@
       accountSettings = getAccountSettingsByEmail(session.email);
       activeTier = normalizeAccountTier(accountSettings.accountType);
       proSubscriptionActive = Boolean(accountSettings.proSubscriptionActive);
+      planCapabilities = accountCapabilities(accountSettings);
     }
 
     function maxPhotoLimit() {
-      return tierPhotoLimit(activeTier, proSubscriptionActive);
+      return planCapabilities.photoLimit;
+    }
+
+    function maxVideoLimit() {
+      return planCapabilities.videoLimit;
+    }
+
+    function maxListingLimit() {
+      return planCapabilities.listingLimit;
+    }
+
+    function ownedActiveListingsCount() {
+      const normalizedEmail = String(session.email || '').toLowerCase();
+      return allListingsWithUserData().filter(function (item) {
+        return item.source === 'user'
+          && String(item.ownerEmail || '').toLowerCase() === normalizedEmail
+          && String(item.status || '').toLowerCase() !== 'archived';
+      }).length;
     }
 
     function effectiveListingTier() {
-      const requestedTier = normalizeAccountTier(accountSettings.requestedAccountType || activeTier);
-      const verifiedAccount = String(accountSettings.verificationStatus || '').toLowerCase() === 'verified';
-      if (!verifiedAccount) {
-        return 'individual';
-      }
-      if (activeTier === 'individual' && requestedTier !== 'individual') {
-        return requestedTier;
-      }
-      return requestedTier;
+      return planCapabilities.activeTier;
     }
 
     function clearFeedback() {
@@ -5470,19 +6002,29 @@
 
     function syncPlanUI() {
       refreshAccountPlan();
-      const limit = maxPhotoLimit();
-      const tierName = tierPlanName(activeTier);
-      if (selectedImageFiles.length > limit) {
-        selectedImageFiles = selectedImageFiles.slice(0, limit);
+      const photoLimit = maxPhotoLimit();
+      const videoLimit = maxVideoLimit();
+      const listingLimit = maxListingLimit();
+      const tierName = tierPlanName(effectiveListingTier());
+      const currentListings = ownedActiveListingsCount();
+      if (selectedImageFiles.length > photoLimit) {
+        selectedImageFiles = selectedImageFiles.slice(0, photoLimit);
         showFeedback(t('Please remove some photos before switching plan.'), true);
       }
       if (planLimitPill) {
-        planLimitPill.textContent = t('Photo limit: {count}', { count: limit });
+        planLimitPill.textContent = t('Photo limit: {count}', { count: photoLimit });
+      }
+      if (planVideoPill) {
+        planVideoPill.textContent = t('Video limit: {count}', { count: videoLimit });
+      }
+      if (planListingPill) {
+        planListingPill.textContent = t('Listing limit: {count}', { count: listingLimit });
       }
       if (planNote) {
-        planNote.textContent = proSubscriptionActive
-          ? (tierName + ' · ' + t('Pro active'))
-          : (tierName + ' · ' + t('Standard'));
+        planNote.textContent = tierName + ' · ' + t('{count} of {limit} active listings used', {
+          count: currentListings,
+          limit: listingLimit
+        }) + (proSubscriptionActive ? (' · ' + t('Pro active')) : '');
       }
       if (verificationNote) {
         const requestedTier = normalizeAccountTier(accountSettings.requestedAccountType || activeTier);
@@ -5498,22 +6040,46 @@
           });
           verificationNote.classList.add('verified');
         } else {
-          verificationNote.textContent = '';
+          verificationNote.textContent = t('Standard Individual profile. Upgrade to Pro for 16 listings and 2 videos.');
           verificationNote.classList.remove('verified');
         }
       }
+      if (accountSummary && session && session.email) {
+        accountSummary.textContent = t('Connected as {email}', { email: session.email }) + ' · ' + tierName;
+      }
       if (imageHelp) {
-        imageHelp.textContent = proSubscriptionActive
-          ? t('Tap a slot to attach photos.')
-          : t('Tap a slot to attach photos. (Upgrade to Pro for higher limits and two videos.)');
+        imageHelp.textContent = t('Tap a slot to attach up to {count} photos.', { count: photoLimit });
+      }
+      if (videoField) {
+        videoField.classList.toggle('hidden', videoLimit < 1);
+      }
+      if (videoUrlField) {
+        videoUrlField.classList.toggle('hidden', videoLimit < 1);
+      }
+      if (videoFieldSecondary) {
+        videoFieldSecondary.classList.toggle('hidden', videoLimit < 2);
+      }
+      if (videoUrlFieldSecondary) {
+        videoUrlFieldSecondary.classList.toggle('hidden', videoLimit < 2);
+      }
+      if (videoInput) {
+        videoInput.disabled = videoLimit < 1;
+        if (videoLimit < 1) videoInput.value = '';
+      }
+      if (videoUrlInput) {
+        videoUrlInput.disabled = videoLimit < 1;
+        if (videoLimit < 1) videoUrlInput.value = '';
       }
       if (videoInputSecondary) {
-        videoInputSecondary.disabled = !proSubscriptionActive;
+        videoInputSecondary.disabled = videoLimit < 2;
+        if (videoLimit < 2) videoInputSecondary.value = '';
       }
       if (videoUrlInputSecondary) {
-        videoUrlInputSecondary.disabled = !proSubscriptionActive;
+        videoUrlInputSecondary.disabled = videoLimit < 2;
+        if (videoLimit < 2) videoUrlInputSecondary.value = '';
       }
       renderImageSlots();
+      syncVideoPreview();
     }
 
     function validateStep(stepNumber) {
@@ -5562,12 +6128,14 @@
           showFeedback(t('Please upload at least one photo.'), true);
           return false;
         }
-        const hasSecondVideo = Boolean(
-          (videoInputSecondary && videoInputSecondary.files && videoInputSecondary.files[0]) ||
+        const requestedVideos = [
+          videoInput && videoInput.files && videoInput.files[0],
+          videoInputSecondary && videoInputSecondary.files && videoInputSecondary.files[0],
+          String((videoUrlInput && videoUrlInput.value) || '').trim(),
           String((videoUrlInputSecondary && videoUrlInputSecondary.value) || '').trim()
-        );
-        if (hasSecondVideo && !proSubscriptionActive) {
-          showFeedback(t('Second video upload requires Pro subscription.'), true);
+        ].filter(Boolean).length;
+        if (requestedVideos > maxVideoLimit()) {
+          showFeedback(t('Your plan allows {count} video uploads per listing.', { count: maxVideoLimit() }), true);
           return false;
         }
         if (!contactPhone || contactPhone.length < 8) {
@@ -5594,17 +6162,14 @@
       return true;
     }
 
-    if (accountSummary && session && session.email) {
-      accountSummary.textContent = t('Connected as {email}', { email: session.email });
-    }
     if (planManageLink) {
       planManageLink.href = withLanguageParam('settings.html');
     }
     if (contactPhoneInput && session.phone) {
       contactPhoneInput.value = session.phone;
     }
-    if (contactWhatsappInput && session.phone) {
-      contactWhatsappInput.value = session.phone;
+    if (contactWhatsappInput) {
+      contactWhatsappInput.value = accountSettings.whatsapp || session.phone || '';
     }
 
     if (categoryInput) categoryInput.addEventListener('change', syncCategoryUI);
@@ -5684,14 +6249,15 @@
       if (!videoPreview) return;
       videoPreview.innerHTML = '';
       videoPreview.classList.add('hidden');
+      if (maxVideoLimit() < 1) return;
 
       const file = videoInput && videoInput.files && videoInput.files[0];
       const fileSecondary = videoInputSecondary && videoInputSecondary.files && videoInputSecondary.files[0];
       const url = String((videoUrlInput && videoUrlInput.value) || '').trim();
       const urlSecondary = String((videoUrlInputSecondary && videoUrlInputSecondary.value) || '').trim();
 
-      const videos = [file, fileSecondary].filter(Boolean);
-      const urls = [url, urlSecondary].filter(Boolean);
+      const videos = [file, fileSecondary].filter(Boolean).slice(0, maxVideoLimit());
+      const urls = [url, urlSecondary].filter(Boolean).slice(0, Math.max(0, maxVideoLimit() - videos.length));
       if (!videos.length && !urls.length) return;
 
       videos.forEach(function (item) {
@@ -5735,7 +6301,7 @@
       videoUrlInputSecondary.addEventListener('input', syncVideoPreview);
     }
 
-    form.addEventListener('submit', function (event) {
+    form.addEventListener('submit', async function (event) {
       event.preventDefault();
 
       const maxStep = Math.max(1, stepPanels.length || 4);
@@ -5747,6 +6313,11 @@
       }
 
       refreshAccountPlan();
+      const currentListingCount = ownedActiveListingsCount();
+      if (currentListingCount >= maxListingLimit()) {
+        showFeedback(t('Your current plan allows {count} active listings.', { count: maxListingLimit() }), true);
+        return;
+      }
 
       const title = String((titleInput && titleInput.value) || '').trim();
       const category = String((categoryInput && categoryInput.value) || 'sale').trim();
@@ -5803,9 +6374,13 @@
         lat: Number.isFinite(selectedLat) && selectedLat > 0 ? selectedLat : fallbackCenter.lat,
         lng: Number.isFinite(selectedLng) && selectedLng > 0 ? selectedLng : fallbackCenter.lng
       };
-      const primaryVideoUrl = String((videoUrlInput && videoUrlInput.value) || '').trim();
-      const secondaryVideoUrl = String((videoUrlInputSecondary && videoUrlInputSecondary.value) || '').trim();
-      const videoUrls = [primaryVideoUrl, secondaryVideoUrl].filter(Boolean);
+      const selectedVideos = [
+        String((videoUrlInput && videoUrlInput.value) || '').trim(),
+        String((videoUrlInputSecondary && videoUrlInputSecondary.value) || '').trim()
+      ].filter(Boolean).slice(0, maxVideoLimit());
+      const primaryVideoUrl = selectedVideos[0] || '';
+      const secondaryVideoUrl = selectedVideos[1] || '';
+      const videoUrls = selectedVideos.slice();
       const verificationDocumentName = verificationDocInput && verificationDocInput.files && verificationDocInput.files[0]
         ? String(verificationDocInput.files[0].name || '').trim()
         : '';
@@ -5844,8 +6419,8 @@
         secondaryVideoUrl: secondaryVideoUrl,
         videoUrls: videoUrls,
         hasVideo: Boolean(
-          (videoInput && videoInput.files && videoInput.files[0]) ||
-          (videoInputSecondary && videoInputSecondary.files && videoInputSecondary.files[0]) ||
+          (maxVideoLimit() >= 1 && videoInput && videoInput.files && videoInput.files[0]) ||
+          (maxVideoLimit() >= 2 && videoInputSecondary && videoInputSecondary.files && videoInputSecondary.files[0]) ||
           videoUrls.length
         ),
         status: 'pending',
@@ -5900,34 +6475,23 @@
     const listWrap = document.getElementById('dashboard-listings');
     const listTitle = document.getElementById('dashboard-list-title');
     const profPanel = document.getElementById('dashboard-prof-panel');
-    if (!modeTabs.length || !kpiWrap || !listWrap) return;
+    const insightsWrap = document.getElementById('dashboard-insights');
+    if (!modeTabs.length || !kpiWrap || !listWrap || !insightsWrap) return;
 
     const all = allListingsWithUserData();
     const session = getAuthSession();
     const account = session ? getAccountSettingsByEmail(session.email) : null;
-    const proUnlocked = Boolean(account && normalizeAccountTier(account.accountType) !== 'individual');
+    const capabilities = accountCapabilities(account || {});
+    const proUnlocked = Boolean(account && (capabilities.isProfessional || capabilities.proActive));
     const proModeTab = document.querySelector('[data-dashboard-mode="professional"]');
     let mode = 'individual';
 
     if (proModeTab) {
-      proModeTab.textContent = t('Agency / Promoter');
+      proModeTab.textContent = t('Professional / Pro');
       if (!proUnlocked) {
         proModeTab.classList.add('disabled');
         proModeTab.setAttribute('aria-disabled', 'true');
       }
-    }
-
-    if (profPanel && !proUnlocked) {
-      profPanel.classList.remove('hidden');
-      profPanel.innerHTML = [
-        '<div class="form-card">',
-        '  <h3 class="section-title">' + escapeHtml(t('Professional tools')) + '</h3>',
-        '  <div class="notice">' + escapeHtml(t('Professional mode requires Agency or Promoter account tag.')) + '</div>',
-        '  <div class="button-row" style="margin-top: 10px">',
-        '    <a class="btn" href="' + withLanguageParam('settings.html') + '">' + escapeHtml(t('Open settings')) + '</a>',
-        '  </div>',
-        '</div>'
-      ].join('');
     }
 
     function statusCode(value) {
@@ -5935,6 +6499,37 @@
       if (raw.includes('active')) return 'active';
       if (raw.includes('pending') || raw.includes('attente')) return 'pending';
       return 'pending';
+    }
+
+    function currentUserListings() {
+      const normalizedEmail = String((session && session.email) || '').toLowerCase();
+      return all.filter(function (item) {
+        return String(item.ownerEmail || '').toLowerCase() === normalizedEmail;
+      });
+    }
+
+    function kpi(title, value, note) {
+      return [
+        '<article class="kpi dashboard-kpi-large">',
+        '  <span class="subtle">' + escapeHtml(title) + '</span>',
+        '  <b>' + escapeHtml(String(value)) + '</b>',
+        note ? ('  <small>' + escapeHtml(note) + '</small>') : '',
+        '</article>'
+      ].join('');
+    }
+
+    function insightCard(title, body, items) {
+      return [
+        '<article class="form-card dashboard-insight-card">',
+        '  <h3 class="section-title">' + escapeHtml(title) + '</h3>',
+        '  <p class="subtle">' + escapeHtml(body) + '</p>',
+        Array.isArray(items) && items.length ? (
+          '  <div class="dashboard-insight-list">' + items.map(function (item) {
+            return '<span class="chip">' + escapeHtml(item) + '</span>';
+          }).join('') + '</div>'
+        ) : '',
+        '</article>'
+      ].join('');
     }
 
     modeTabs.forEach(function (tab) {
@@ -5959,50 +6554,108 @@
       if (mode === 'professional' && !proUnlocked) {
         mode = 'individual';
       }
-      const userListed = getUserListedProperties();
-      const individualListings = all.filter(function (item) {
-        return !item.professionalId;
-      }).slice(0, 6);
-
-      const professionalListings = all.filter(function (item) {
-        return Boolean(item.professionalId);
-      }).slice(0, 8);
+      const ownedListings = currentUserListings();
+      const individualListings = ownedListings.filter(function (item) {
+        return normalizeAccountTier(item.ownerTier || item.accountType) === 'individual';
+      });
+      const professionalListings = ownedListings.filter(function (item) {
+        return normalizeAccountTier(item.ownerTier || item.accountType) !== 'individual';
+      });
+      const listingPool = mode === 'professional' ? professionalListings : individualListings;
+      const activeCount = listingPool.filter(function (item) {
+        return statusCode(item.status || '') === 'active';
+      }).length;
+      const pendingCount = listingPool.filter(function (item) {
+        return statusCode(item.status || '') !== 'active';
+      }).length;
+      const boostMultiplier = mode === 'professional' ? 1.7 : 1;
+      const impressions = Math.round((listingPool.length * 920 + 2400) * boostMultiplier);
+      const leads = Math.round((listingPool.length * 8 + 18) * boostMultiplier);
+      const saved = Math.round((listingPool.length * 17 + 30) * boostMultiplier);
+      const availabilityNote = t('{count} of {limit} active listings used', {
+        count: ownedListings.length,
+        limit: capabilities.listingLimit
+      });
 
       if (mode === 'individual') {
         listTitle.textContent = t('Individual listings');
-        profPanel.classList.add('hidden');
+        if (profPanel) profPanel.classList.remove('hidden');
 
         kpiWrap.innerHTML = [
-          kpi(t('Active listings'), individualListings.length),
-          kpi(t('Pending verification'), userListed.filter(function (item) { return statusCode(item.status) === 'pending'; }).length),
-          kpi(t('Inquiries'), 34),
-          kpi(t('Saved by users'), 84)
+          kpi(t('Active listings'), activeCount, availabilityNote),
+          kpi(t('Pending verification'), pendingCount, t('Ownership and post checks')),
+          kpi(t('Lead requests'), leads, t('Calls, WhatsApp, and messages')),
+          kpi(t('Saved by users'), saved, t('People monitoring this listing'))
+        ].join('');
+
+        insightsWrap.innerHTML = [
+          insightCard(t('Current plan limits'), t('Your upload rules are now enforced from profile settings.'), [
+            t('12 photos per listing'),
+            t('0 video on Standard Individual'),
+            t('2 active listings'),
+            capabilities.proActive ? t('Pro active: 16 listings and 2 videos') : t('Upgrade to Pro for 16 listings and 2 videos')
+          ]),
+          insightCard(t('Performance snapshot'), t('A simplified read on how buyers are interacting with your listings.'), [
+            t('{count} monthly impressions', { count: money(impressions) }),
+            t('{count} saved by users', { count: saved }),
+            t('{count} lead requests', { count: leads })
+          ])
         ].join('');
 
         listWrap.innerHTML = individualListings.length ? individualListings.map(function (item) {
           return dashboardListing(item, item.status || (item.verified ? 'active' : 'pending'), false);
         }).join('') : emptyMessage(t('No individual listings yet.'));
+
+        if (profPanel) {
+          profPanel.innerHTML = [
+            '<div class="form-card dashboard-pro-shell">',
+            premiumDescriptionMarkup({ href: 'pro-upgrade.html', label: t('View Pro plan') }),
+            '</div>'
+          ].join('');
+        }
       }
 
       if (mode === 'professional') {
         listTitle.textContent = t('Professional listings');
-        profPanel.classList.remove('hidden');
+        if (profPanel) profPanel.classList.remove('hidden');
 
         kpiWrap.innerHTML = [
-          kpi(t('Total listings'), professionalListings.length),
-          kpi(t('Active campaigns'), 5),
-          kpi(t('Pending reviews'), 2),
-          kpi(t('Client leads'), 126)
+          kpi(t('Total listings'), professionalListings.length, availabilityNote),
+          kpi(t('Active campaigns'), Math.max(1, Math.min(6, professionalListings.length)), t('Highlighted inventory')),
+          kpi(t('Monthly impressions'), money(impressions), t('Across your professional profile')),
+          kpi(t('Client leads'), leads, t('Calls, WhatsApp, and messages'))
+        ].join('');
+
+        insightsWrap.innerHTML = [
+          insightCard(t('Professional capacity'), t('Verified Agency and Promoter profiles can publish more inventory.'), [
+            t('12 photos per listing'),
+            t('1 video on Standard professional plans'),
+            t('6 active listings'),
+            capabilities.proActive ? t('Pro active: 16 listings and 2 videos') : t('Upgrade to Pro for 16 listings and 2 videos')
+          ]),
+          insightCard(t('Pro visibility'), t('Use the same Premium tools shown on the homepage and upgrade flow.'), [
+            t('{count} professional listings live', { count: professionalListings.length }),
+            t('{count} lead requests', { count: leads }),
+            t('{count} saved by users', { count: saved })
+          ])
         ].join('');
 
         listWrap.innerHTML = professionalListings.length ? professionalListings.map(function (item, index) {
           return dashboardListing(item, item.status || 'active', index < 3);
         }).join('') : emptyMessage(t('No professional listings found.'));
-      }
-    }
 
-    function kpi(title, value) {
-      return '<article class="kpi"><span class="subtle">' + escapeHtml(title) + '</span><b>' + escapeHtml(String(value)) + '</b></article>';
+        if (profPanel) {
+          profPanel.innerHTML = [
+            '<div class="form-card dashboard-pro-shell">',
+            premiumDescriptionMarkup({ href: 'pro-upgrade.html', label: capabilities.proActive ? t('Manage Pro') : t('Activate Pro') }),
+            '<div class="button-row" style="margin-top: 12px">',
+            '  <a class="btn light" href="' + withLanguageParam('settings.html') + '">' + escapeHtml(t('Open settings')) + '</a>',
+            '  <a class="btn ghost" href="' + withLanguageParam('profile.html') + '">' + escapeHtml(t('Open profile')) + '</a>',
+            '</div>',
+            '</div>'
+          ].join('');
+        }
+      }
     }
 
     function dashboardListing(item, status, featured) {
@@ -6041,6 +6694,7 @@
     const tabPanels = Array.from(document.querySelectorAll('[data-admin-panel]'));
     const kpiWrap = document.getElementById('admin-kpis');
     const chartWrap = document.getElementById('admin-chart');
+    const premiumSpotlight = document.getElementById('admin-premium-spotlight');
     const adsForm = document.getElementById('admin-ads-form');
     const adsGrid = document.getElementById('admin-ads-grid');
     const queueWrap = document.getElementById('admin-profile-queue');
@@ -6050,7 +6704,7 @@
     const adminUserForm = document.getElementById('admin-user-form');
     const adminUsersList = document.getElementById('admin-users-list');
     const session = getAuthSession();
-    if (!kpiWrap || !chartWrap || !adsForm || !adsGrid || !queueWrap || !profileForm || !profilesList || !listingsWrap || !adminUserForm || !adminUsersList) return;
+    if (!kpiWrap || !chartWrap || !premiumSpotlight || !adsForm || !adsGrid || !queueWrap || !profileForm || !profilesList || !listingsWrap || !adminUserForm || !adminUsersList) return;
 
     function setAdminTab(tabKey) {
       const requestedKey = String(tabKey || 'overview');
@@ -6167,10 +6821,16 @@
           '    <div class="field"><label>' + escapeHtml(t('CTA label')) + '</label><input class="input" data-admin-ad-field="' + slot.key + '" data-admin-ad-prop="cta" type="text" value="' + escapeHtml(current.cta) + '" /></div>',
           '    <div class="field"><label>' + escapeHtml(t('Title')) + '</label><input class="input" data-admin-ad-field="' + slot.key + '" data-admin-ad-prop="title" type="text" value="' + escapeHtml(current.title) + '" /></div>',
           '    <div class="field"><label>' + escapeHtml(t('CTA link')) + '</label><input class="input" data-admin-ad-field="' + slot.key + '" data-admin-ad-prop="href" type="text" value="' + escapeHtml(current.href) + '" /></div>',
+          '    <div class="field"><label>' + escapeHtml(t('Image path')) + '</label><input class="input" data-admin-ad-field="' + slot.key + '" data-admin-ad-prop="image" type="text" value="' + escapeHtml(current.image || '') + '" /></div>',
+          '    <div class="field"><label>' + escapeHtml(t('Phone number')) + '</label><input class="input" data-admin-ad-field="' + slot.key + '" data-admin-ad-prop="phone" type="text" value="' + escapeHtml(current.phone || '') + '" /></div>',
           '  </div>',
           '  <div class="field">',
           '    <label>' + escapeHtml(t('Description')) + '</label>',
           '    <textarea class="textarea" data-admin-ad-field="' + slot.key + '" data-admin-ad-prop="body">' + escapeHtml(current.body) + '</textarea>',
+          '  </div>',
+          '  <div class="admin-ad-preview">',
+          '    <a class="ad-media-link" href="' + escapeHtml(withLanguageParam(current.href)) + '"><img class="ad-media-image" src="' + escapeHtml(current.image || '') + '" alt="' + escapeHtml(current.title) + '" loading="lazy" /></a>',
+          '    <div><strong>' + escapeHtml(current.title) + '</strong><p>' + escapeHtml(current.body) + '</p><span class="ad-phone">' + escapeHtml(current.phone || '') + '</span></div>',
           '  </div>',
           '</article>'
         ].join('');
@@ -6375,6 +7035,11 @@
         bar(t('Rent Short'), shortCount, max),
         '</div>'
       ].join('');
+
+      premiumSpotlight.innerHTML = [
+        premiumDescriptionMarkup({ href: 'pro-upgrade.html', label: t('Open Pro plan') }),
+        '<div class="notice">' + escapeHtml(t('Use the same Premium copy here to keep admin, profile, and upgrade flows aligned.')) + '</div>'
+      ].join('');
     }
 
     function rerender() {
@@ -6394,7 +7059,7 @@
       });
       ['home', 'search', 'property'].forEach(function (slot) {
         next.ads[slot] = Object.assign({}, next.ads[slot] || {});
-        ['chip', 'title', 'body', 'cta', 'href'].forEach(function (prop) {
+        ['chip', 'title', 'body', 'cta', 'href', 'image', 'phone'].forEach(function (prop) {
           const node = adsForm.querySelector('[data-admin-ad-field="' + slot + '"][data-admin-ad-prop="' + prop + '"]');
           if (!node) return;
           const value = String(node.value || '').trim();
@@ -6442,10 +7107,12 @@
         name: name,
         agencyName: name,
         phone: String((document.getElementById('admin-profile-phone') || {}).value || '').trim(),
+        whatsapp: String((document.getElementById('admin-profile-whatsapp') || {}).value || '').trim(),
         avatar: String((document.getElementById('admin-profile-avatar') || {}).value || '').trim(),
         cover: String((document.getElementById('admin-profile-cover') || {}).value || '').trim(),
         website: String((document.getElementById('admin-profile-website') || {}).value || '').trim(),
         instagram: String((document.getElementById('admin-profile-instagram') || {}).value || '').trim(),
+        facebook: String((document.getElementById('admin-profile-facebook') || {}).value || '').trim(),
         bio: String((document.getElementById('admin-profile-bio') || {}).value || '').trim(),
         accountType: tier === 'promoter' ? 'promoter' : 'agency',
         requestedAccountType: '',
@@ -6478,10 +7145,12 @@
         setValue('admin-profile-type', normalizeAccountTier(current.accountType) === 'promoter' ? 'promoter' : 'agency');
         setValue('admin-profile-name', current.agencyName || current.name || '');
         setValue('admin-profile-phone', current.phone || '');
+        setValue('admin-profile-whatsapp', current.whatsapp || '');
         setValue('admin-profile-avatar', current.avatar || '');
         setValue('admin-profile-cover', current.cover || '');
         setValue('admin-profile-website', current.website || '');
         setValue('admin-profile-instagram', current.instagram || '');
+        setValue('admin-profile-facebook', current.facebook || '');
         setValue('admin-profile-bio', current.bio || '');
       }
     });
@@ -6512,6 +7181,7 @@
         profiles[email] = {
           name: name,
           phone: '',
+          whatsapp: '',
           avatar: '',
           cover: '',
           bio: '',
@@ -6643,10 +7313,14 @@
     if (!name) return;
     const cover = document.getElementById('profile-cover');
     const specialty = document.getElementById('profile-specialty');
+    const metaNote = document.getElementById('profile-meta-note');
+    const bioNode = document.getElementById('profile-bio');
+    const phoneChip = document.getElementById('profile-phone-chip');
+    const whatsappChip = document.getElementById('profile-whatsapp-chip');
+    const socialRow = document.querySelector('.profile-social-row');
     const websiteLink = document.getElementById('profile-website');
     const instagramLink = document.getElementById('profile-instagram');
     const facebookLink = document.getElementById('profile-facebook');
-    const linkedinLink = document.getElementById('profile-linkedin');
     const saveAgencyButton = document.getElementById('profile-save-agency');
 
     const mergedProfessionals = allProfessionalsWithUserData();
@@ -6662,17 +7336,39 @@
       const fallbackListing = allListingsWithUserData().find(function (item) {
         return item.professionalId === proId;
       });
+      const session = getAuthSession();
+      const currentSettings = session ? getAccountSettingsByEmail(session.email) : null;
       if (fallbackListing) {
         professional = {
           id: proId,
           name: fallbackListing.ownerName || t('Professional Account'),
-          avatar: fallbackListing.ownerAvatar || 'https://images.unsplash.com/photo-1521119989659-a83eee488004?auto=format&fit=crop&w=160&q=80',
+          avatar: fallbackListing.ownerAvatar || 'assets/listing-1.jpg',
           cover: (fallbackListing.images && fallbackListing.images[0]) || '',
-          rating: 4.5,
-          reviews: 0,
           bio: fallbackListing.ownerBio || t('New professional profile with recently submitted listings.'),
-          phone: '+216 20 000 000',
-          whatsapp: 'https://wa.me/21620000000'
+          phone: fallbackListing.ownerPhone || '+216 20 000 000',
+          whatsapp: fallbackListing.ownerWhatsapp || fallbackListing.ownerPhone || '+216 20 000 000',
+          website: fallbackListing.ownerWebsite || '',
+          instagram: fallbackListing.ownerInstagram || '',
+          facebook: fallbackListing.ownerFacebook || '',
+          badge: tierBadgeLabel(fallbackListing.ownerTier || fallbackListing.accountType),
+          accountType: normalizeAccountTier(fallbackListing.ownerTier || fallbackListing.accountType),
+          verificationStatus: fallbackListing.verified ? 'verified' : 'pending'
+        };
+      } else if (session && currentSettings) {
+        professional = {
+          id: userProfessionalId(session.email),
+          name: currentSettings.agencyName || currentSettings.name || session.name || t('My account'),
+          avatar: currentSettings.avatar || 'assets/listing-1.jpg',
+          cover: currentSettings.cover || '',
+          bio: currentSettings.bio || '',
+          phone: currentSettings.phone || '',
+          whatsapp: currentSettings.whatsapp || currentSettings.phone || '',
+          website: currentSettings.website || '',
+          instagram: currentSettings.instagram || '',
+          facebook: currentSettings.facebook || '',
+          badge: tierBadgeLabel(activeAccountTier(currentSettings)),
+          accountType: activeAccountTier(currentSettings),
+          verificationStatus: currentSettings.verificationStatus
         };
       }
     }
@@ -6685,28 +7381,52 @@
 
     document.getElementById('profile-avatar').src = professional.avatar;
     document.getElementById('profile-name').textContent = professional.name;
-    document.getElementById('profile-rating').textContent = '⭐ ' + professional.rating + ' · ' + t('{count} reviews', { count: professional.reviews });
-    document.getElementById('profile-bio').textContent = professional.bio;
-    document.getElementById('profile-call').href = 'tel:' + professional.phone.replace(/\s+/g, '');
-    document.getElementById('profile-whatsapp').href = professional.whatsapp;
+    const activeTier = normalizeAccountTier(professional.accountType || 'agency');
+    const profileCapabilities = accountCapabilities({
+      accountType: activeTier,
+      requestedAccountType: '',
+      verificationStatus: professional.verificationStatus || (activeTier === 'individual' ? 'not-required' : 'verified'),
+      proSubscriptionActive: false
+    });
+    if (bioNode) {
+      bioNode.textContent = professional.bio || t('Direct contact profile.');
+    }
+    document.getElementById('profile-call').href = 'tel:' + String(professional.phone || '').replace(/\s+/g, '');
+    document.getElementById('profile-whatsapp').href = /^https?:\/\//i.test(String(professional.whatsapp || ''))
+      ? professional.whatsapp
+      : ('https://wa.me/' + normalizePhone(professional.whatsapp || professional.phone || '').replace(/^\+/, ''));
     if (cover) {
-      const fallbackCover = 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1800&q=80';
+      const fallbackCover = 'assets/hero-home.jpg';
       const coverUrl = String(professional.cover || fallbackCover);
       cover.style.backgroundImage = 'url("' + coverUrl.replace(/"/g, '\\"') + '")';
     }
     if (specialty) {
-      specialty.textContent = professional.badge || t('Real Estate Agency');
+      specialty.textContent = professional.badge || tierBadgeLabel(activeTier);
+    }
+    if (metaNote) {
+      metaNote.textContent = profileCapabilities.canShowSocials
+        ? t('Verified contact profile')
+        : t('Direct owner contact');
+    }
+    if (phoneChip) {
+      phoneChip.textContent = t('Phone') + ': ' + (professional.phone || '-');
+    }
+    if (whatsappChip) {
+      whatsappChip.textContent = t('WhatsApp') + ': ' + (/^https?:\/\//i.test(String(professional.whatsapp || ''))
+        ? (professional.phone || '-')
+        : (professional.whatsapp || professional.phone || '-'));
     }
     if (saveAgencyButton) {
       saveAgencyButton.setAttribute('data-save-agency', professional.id);
       saveAgencyButton.setAttribute('aria-label', t('Save agency'));
       saveAgencyButton.classList.toggle('saved', isAgencySaved(professional.id));
+      saveAgencyButton.classList.toggle('hidden', activeTier === 'individual');
     }
 
     function syncSocialLink(node, href) {
       if (!node) return;
       const value = String(href || '').trim();
-      if (/^https?:\/\//i.test(value)) {
+      if (profileCapabilities.canShowSocials && /^https?:\/\//i.test(value)) {
         node.href = value;
         node.classList.remove('hidden');
         return;
@@ -6718,9 +7438,14 @@
     syncSocialLink(websiteLink, professional.website);
     syncSocialLink(instagramLink, professional.instagram);
     syncSocialLink(facebookLink, professional.facebook);
-    syncSocialLink(linkedinLink, professional.linkedin);
+    if (socialRow) {
+      socialRow.classList.toggle('hidden', !profileCapabilities.canShowSocials);
+    }
 
     const listings = allListingsWithUserData().filter(function (item) {
+      if (activeTier === 'individual') {
+        return String(item.ownerName || '').trim() === String(professional.name || '').trim();
+      }
       return item.professionalId === professional.id;
     });
 
@@ -6742,11 +7467,14 @@
     const emailInput = document.getElementById('settings-email');
     const phoneInput = document.getElementById('settings-phone');
     const avatarInput = document.getElementById('settings-avatar');
+    const avatarPreview = document.getElementById('settings-avatar-preview');
+    const whatsappInput = document.getElementById('settings-whatsapp');
     const bioInput = document.getElementById('settings-bio');
     const coverInput = document.getElementById('settings-cover');
     const websiteInput = document.getElementById('settings-website');
     const instagramInput = document.getElementById('settings-instagram');
     const facebookInput = document.getElementById('settings-facebook');
+    const professionalFields = document.getElementById('settings-professional-fields');
     const message = document.getElementById('settings-message');
     const individualCard = document.getElementById('settings-plan-individual');
     const useIndividualBtn = document.getElementById('settings-use-individual');
@@ -6787,6 +7515,7 @@
     let verificationRequestedAt = Number(current.verificationRequestedAt || 0);
     let verificationComment = String(current.verificationComment || '').trim();
     let proSubscriptionActive = Boolean(current.proSubscriptionActive);
+    let avatarDataUrl = String(current.avatar || '').trim();
     let selectedVerificationTarget = requestedTier !== 'individual' && requestedTier
       ? requestedTier
       : (activeTier === 'promoter' ? 'promoter' : 'agency');
@@ -6810,7 +7539,8 @@
     if (nameInput) nameInput.value = current.name || session.name || '';
     if (emailInput) emailInput.value = session.email || '';
     if (phoneInput) phoneInput.value = current.phone || '';
-    if (avatarInput) avatarInput.value = current.avatar || '';
+    if (avatarPreview) avatarPreview.src = avatarDataUrl || 'assets/listing-1.jpg';
+    if (whatsappInput) whatsappInput.value = current.whatsapp || current.phone || '';
     if (bioInput) bioInput.value = current.bio || '';
     if (coverInput) coverInput.value = current.cover || '';
     if (websiteInput) websiteInput.value = current.website || '';
@@ -6871,7 +7601,8 @@
       allSettings[emailKey] = Object.assign({}, base, {
         name: String((nameInput && nameInput.value) || base.name || session.name || '').trim(),
         phone: String((phoneInput && phoneInput.value) || base.phone || '').trim(),
-        avatar: String((avatarInput && avatarInput.value) || base.avatar || '').trim(),
+        whatsapp: String((whatsappInput && whatsappInput.value) || base.whatsapp || base.phone || '').trim(),
+        avatar: String(avatarDataUrl || base.avatar || '').trim(),
         cover: String((coverInput && coverInput.value) || base.cover || '').trim(),
         bio: String((bioInput && bioInput.value) || base.bio || '').trim(),
         website: String((websiteInput && websiteInput.value) || base.website || '').trim(),
@@ -6928,6 +7659,19 @@
       }
     }
 
+    if (avatarInput) {
+      avatarInput.addEventListener('change', function () {
+        const file = avatarInput.files && avatarInput.files[0];
+        if (!file) return;
+        readFileAsDataUrl(file).then(function (result) {
+          avatarDataUrl = result;
+          if (avatarPreview) avatarPreview.src = result || 'assets/listing-1.jpg';
+        }).catch(function () {
+          showMessage(t('Could not read the selected profile photo.'), true);
+        });
+      });
+    }
+
     function renderMiniBars(node, values) {
       if (!node) return;
       const max = values.reduce(function (best, value) {
@@ -6940,11 +7684,20 @@
     }
 
     function syncPlanUI() {
+      const capabilities = accountCapabilities({
+        accountType: activeTier,
+        requestedAccountType: requestedTier,
+        verificationStatus: verificationStatus,
+        proSubscriptionActive: proSubscriptionActive
+      });
       if (individualCard) individualCard.classList.toggle('active', activeTier === 'individual');
       if (agencyCard) agencyCard.classList.toggle('active', activeTier === 'agency');
       if (promoterCard) promoterCard.classList.toggle('active', activeTier === 'promoter');
       if (agencyCard) agencyCard.classList.toggle('pending-request', isPendingRequest() && requestedTier === 'agency');
       if (promoterCard) promoterCard.classList.toggle('pending-request', isPendingRequest() && requestedTier === 'promoter');
+      if (professionalFields) {
+        professionalFields.classList.toggle('hidden', !capabilities.canShowSocials);
+      }
       if (currentPlanText) {
         currentPlanText.classList.toggle('error', isPendingRequest());
         currentPlanText.textContent = isPendingRequest()
@@ -7188,7 +7941,8 @@
       const nextSettings = {
         name: nextName,
         phone: String((phoneInput && phoneInput.value) || '').trim(),
-        avatar: String((avatarInput && avatarInput.value) || '').trim(),
+        whatsapp: String((whatsappInput && whatsappInput.value) || '').trim(),
+        avatar: String(avatarDataUrl || '').trim(),
         cover: String((coverInput && coverInput.value) || '').trim(),
         bio: String((bioInput && bioInput.value) || '').trim(),
         website: String((websiteInput && websiteInput.value) || '').trim(),
@@ -7257,50 +8011,53 @@
     if (subtitle) subtitle.textContent = t('Unlock premium visibility and analytics for your listings.');
     if (!card) return;
 
+    const premiumIntroMarkup = premiumDescriptionMarkup({});
+
     if (isActive) {
       card.innerHTML = [
-        '<div class="listing-section-head">',
-        '  <h3 class="section-title">' + escapeHtml(t('Professional Pro Plan')) + '</h3>',
-        '  <p class="subtle">' + escapeHtml(t('Pro plan activated successfully.')) + '</p>',
-        '</div>',
-        '<span class="badge verified">' + escapeHtml(t('Pro active')) + '</span>',
-        '<div class="button-row">',
-        '  <a class="btn" href="' + withLanguageParam('settings.html') + '">' + escapeHtml(t('Back to settings')) + '</a>',
+        premiumIntroMarkup,
+        '<div class="premium-payment-card">',
+        '  <div class="listing-section-head">',
+        '    <h3 class="section-title">' + escapeHtml(t('Professional Pro Plan')) + '</h3>',
+        '    <p class="subtle">' + escapeHtml(t('Pro plan activated successfully.')) + '</p>',
+        '  </div>',
+        '  <span class="badge verified">' + escapeHtml(t('Pro active')) + '</span>',
+        '  <div class="button-row">',
+        '    <a class="btn" href="' + withLanguageParam('settings.html') + '">' + escapeHtml(t('Back to settings')) + '</a>',
+        '  </div>',
         '</div>'
       ].join('');
       return;
     }
 
     card.innerHTML = [
-      '<div class="listing-section-head">',
-      '  <h3 class="section-title">' + escapeHtml(t('Professional Pro Plan')) + '</h3>',
-      '  <p class="subtle">' + escapeHtml(t('29 TND / month billed monthly. Cancel any time from profile settings.')) + '</p>',
-      '</div>',
-      '<ul class="settings-plan-list">',
-      '  <li>' + escapeHtml(t('Pro tag on all your listings')) + '</li>',
-      '  <li>' + escapeHtml(t('Priority placement in search results')) + '</li>',
-      '  <li>' + escapeHtml(t('Unlock higher media limits, two videos, and priority placement.')) + '</li>',
-      '</ul>',
-      '<form id="pro-upgrade-form" class="form-grid two-col" novalidate>',
-      '  <div class="field">',
-      '    <label for="pro-card-name">' + escapeHtml(t('Cardholder name')) + '</label>',
-      '    <input id="pro-card-name" class="input" type="text" placeholder="Name Surname" />',
+      premiumIntroMarkup,
+      '<div class="premium-payment-card">',
+      '  <div class="listing-section-head">',
+      '    <h3 class="section-title">' + escapeHtml(t('Professional Pro Plan')) + '</h3>',
+      '    <p class="subtle">' + escapeHtml(t('29 TND / month billed monthly. Cancel any time from profile settings.')) + '</p>',
       '  </div>',
-      '  <div class="field">',
-      '    <label for="pro-card-number">' + escapeHtml(t('Card number')) + '</label>',
-      '    <input id="pro-card-number" class="input" type="text" inputmode="numeric" placeholder="4242 4242 4242 4242" />',
+      '  <form id="pro-upgrade-form" class="form-grid two-col" novalidate>',
+      '    <div class="field">',
+      '      <label for="pro-card-name">' + escapeHtml(t('Cardholder name')) + '</label>',
+      '      <input id="pro-card-name" class="input" type="text" placeholder="Name Surname" />',
+      '    </div>',
+      '    <div class="field">',
+      '      <label for="pro-card-number">' + escapeHtml(t('Card number')) + '</label>',
+      '      <input id="pro-card-number" class="input" type="text" inputmode="numeric" placeholder="4242 4242 4242 4242" />',
+      '    </div>',
+      '    <div class="field">',
+      '      <label for="pro-card-expiry">' + escapeHtml(t('Expiry')) + '</label>',
+      '      <input id="pro-card-expiry" class="input" type="text" placeholder="MM/YY" />',
+      '    </div>',
+      '    <div class="field" style="display:flex;align-items:flex-end;">',
+      '      <button id="pro-upgrade-submit" class="btn" type="submit">' + escapeHtml(t('Pay 29 TND and activate Pro')) + '</button>',
+      '    </div>',
+      '  </form>',
+      '  <p id="pro-upgrade-feedback" class="notice hidden" role="status" aria-live="polite"></p>',
+      '  <div class="button-row">',
+      '    <a class="btn light" href="' + withLanguageParam('settings.html') + '">' + escapeHtml(t('Back to settings')) + '</a>',
       '  </div>',
-      '  <div class="field">',
-      '    <label for="pro-card-expiry">' + escapeHtml(t('Expiry')) + '</label>',
-      '    <input id="pro-card-expiry" class="input" type="text" placeholder="MM/YY" />',
-      '  </div>',
-      '  <div class="field" style="display:flex;align-items:flex-end;">',
-      '    <button id="pro-upgrade-submit" class="btn" type="submit">' + escapeHtml(t('Pay 29 TND and activate Pro')) + '</button>',
-      '  </div>',
-      '</form>',
-      '<p id="pro-upgrade-feedback" class="notice hidden" role="status" aria-live="polite"></p>',
-      '<div class="button-row">',
-      '  <a class="btn light" href="' + withLanguageParam('settings.html') + '">' + escapeHtml(t('Back to settings')) + '</a>',
       '</div>'
     ].join('');
 

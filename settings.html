@@ -66,32 +66,40 @@
                 <input id="settings-phone" class="input" type="tel" />
               </div>
               <div class="field">
-                <label for="settings-avatar">Profile photo URL</label>
-                <input id="settings-avatar" class="input" type="url" placeholder="https://..." />
+                <label for="settings-avatar">Profile photo</label>
+                <div class="settings-avatar-upload">
+                  <img id="settings-avatar-preview" class="settings-avatar-preview" src="assets/listing-1.jpg" alt="Profile preview" />
+                  <input id="settings-avatar" class="input" type="file" accept="image/*" />
+                </div>
+              </div>
+              <div class="field">
+                <label for="settings-whatsapp">WhatsApp number</label>
+                <input id="settings-whatsapp" class="input" type="tel" placeholder="+216 20 000 000" />
               </div>
             </div>
 
-            <div class="field">
-              <label for="settings-bio">Public profile</label>
-              <textarea id="settings-bio" class="textarea" placeholder="Short profile summary"></textarea>
-            </div>
-
-            <div class="form-grid two-col">
+            <div id="settings-professional-fields" class="settings-professional-fields">
               <div class="field">
-                <label for="settings-cover">Agency cover URL</label>
-                <input id="settings-cover" class="input" type="url" placeholder="https://..." />
+                <label for="settings-bio">Public profile</label>
+                <textarea id="settings-bio" class="textarea" placeholder="Short profile summary"></textarea>
               </div>
-              <div class="field">
-                <label for="settings-website">Website</label>
-                <input id="settings-website" class="input" type="url" placeholder="https://..." />
-              </div>
-              <div class="field">
-                <label for="settings-instagram">Instagram</label>
-                <input id="settings-instagram" class="input" type="url" placeholder="https://..." />
-              </div>
-              <div class="field">
-                <label for="settings-facebook">Facebook</label>
-                <input id="settings-facebook" class="input" type="url" placeholder="https://..." />
+              <div class="form-grid two-col">
+                <div class="field">
+                  <label for="settings-cover">Agency cover URL</label>
+                  <input id="settings-cover" class="input" type="url" placeholder="https://..." />
+                </div>
+                <div class="field">
+                  <label for="settings-website">Website</label>
+                  <input id="settings-website" class="input" type="url" placeholder="https://..." />
+                </div>
+                <div class="field">
+                  <label for="settings-instagram">Instagram</label>
+                  <input id="settings-instagram" class="input" type="url" placeholder="https://..." />
+                </div>
+                <div class="field">
+                  <label for="settings-facebook">Facebook</label>
+                  <input id="settings-facebook" class="input" type="url" placeholder="https://..." />
+                </div>
               </div>
             </div>
 
@@ -108,10 +116,10 @@
                     <span class="badge" id="settings-plan-individual-price">Free</span>
                   </div>
                   <ul class="settings-plan-list">
-                    <li id="settings-plan-individual-f1">Standard listing tag</li>
-                    <li id="settings-plan-individual-f2">Up to 8 photos per listing</li>
-                    <li id="settings-plan-individual-f3">Standard listing placement</li>
-                    <li id="settings-plan-individual-f4">Eligible for paid Pro add-on</li>
+                    <li id="settings-plan-individual-f1">2 active listings</li>
+                    <li id="settings-plan-individual-f2">12 photos per listing</li>
+                    <li id="settings-plan-individual-f3">No video on Standard</li>
+                    <li id="settings-plan-individual-f4">Upgrade to Pro for 16 listings and 2 videos</li>
                   </ul>
                 </div>
 
@@ -121,10 +129,10 @@
                     <span class="badge pro" id="settings-plan-agency-price">Tag</span>
                   </div>
                   <ul class="settings-plan-list">
-                    <li id="settings-plan-agency-f1">Agency badge on listings</li>
-                    <li id="settings-plan-agency-f2">Manual verification required</li>
-                    <li id="settings-plan-agency-f3">Agency identity shown on listings</li>
-                    <li id="settings-plan-agency-f4">Eligible for paid Pro add-on</li>
+                    <li id="settings-plan-agency-f1">6 active listings</li>
+                    <li id="settings-plan-agency-f2">12 photos and 1 video per listing</li>
+                    <li id="settings-plan-agency-f3">Manual verification required</li>
+                    <li id="settings-plan-agency-f4">Social links only after verification</li>
                   </ul>
                 </div>
 
@@ -134,10 +142,10 @@
                     <span class="badge pro" id="settings-plan-promoter-price">Tag</span>
                   </div>
                   <ul class="settings-plan-list">
-                    <li id="settings-plan-promoter-f1">Promoter badge on listings</li>
-                    <li id="settings-plan-promoter-f2">Manual verification required</li>
-                    <li id="settings-plan-promoter-f3">Promoter identity shown on listings</li>
-                    <li id="settings-plan-promoter-f4">Eligible for paid Pro add-on</li>
+                    <li id="settings-plan-promoter-f1">6 active listings</li>
+                    <li id="settings-plan-promoter-f2">12 photos and 1 video per listing</li>
+                    <li id="settings-plan-promoter-f3">Manual verification required</li>
+                    <li id="settings-plan-promoter-f4">Upgrade to Pro for 16 listings and 2 videos</li>
                   </ul>
                 </div>
               </div>
@@ -156,7 +164,7 @@
             <article class="form-card settings-pro-access-card">
               <div class="listing-section-head">
                 <h3 id="settings-pro-access-title" class="section-title">Pro subscription</h3>
-                <p id="settings-pro-access-subtitle" class="subtle">Unlock higher media limits, two videos, and priority placement.</p>
+                <p id="settings-pro-access-subtitle" class="subtle">Get more visibility with Premium. Upgrade to Pro for stronger discovery, market insights, and priority support.</p>
               </div>
               <div class="settings-pro-access-row">
                 <span id="settings-pro-access-status" class="badge">Standard</span>

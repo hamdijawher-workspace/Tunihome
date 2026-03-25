@@ -56,9 +56,9 @@
 
           <div class="landing-hero-content">
             <p class="landing-kicker">Trusted homes across Tunisia</p>
-            <h2>Find your next place with confidence.</h2>
+            <h2>Find verified homes across Tunisia.</h2>
             <p class="landing-subtitle">
-              Browse verified villas, apartments, and vacation homes from trusted owners and agencies.
+              Buy, rent, or book vacation stays from trusted owners and agencies.
             </p>
 
             <div class="landing-category-pills" role="tablist" aria-label="Listing mode">
@@ -69,37 +69,16 @@
 
 	            <div class="landing-search-bar" role="search" aria-label="Quick property search">
               <div class="landing-search-field">
-                <label for="quick-location">Where</label>
-                <select id="quick-location" class="select landing-city-select">
-                  <option value="" selected>Search by city</option>
-                  <option value="Tunis">Tunis</option>
-                  <option value="La Marsa">La Marsa</option>
-                  <option value="Ariana">Ariana</option>
-                  <option value="Sousse">Sousse</option>
-                  <option value="Hammamet">Hammamet</option>
-                  <option value="Nabeul">Nabeul</option>
-                  <option value="Djerba">Djerba</option>
-                  <option value="Sfax">Sfax</option>
+                <label for="quick-region">Region</label>
+                <select id="quick-region" class="select landing-city-select">
+                  <option value="" selected>Search by region</option>
                 </select>
               </div>
 
               <div class="landing-search-field">
-                <label for="landing-type">Property type</label>
-                <select id="landing-type" class="select">
-                  <option value="all" selected>Any type</option>
-                  <option value="apartment">Apartment</option>
-                  <option value="villa">Villa</option>
-                  <option value="house">House</option>
-                  <option value="room">Room</option>
-                  <option value="studio">Studio</option>
-                  <option value="condo">Condo</option>
-                </select>
-              </div>
-
-              <div class="landing-search-field">
-                <label for="landing-budget">Budget</label>
+                <label for="landing-budget">Price</label>
                 <select id="landing-budget" class="select">
-                  <option value="" selected>Any budget</option>
+                  <option value="" selected>Any price</option>
                   <option value="1200">Up to 1,200 TND</option>
                   <option value="2500">Up to 2,500 TND</option>
                   <option value="5000">Up to 5,000 TND</option>
@@ -114,7 +93,7 @@
 	              </div>
 	            </div>
 
-            <div id="home-rent-tags-wrap" class="landing-rent-tags hidden">
+            <div id="home-rent-tags-wrap" class="landing-rent-tags is-inactive" aria-hidden="true">
               <span id="home-rent-tags-label" class="subtle">Rent tags</span>
               <div class="landing-rent-tag-row">
                 <button class="chip" type="button" data-home-rent-tag="group">Group rent</button>
@@ -135,30 +114,70 @@
 	        </section>
 
 	        <section class="section landing-section reveal" data-delay="2">
+	          <div class="section-head">
+	            <h3 class="section-title">NEW PROPERTIES</h3>
+	            <a class="landing-link" href="search.html">Explore more</a>
+	          </div>
+	          <div id="for-you-feed" class="listings listing-grid-home" aria-live="polite"></div>
+	        </section>
+
+	        <section class="section landing-section reveal" data-delay="2">
+	          <article class="premium-home-card">
+	            <div class="premium-home-copy">
+	              <span class="premium-home-kicker">Premium</span>
+	              <h3 id="premium-home-title">Get more visibility with Premium</h3>
+	              <p id="premium-home-subtitle">
+	                Upgrade to Pro for stronger discovery, market insights, and priority support.
+	              </p>
+	              <ul class="premium-home-list">
+	                <li>
+	                  <strong id="premium-home-point-1-title">More exposure</strong>
+	                  <span id="premium-home-point-1-copy">Show your listings higher in front of serious buyers and renters.</span>
+	                </li>
+	                <li>
+	                  <strong id="premium-home-point-2-title">Better listing recommendations</strong>
+	                  <span id="premium-home-point-2-copy">Follow tailored tips to improve performance and conversion.</span>
+	                </li>
+	                <li>
+	                  <strong id="premium-home-point-3-title">Price and market insights</strong>
+	                  <span id="premium-home-point-3-copy">Track views, demand, and pricing signals in one place.</span>
+	                </li>
+	                <li>
+	                  <strong id="premium-home-point-4-title">Priority support</strong>
+	                  <span id="premium-home-point-4-copy">Get faster responses when you need help.</span>
+	                </li>
+	              </ul>
+	              <div class="premium-home-actions">
+	                <a id="premium-home-cta" class="btn" href="pro-upgrade.html">View Pro plan</a>
+	              </div>
+	            </div>
+	            <div class="premium-home-media">
+	              <img src="assets/listing-7.jpg" alt="Premium listing tools preview" loading="lazy" />
+	            </div>
+	          </article>
+	        </section>
+
+	        <section id="top-agencies" class="section landing-section reveal" data-delay="3">
+	          <div class="section-head">
+	            <h3 class="section-title">TOP AGENCIES</h3>
+	          </div>
+	          <div id="sponsored-row" class="agency-row" aria-live="polite"></div>
+	        </section>
+
+	        <section class="section landing-section reveal" data-delay="2">
 	          <article class="ad-banner home-ad-banner">
+	            <a class="ad-media-link" href="list-property.html">
+	              <img class="ad-media-image" src="assets/listing-6.jpg" alt="Sponsored ad preview" loading="lazy" />
+	            </a>
 	            <div class="ad-copy">
 	              <span class="ad-chip">Sponsored</span>
 	              <h4>Premium placement for agencies</h4>
 	              <p>Reach serious buyers and renters with high-visibility homepage placement.</p>
+                <span class="ad-phone">+216 20 000 000</span>
 	            </div>
 	            <a class="btn light home-ad-cta" href="list-property.html">Advertise with us</a>
 	          </article>
 	        </section>
-
-        <section class="section landing-section reveal" data-delay="2">
-          <div class="section-head">
-            <h3 class="section-title">NEW PROPERTIES</h3>
-            <a class="landing-link" href="search.html">Explore more</a>
-          </div>
-          <div id="for-you-feed" class="listings listing-grid-home" aria-live="polite"></div>
-        </section>
-
-        <section id="top-agencies" class="section landing-section reveal" data-delay="3">
-          <div class="section-head">
-            <h3 class="section-title">TOP AGENCIES</h3>
-          </div>
-          <div id="sponsored-row" class="agency-row" aria-live="polite"></div>
-        </section>
       </main>
 
       <nav class="footer-nav" aria-label="Primary navigation">
